@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offizielle Supportseite für GasBlender auf macOS, iPhone und iPad.">
+  <title>GasBlender Support</title>
+  <style>
+    :root { color-scheme: light dark; --accent: #1677c8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 17px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: Canvas; color: CanvasText; }
+    main { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 64px 0; }
+    h1 { margin: 0 0 16px; font-size: clamp(2rem, 7vw, 3.6rem); line-height: 1.05; }
+    h2 { margin-top: 0; font-size: 1.25rem; }
+    .lede { max-width: 42rem; font-size: 1.2rem; }
+    .card { margin-top: 28px; padding: 24px; border: 1px solid color-mix(in srgb, CanvasText 18%, transparent); border-radius: 18px; background: color-mix(in srgb, Canvas 94%, CanvasText 6%); }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    .button { display: inline-block; margin-top: 8px; padding: 11px 16px; border-radius: 10px; background: var(--accent); color: white; font-weight: 650; text-decoration: none; }
+    footer { margin-top: 40px; font-size: .9rem; opacity: .75; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GasBlender Support</h1>
+    <p class="lede">Offizielle Supportseite für GasBlender auf macOS, iPhone und iPad.</p>
+
+    <section class="card" aria-labelledby="kontakt">
+      <h2 id="kontakt">Kontakt und Fehlerberichte</h2>
+      <p>Bei Problemen, Fragen oder Verbesserungsvorschlägen kannst du eine öffentliche Supportanfrage auf GitHub erstellen. Bitte veröffentliche dort keine vertraulichen oder personenbezogenen Daten.</p>
+      <a class="button" href="https://github.com/feichti01/support/issues/new">Supportanfrage erstellen</a>
+    </section>
+
+    <section class="card" aria-labelledby="hilfe">
+      <h2 id="hilfe">Hilfe in der App</h2>
+      <p>Die integrierte Hilfe erklärt Planungseingaben, Füllplan, Einsatzgrenzen, Speicher, Booster, Warnungen und Sperrgründe. Sie enthält außerdem den vollständigen Sicherheitshinweis.</p>
+    </section>
+
+    <section class="card" aria-labelledby="sicherheit">
+      <h2 id="sicherheit">Wichtiger Hinweis</h2>
+      <p>GasBlender ist ein Planungswerkzeug für entsprechend ausgebildete Gasblender. Die App ersetzt weder Ausbildung noch geeignete Ausrüstung, vorgeschriebene Verfahren oder die abschließende Gasanalyse.</p>
+    </section>
+
+    <section class="card" lang="en" aria-labelledby="english">
+      <h2 id="english">English support</h2>
+      <p>For app issues, questions, or feature requests, open a public GitHub support request. Do not include confidential or personal information.</p>
+      <a href="https://github.com/feichti01/support/issues/new">Open a support request</a>
+    </section>
+
+    <footer>
+      <p>GasBlender Support · Maintained by Christian Feichtinger · Wels, Austria</p>
+    </footer>
+  </main>
+</body>
+</html>
