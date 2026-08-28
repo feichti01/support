@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mindestvoraussetzungen und Supportstatus für GasBlender-Etikettendrucker mit ZPL, EPL oder ESC/POS.">
+  <title>GasBlender Drucker-Kompatibilität · Printer Compatibility</title>
+  <style>
+    :root { color-scheme: light dark; --accent: #1677c8; --caution: #a65f00; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 17px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: Canvas; color: CanvasText; }
+    main { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 72px; }
+    h1 { margin: 18px 0 12px; font-size: clamp(2rem, 7vw, 3.4rem); line-height: 1.08; }
+    h2 { margin-top: 36px; font-size: 1.35rem; }
+    h3 { margin-top: 28px; font-size: 1.1rem; }
+    p, li { max-width: 78ch; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    table { width: 100%; border-collapse: collapse; margin: 18px 0 26px; }
+    th, td { padding: 12px; border: 1px solid color-mix(in srgb, CanvasText 20%, transparent); text-align: left; vertical-align: top; }
+    th { background: color-mix(in srgb, Canvas 88%, CanvasText 12%); }
+    code { overflow-wrap: anywhere; }
+    .lede { font-size: 1.16rem; }
+    .notice { margin: 26px 0; padding: 20px; border-left: 4px solid var(--accent); background: color-mix(in srgb, Canvas 92%, CanvasText 8%); }
+    .caution { border-left-color: var(--caution); }
+    .language { margin-top: 58px; padding-top: 36px; border-top: 1px solid color-mix(in srgb, CanvasText 22%, transparent); }
+    footer { margin-top: 44px; font-size: .9rem; opacity: .78; }
+    @media (max-width: 700px) {
+      table, thead, tbody, tr, th, td { display: block; }
+      thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      tr { margin-bottom: 14px; border: 1px solid color-mix(in srgb, CanvasText 20%, transparent); }
+      td { border: 0; border-bottom: 1px solid color-mix(in srgb, CanvasText 14%, transparent); }
+      td:last-child { border-bottom: 0; }
+      td::before { content: attr(data-label); display: block; margin-bottom: 3px; font-weight: 700; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav aria-label="Seitennavigation">
+      <a href="index.html">Support</a> · <a href="#english">English</a>
+    </nav>
+
+    <h1>Etikettendrucker-Kompatibilität</h1>
+    <p class="lede">GasBlender unterstützt klar begrenzte Rasterprofile für ZPL, EPL und ESC/POS. Das ist keine vollständige Garantie für einzelne Druckermodelle oder alle Funktionen einer Druckersprache.</p>
+
+    <div class="notice">
+      <strong>Sicherer Standard:</strong> Verwende nach Möglichkeit den nativen PDF-Systemdruck über macOS beziehungsweise AirPrint. Der direkte Raw-Druck ist nur für ein vollständig konfiguriertes Profil vorgesehen und benötigt vor der produktiven Nutzung ein korrektes reales Testetikett.
+    </div>
+
+    <h2>Mindestvoraussetzungen für direkten Raw-Druck</h2>
+    <ul>
+      <li>lokal erreichbarer Raw-TCP-Endpunkt im vertrauenswürdigen LAN oder WLAN;</li>
+      <li>ein dokumentiert unterstütztes GasBlender-Rasterprofil für ZPL, EPL oder ESC/POS;</li>
+      <li>Etikettenmaß 101,6 × 50,8 mm im Querformat;</li>
+      <li>mindestens 101,6 mm tatsächlich bedruckbare Breite und 50,8 mm nutzbare Vorschublänge;</li>
+      <li>exakt gewähltes Betriebsprofil für 203 dpi mit 812 × 406 Pixeln oder 300 dpi mit 1200 × 600 Pixeln;</li>
+      <li>monochrome 1-Bit-Rastergrafik und ausreichender Empfangs-/Grafikpuffer für einen vollständigen Auftrag;</li>
+      <li>korrekte Gap-, Black-Mark- oder Endlosmedienkonfiguration am Drucker.</li>
+    </ul>
+
+    <div class="notice caution">
+      <strong>Wichtig:</strong> „ZPL-kompatibel“, „EPL-kompatibel“ oder „ESC/POS-kompatibel“ allein genügt nicht. Auch eine höhere DPI-Zahl ist nicht automatisch kompatibel. Ein üblicher 58- oder 80-mm-Belegdrucker ist für das aktuelle 4-Zoll-Etikett zu schmal, selbst wenn er ESC/POS versteht.
+    </div>
+
+    <h2>Profilstatus</h2>
+    <table>
+      <thead>
+        <tr><th>GasBlender-Profil</th><th>Baseline</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Profil"><code>zpl-raster-v1</code></td>
+          <td data-label="Baseline">Monochromes Raster über ZPL <code>^GFA</code>, genau ein Etikett</td>
+          <td data-label="Status">Im Encoder vorhanden; projektweiter physischer Profilnachweis noch offen</td>
+        </tr>
+        <tr>
+          <td data-label="Profil"><code>epl-raster-v1</code></td>
+          <td data-label="Baseline">Monochromes Raster über EPL <code>GW</code>, genau ein Etikett</td>
+          <td data-label="Status">Im Encoder vorhanden; projektweiter physischer Profilnachweis noch offen</td>
+        </tr>
+        <tr>
+          <td data-label="Profil"><code>escpos-raster-legacy-v1</code></td>
+          <td data-label="Baseline">Legacy-Raster über ESC/POS <code>GS v 0</code></td>
+          <td data-label="Status">Im Encoder vorhanden; ausdrücklich Legacy und physisch noch nicht projektverifiziert</td>
+        </tr>
+        <tr>
+          <td data-label="Profil"><code>escpos-graphics-v1</code></td>
+          <td data-label="Baseline">Modernes ESC/POS-Grafikprofil über <code>GS ( L</code> / <code>GS 8 L</code></td>
+          <td data-label="Status">Beschlossen, aber noch nicht in GasBlender implementiert oder freigegeben</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Was das Testetikett bestätigt</h2>
+    <p>Bestätige den direkten Druck erst, wenn alle vier Außenränder sichtbar sind, Größe und Orientierung stimmen, alle Pflichtinhalte lesbar sind, der Kontrollbereich beschreibbar bleibt und das Medium ohne Beschnitt oder automatische Größenanpassung transportiert wird.</p>
+    <p>Änderungen an Adresse, Port, Rasterprofil, DPI oder Medienformat machen die Bestätigung ungültig. Nach Firmware-, Emulations- oder Kalibrierungsänderungen sollte ebenfalls ein neues Testetikett gedruckt werden.</p>
+
+    <h2>Keine Modellvollgarantie</h2>
+    <p>Ein positiver Nachweis gilt für die dokumentierte Kombination aus Druckermodell, Firmware, Emulationsmodus, DPI, Medium und Konfiguration. Er garantiert nicht automatisch andere Geräte oder Firmwarestände derselben Serie. GasBlender unterstützt nur die für das ausgewählte Rasterprofil benötigte Teilmenge und nicht sämtliche Funktionen des Druckers.</p>
+
+    <section id="english" class="language" lang="en">
+      <h1>Label Printer Compatibility</h1>
+      <p class="lede">GasBlender supports narrowly defined raster profiles for ZPL, EPL, and ESC/POS. This is not a complete guarantee for individual printer models or every feature of a printer language.</p>
+
+      <div class="notice">
+        <strong>Safe default:</strong> Use native PDF System Print through macOS or AirPrint whenever possible. Direct raw printing is intended only for a fully configured profile and requires a correct physical test label before production use.
+      </div>
+
+      <h2>Minimum requirements for direct raw printing</h2>
+      <ul>
+        <li>a locally reachable raw TCP endpoint on a trusted LAN or Wi-Fi network;</li>
+        <li>a documented GasBlender raster profile for ZPL, EPL, or ESC/POS;</li>
+        <li>101.6 × 50.8 mm label stock in landscape orientation;</li>
+        <li>at least 101.6 mm of actual printable width and 50.8 mm of usable feed length;</li>
+        <li>an exactly selected 203 dpi profile at 812 × 406 pixels or 300 dpi profile at 1200 × 600 pixels;</li>
+        <li>monochrome 1-bit raster graphics and enough receive/graphics buffer for one complete job;</li>
+        <li>correct gap, black-mark, or continuous-media configuration on the printer.</li>
+      </ul>
+
+      <div class="notice caution">
+        <strong>Important:</strong> “ZPL compatible,” “EPL compatible,” or “ESC/POS compatible” is not sufficient by itself. A higher DPI value is not automatically compatible either. A typical 58 or 80 mm receipt printer is too narrow for the current 4-inch label even if it understands ESC/POS.
+      </div>
+
+      <h2>Profile status</h2>
+      <table>
+        <thead>
+          <tr><th>GasBlender profile</th><th>Baseline</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Profile"><code>zpl-raster-v1</code></td>
+            <td data-label="Baseline">Monochrome raster through ZPL <code>^GFA</code>, one label</td>
+            <td data-label="Status">Present in the encoder; project-level physical profile verification is still pending</td>
+          </tr>
+          <tr>
+            <td data-label="Profile"><code>epl-raster-v1</code></td>
+            <td data-label="Baseline">Monochrome raster through EPL <code>GW</code>, one label</td>
+            <td data-label="Status">Present in the encoder; project-level physical profile verification is still pending</td>
+          </tr>
+          <tr>
+            <td data-label="Profile"><code>escpos-raster-legacy-v1</code></td>
+            <td data-label="Baseline">Legacy raster through ESC/POS <code>GS v 0</code></td>
+            <td data-label="Status">Present in the encoder; explicitly legacy and not yet physically project-verified</td>
+          </tr>
+          <tr>
+            <td data-label="Profile"><code>escpos-graphics-v1</code></td>
+            <td data-label="Baseline">Modern ESC/POS graphics through <code>GS ( L</code> / <code>GS 8 L</code></td>
+            <td data-label="Status">Decided, but not yet implemented or released in GasBlender</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What the test label confirms</h2>
+      <p>Confirm direct printing only when all four outer borders are visible, physical size and orientation are correct, all required content is legible, the control area remains writable, and the media is transported without clipping or automatic scaling.</p>
+      <p>Changing the address, port, raster profile, DPI, or media format invalidates the confirmation. Print a new test label after firmware, emulation, or calibration changes as well.</p>
+
+      <h2>No full model guarantee</h2>
+      <p>A positive result applies to the documented combination of printer model, firmware, emulation mode, DPI, media, and configuration. It does not automatically guarantee other devices or firmware versions from the same series. GasBlender supports only the command subset required by the selected raster profile, not every printer feature.</p>
+    </section>
+
+    <footer>
+      <p><a href="index.html">GasBlender Support</a> · Compatibility contract: ADR-0084 · Maintained by Christian Feichtinger · Wels, Austria</p>
+    </footer>
+  </main>
+</body>
+</html>
