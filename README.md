@@ -2,11 +2,16 @@
 
 Official public support site for GasBlender on macOS, iPhone, and iPad.
 
-- Support site: https://feichti01.github.io/support/
-- Privacy policy: https://feichti01.github.io/support/privacy.html
-- Printer compatibility: https://feichti01.github.io/support/printer-compatibility.html
+- Support site: https://feichti01.github.io/gasblender/support/
+- Privacy policy: https://feichti01.github.io/gasblender/support/privacy.html
+- Printer compatibility: https://feichti01.github.io/gasblender/support/printer-compatibility.html
 - Open bug fixes: https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug
 - Support requests: https://github.com/feichti01/support/issues/new
+
+The legacy GitHub Pages URLs under `https://feichti01.github.io/support/`
+remain as static HTTP-200 compatibility pages and immediately redirect to the
+matching project-specific HTTPS destination. The issue list and support form
+remain hosted in this repository and are not redirected.
 
 Known bug-fix issues use stable `GB-NNNN` references and compact status,
 platform, and target-build information. The GitHub issue list is the current
