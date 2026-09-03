@@ -10,9 +10,10 @@ Official public support site for GasBlender on macOS, iPhone, and iPad.
 - Support requests: https://github.com/feichti01/support/issues/new
 
 The root page is a project-neutral directory. The legacy GasBlender privacy
-and printer-compatibility URLs remain as static HTTP-200 compatibility pages
-and immediately redirect to the matching project-specific HTTPS destination.
-The issue list and support form remain hosted in this repository and are not
+URL remains as a static HTTP-200 compatibility page and immediately redirects
+to the matching project-specific HTTPS destination. The current printer
+compatibility page is available only below the GasBlender project path. The
+issue list and support form remain hosted in this repository and are not
 redirected.
 
 Known bug-fix issues use stable `GB-NNNN` references and compact status,
