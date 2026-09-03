@@ -24,10 +24,17 @@ assert_redirect() {
         "$repository_root/$file"
 }
 
-assert_redirect index.html "$target_origin/"
 assert_redirect privacy.html "$target_origin/privacy.html"
 assert_redirect printer-compatibility.html "$target_origin/printer-compatibility.html"
 
+grep -Fq '<link rel="canonical" href="https://feichti01.github.io/support/">' \
+    "$repository_root/index.html"
+if grep -Fiq '<meta http-equiv="refresh"' "$repository_root/index.html"; then
+    printf 'General support directory must not redirect\n' >&2
+    exit 1
+fi
+grep -Fq 'href="https://feichti01.github.io/gasblender/support/"' \
+    "$repository_root/index.html"
 grep -Fq 'https://github.com/feichti01/support/issues/new' "$repository_root/index.html"
 grep -Fq 'https://github.com/feichti01/support/issues?q=' "$repository_root/index.html"
 
