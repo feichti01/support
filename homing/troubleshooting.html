@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Fehlerbehebung und häufige Fragen zu Homing</title>
+<meta name="description" content="Was zu prüfen ist, wenn Homing AirPods oder Bluetooth-Kopfhörer nicht verbindet, und Antworten auf häufige Fragen zu Tastenkürzel, Teams, Zoom und Anmeldeobjekten.">
+<link rel="canonical" href="https://feichti01.github.io/support/homing/troubleshooting.html">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/homing/troubleshooting.html">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/homing/troubleshooting.html#english">
+<link rel="stylesheet" href="assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#inhalt">Zum Inhalt springen</a>
+<div class="gb-page">
+
+<header class="gb-masthead">
+<h1>Fehlerbehebung und häufige Fragen</h1>
+<p class="gb-tagline">Troubleshooting and FAQ für Homing auf macOS.</p>
+<nav class="gb-language-nav" aria-label="Sprache / Language">
+<ul>
+<li><a lang="de" hreflang="de" href="#deutsch">Deutsch</a></li>
+<li><a lang="en" hreflang="en" href="#english">English</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="inhalt">
+
+<article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
+<h2 id="ueberschrift-deutsch">Deutsch</h2>
+<p><strong>Stand:</strong> 11. September 2026</p>
+
+<section aria-labelledby="de-vorab">
+<h3 id="de-vorab">1. Bevor Sie eine Meldung erstellen</h3>
+<ol>
+<li>Prüfen Sie, ob Ihre AirPods oder Kopfhörer unter <strong>Systemeinstellungen &gt; Bluetooth</strong> bereits mit diesem Mac gekoppelt sind. Homing zeigt nur gekoppelte Geräte an und koppelt selbst keine neuen.</li>
+<li>Prüfen Sie <strong>Systemeinstellungen &gt; Datenschutz &amp; Sicherheit &gt; Bluetooth</strong>: Der Schalter für „Homing“ muss eingeschaltet sein. Starten Sie die App nach einer Änderung neu.</li>
+<li>Stellen Sie sicher, dass Sie die aktuelle Version verwenden, aus dem <a href="https://apps.apple.com/app/homing-reconnect-earbuds/id6809006124?mt=12">Mac App Store</a> oder als <a href="https://github.com/feichti01/homing-releases/releases/latest">aktuelles Installationspaket</a>. Nur die aktuelle Version erhält Fehlerkorrekturen.</li>
+<li>Lesen Sie das <a href="https://github.com/feichti01/homing/blob/main/USER_GUIDE.md">Benutzerhandbuch</a> (Englisch).</li>
+</ol>
+</section>
+
+<section aria-labelledby="de-faq">
+<h3 id="de-faq">2. Häufige Fragen</h3>
+<dl class="gb-faq">
+<dt>Warum landen meine AirPods immer wieder beim falschen Gerät?</dt>
+<dd>AirPods folgen dem Apple-Gerät, das zuletzt Audio abgespielt hat. macOS lässt sich das pro Mac abschalten: <strong>Systemeinstellungen &gt; Bluetooth &gt; ⓘ neben den AirPods &gt; „Mit diesem Mac verbinden“ &gt; „Wenn zuletzt mit diesem Mac verbunden“</strong>. Viele wählen das, damit die AirPods tagsüber nicht ungefragt zum Mac springen. Der Preis dafür: Zurückholen bedeutet einen Umweg über das Bluetooth-Menü. Homing ist dieser Umweg, reduziert auf einen Klick oder einen Tastendruck. Mit „Automatisch“ funktioniert Homing ebenfalls, für die Momente, in denen der automatische Wechsel ausbleibt.</dd>
+
+<dt>Das Menü meldet „No paired AirPods found“.</dt>
+<dd>Das Gerät wurde nie mit diesem Mac gekoppelt, oder die Bluetooth-Berechtigung ist aus. Koppeln Sie es einmal unter Systemeinstellungen &gt; Bluetooth und klicken Sie dann erneut auf das Homing-Symbol.</dd>
+
+<dt>Ein Klick auf ein Gerät blinkt rot.</dt>
+<dd>Der Verbindungsversuch ist fehlgeschlagen. Typische Ursachen: Die AirPods liegen im Case bei geschlossenem Deckel, sie sind mit einem iPhone verbunden, das sie gerade aktiv nutzt, oder sie sind außer Reichweite. Öffnen Sie den Deckel oder setzen Sie die AirPods ein und versuchen Sie es erneut.</dd>
+
+<dt>Microsoft Teams verwendet weiter Lautsprecher und Mikrofon des MacBooks.</dt>
+<dd>Homing setzt Standardausgabe und Mikrofon des Mac auf die Kopfhörer, sobald sie verbunden sind. Zoom (mit „Wie System“), FaceTime und Anrufe im Browser folgen sofort. Teams merkt sich das zuletzt in Teams selbst gewählte Gerät: Wählen Sie die Kopfhörer einmal unter <strong>Teams &gt; Einstellungen &gt; Geräte</strong>. Ab dann wechselt Teams automatisch auf sie, sobald Homing sie verbindet.</dd>
+
+<dt>Das Tastenkürzel tut nichts.</dt>
+<dd>Eine andere App oder macOS belegt die Kombination bereits. Wählen Sie im Menü <strong>Change Shortcut…</strong>; der Recorder meldet Konflikte und lässt Sie eine andere Kombination wählen. Standard ist <kbd>⌃⌥A</kbd>.</dd>
+
+<dt>„Launch at Login“ verlangt eine Bestätigung.</dt>
+<dd>macOS verlangt Ihre Zustimmung für Anmeldeobjekte. Öffnen Sie <strong>Systemeinstellungen &gt; Allgemein &gt; Anmeldeobjekte</strong> und aktivieren Sie Homing dort.</dd>
+
+<dt>Ich habe von „AirPods Switch“ aktualisiert.</dt>
+<dd>Homing ist dieselbe App unter neuem Namen und neuer Kennung. macOS fragt einmal erneut nach der Bluetooth-Berechtigung, und das bevorzugte Gerät muss neu gewählt werden. Entfernen Sie die alte „AirPods Switch.app“ aus dem Programme-Ordner.</dd>
+
+</dl>
+</section>
+
+<section aria-labelledby="de-weiter">
+<h3 id="de-weiter">3. Wenn das nicht hilft</h3>
+<p>Erstellen Sie eine <a href="https://github.com/feichti01/support/issues/new?labels=homing&amp;title=Homing%3A%20">Supportmeldung auf GitHub</a> oder schreiben Sie an <a href="mailto:christian@feichti.at?subject=Homing%20Support">christian@feichti.at</a>. Welche Angaben helfen, steht auf der <a href="./#ueberschrift-inhalt-meldung">Supportseite</a>.</p>
+</section>
+</article>
+
+<article id="english" lang="en" aria-labelledby="heading-english">
+<h2 id="heading-english">Homing troubleshooting and FAQ</h2>
+<p><strong>Effective:</strong> September 11, 2026</p>
+
+<section aria-labelledby="en-before">
+<h3 id="en-before">1. Before you file a report</h3>
+<ol>
+<li>Check that your AirPods or headphones are already paired with this Mac under <strong>System Settings &gt; Bluetooth</strong>. Homing only shows paired devices and does not pair new ones.</li>
+<li>Check <strong>System Settings &gt; Privacy &amp; Security &gt; Bluetooth</strong>: the switch for "Homing" must be on. Relaunch the app after changing it.</li>
+<li>Make sure you run the latest version, from the <a href="https://apps.apple.com/app/homing-reconnect-earbuds/id6809006124?mt=12">Mac App Store</a> or as the <a href="https://github.com/feichti01/homing-releases/releases/latest">latest installer</a>. Only the latest version receives fixes.</li>
+<li>Read the <a href="https://github.com/feichti01/homing/blob/main/USER_GUIDE.md">User Guide</a>.</li>
+</ol>
+</section>
+
+<section aria-labelledby="en-faq">
+<h3 id="en-faq">2. Frequently asked questions</h3>
+<dl class="gb-faq">
+<dt>Why do my AirPods keep ending up on the wrong device?</dt>
+<dd>AirPods follow whichever Apple device last played audio. macOS lets you turn that off per Mac: <strong>System Settings &gt; Bluetooth &gt; ⓘ next to your AirPods &gt; "Connect to This Mac" &gt; "When Last Connected to This Mac"</strong>. Many people choose this so the AirPods stop jumping to the Mac during the day. The price is that bringing them back becomes a manual trip through the Bluetooth menu. Homing is that trip, reduced to one click or one keystroke. It works with "Automatically" too, for the moments when the automatic switch does not happen.</dd>
+
+<dt>The menu says "No paired AirPods found".</dt>
+<dd>The device has never been paired with this Mac, or Bluetooth access is off. Pair it once through System Settings &gt; Bluetooth, then click the Homing icon again.</dd>
+
+<dt>Clicking a device flashes red.</dt>
+<dd>The connection attempt failed. Typical causes: the AirPods are in the case with the lid closed, they are connected to an iPhone that is actively using them, or they are out of range. Open the lid or put them in your ears and try again.</dd>
+
+<dt>Microsoft Teams keeps using the MacBook speakers and microphone.</dt>
+<dd>Homing sets the Mac's default output and microphone to the headphones when they connect. Zoom (with "Same as System"), FaceTime and calls in the browser follow immediately. Teams remembers the device you last picked in Teams itself: choose the headphones once under <strong>Teams &gt; Settings &gt; Devices</strong>, and from then on Teams switches to them automatically whenever Homing connects them.</dd>
+
+<dt>The keyboard shortcut does nothing.</dt>
+<dd>Another app or macOS already uses the combination. Choose <strong>Change Shortcut…</strong> in the menu; the recorder reports conflicts and lets you pick another one. The default is <kbd>⌃⌥A</kbd>.</dd>
+
+<dt>"Launch at Login" asks me to approve something.</dt>
+<dd>macOS requires your approval for login items. Open <strong>System Settings &gt; General &gt; Login Items</strong> and enable Homing there.</dd>
+
+<dt>I upgraded from "AirPods Switch".</dt>
+<dd>Homing is the same app under a new name and a new identifier. macOS asks once more for Bluetooth access, and the preferred device has to be picked again. Remove the old "AirPods Switch.app" from /Applications.</dd>
+
+</dl>
+</section>
+
+<section aria-labelledby="en-next">
+<h3 id="en-next">3. If that does not help</h3>
+<p>File a <a href="https://github.com/feichti01/support/issues/new?labels=homing&amp;title=Homing%3A%20">support report on GitHub</a> or write to <a href="mailto:christian@feichti.at?subject=Homing%20Support">christian@feichti.at</a>. The <a href="en/#heading-report-contents">support page</a> lists what to include.</p>
+</section>
+</article>
+
+</main>
+
+<footer class="gb-colophon">
+<p><a href="./">Zur Supportseite / Back to support</a></p>
+<p>Diese Seite verwendet keine eigenen Cookies, kein Tracking, keine Formulare und keine externen Skripte.</p>
+</footer>
+
+</div>
+</body>
+</html>
