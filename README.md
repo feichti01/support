@@ -1,6 +1,7 @@
 # Project Support
 
-Official public support site for GasBlender (macOS, iPhone, iPad) and Homing (macOS).
+Official public support site for GasBlender (macOS, iPhone, iPad), Homing
+(macOS), and CVE Agent (macOS).
 
 - General project support: https://feichti01.github.io/support/
 - GasBlender support: https://feichti01.github.io/gasblender/support/
@@ -21,6 +22,19 @@ Official public support site for GasBlender (macOS, iPhone, iPad) and Homing (ma
 
 Homing issues carry the `homing` label so both projects share this issue
 tracker without mixing their bug lists.
+
+## CVE Agent
+
+- CVE Agent support: https://feichti01.github.io/support/cveagent/ (English: https://feichti01.github.io/support/cveagent/en/)
+- Privacy policy: https://feichti01.github.io/support/cveagent/privacy.html
+- Privacy choices: https://feichti01.github.io/support/cveagent/privacy-choices.html
+- Troubleshooting and FAQ: https://feichti01.github.io/support/cveagent/troubleshooting.html
+- Legal notice: https://feichti01.github.io/support/cveagent/legal.html
+- Public reports: https://github.com/feichti01/cveagent-support/issues
+- Support requests: https://github.com/feichti01/cveagent-support/issues/new?template=bug_report.yml
+
+CVE Agent uses its dedicated public issue repository so confidential product
+source and operational data remain outside the support site.
 
 The root page is a project-neutral directory. The legacy GasBlender privacy
 URL remains as a static HTTP-200 compatibility page and immediately redirects

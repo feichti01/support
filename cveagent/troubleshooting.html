@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Fehlerbehebung und häufige Fragen zu CVE Agent</title>
+<meta name="description" content="Fehlerbehebung für Aktualisierung, Berichte, Hintergrundprüfung und Benachrichtigungen von CVE Agent.">
+<link rel="canonical" href="https://feichti01.github.io/support/cveagent/troubleshooting.html">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/cveagent/troubleshooting.html">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/cveagent/troubleshooting.html#english">
+<link rel="stylesheet" href="assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#inhalt">Zum Inhalt springen</a><div class="gb-page">
+<header class="gb-masthead"><h1>Fehlerbehebung und häufige Fragen</h1><p class="gb-tagline">Troubleshooting and FAQ für CVE Agent auf macOS.</p><nav class="gb-language-nav" aria-label="Sprache / Language"><ul><li><a href="#deutsch">Deutsch</a></li><li><a lang="en" href="#english">English</a></li></ul></nav></header>
+<main id="inhalt">
+<article id="deutsch" lang="de" aria-labelledby="trouble-de"><h2 id="trouble-de">Deutsch</h2><p><strong>Stand:</strong> 11. September 2026</p>
+<section><h3>1. Bevor Sie eine Meldung erstellen</h3><ol><li>Prüfen Sie, ob der Mac mit dem Internet verbunden ist. Öffentliche CVE-Daten werden ausschließlich über HTTPS abgerufen.</li><li>Starten Sie in der App eine manuelle Aktualisierung und notieren Sie die sichtbare Fehlermeldung.</li><li>Prüfen Sie Zeitraum und Berichtsumfang. Filter wirken auf den bereits geladenen Bestand.</li><li>Verwenden Sie die aktuelle App-Version und nennen Sie Versions- und Buildnummer in der Meldung.</li></ol></section>
+<section><h3>2. Häufige Fragen</h3><dl class="gb-faq">
+<dt>Warum ist der Bericht leer?</dt><dd>Im gewählten Zeitraum oder für die aktuelle Watchlist können keine passenden CVEs vorhanden sein. Wechseln Sie testweise auf sieben Tage oder den globalen Katalog und setzen Sie aktive Such- oder Prioritätsfilter zurück.</dd>
+<dt>Warum dauert die erste Aktualisierung länger?</dt><dd>Die App lädt und bewertet Daten aus mehreren öffentlichen Quellen. Spätere Läufe können den lokalen Katalogcache verwenden. Rate-Limits oder vorübergehend nicht erreichbare Quellen können einen Lauf verlängern.</dd>
+<dt>Warum sehe ich keine stündlichen Benachrichtigungen?</dt><dd>Prüfen Sie, ob <strong>Stündlich prüfen</strong> aktiviert ist, ob macOS das Hintergrundobjekt genehmigt hat und ob Mitteilungen für <strong>CVE Agent Hintergrundprüfung</strong> erlaubt sind. Bereits gemeldete CVEs werden nicht stündlich wiederholt.</dd>
+<dt>Warum startet CVE Agent nicht bei der Anmeldung?</dt><dd>Die Option <strong>App bei Anmeldung starten</strong> ist unabhängig von der stündlichen Hintergrundprüfung. Aktivieren Sie sie in der App und bestätigen Sie sie gegebenenfalls unter <strong>Systemeinstellungen &gt; Allgemein &gt; Anmeldeobjekte</strong>.</dd>
+<dt>Werden meine Berichte hochgeladen?</dt><dd>Nein. Der App-Store-Build speichert Berichte lokal und sendet sie nicht an den Entwickler. Teilen Sie Berichtsinhalte nur bewusst und niemals in einem öffentlichen Issue, wenn sie vertrauliche Angaben enthalten.</dd>
+</dl></section>
+<section><h3>3. Wenn das nicht hilft</h3><p>Verwenden Sie das <a href="https://github.com/feichti01/cveagent-support/issues/new?template=bug_report.yml">strukturierte Fehlerformular</a> oder schreiben Sie für nicht öffentliche Angaben an <a href="mailto:christian@feichti.at?subject=CVE%20Agent%20Support">christian@feichti.at</a>. Die <a href="./#ueberschrift-inhalt-meldung">Supportseite</a> nennt die benötigten Angaben.</p></section>
+</article>
+
+<article id="english" lang="en" aria-labelledby="trouble-en"><h2 id="trouble-en">CVE Agent troubleshooting and FAQ</h2><p><strong>Effective:</strong> September 11, 2026</p>
+<section><h3>1. Before you file a report</h3><ol><li>Check that the Mac is connected to the internet. Public CVE information is retrieved only over HTTPS.</li><li>Start a manual refresh in the app and note the visible error message.</li><li>Check the time range and report scope. Filters operate on the already loaded data.</li><li>Use the current app version and include its version and build number in your report.</li></ol></section>
+<section><h3>2. Frequently asked questions</h3><dl class="gb-faq">
+<dt>Why is the report empty?</dt><dd>There may be no matching CVEs for the selected time range or current watchlist. Try seven days or the global catalogue and reset active search or priority filters.</dd>
+<dt>Why does the first refresh take longer?</dt><dd>The app retrieves and assesses data from several public sources. Later runs may use the local catalogue cache. Rate limits or temporarily unavailable sources can extend a run.</dd>
+<dt>Why do I receive no hourly notifications?</dt><dd>Check that <strong>Hourly check</strong> is enabled, that macOS approved the background item, and that notifications are allowed for <strong>CVE Agent Background Check</strong>. Previously reported CVEs are not repeated every hour.</dd>
+<dt>Why does CVE Agent not launch at login?</dt><dd><strong>Launch app at login</strong> is separate from the hourly background check. Enable it in the app and approve it under <strong>System Settings &gt; General &gt; Login Items</strong> if necessary.</dd>
+<dt>Are my reports uploaded?</dt><dd>No. The App Store build stores reports locally and does not send them to the developer. Share report contents only deliberately and never in a public issue when they contain confidential information.</dd>
+</dl></section>
+<section><h3>3. If that does not help</h3><p>Use the <a href="https://github.com/feichti01/cveagent-support/issues/new?template=bug_report.yml">structured bug form</a> or email <a href="mailto:christian@feichti.at?subject=CVE%20Agent%20Support">christian@feichti.at</a> for private details. The <a href="en/#heading-report-contents">support page</a> lists what to include.</p></section>
+</article>
+</main>
+<footer class="gb-colophon"><p><a href="./">Zur Supportseite / Back to support</a></p><p>Diese Seite verwendet keine eigenen Cookies, kein Tracking, keine Formulare und keine externen Skripte.</p></footer>
+</div></body></html>
