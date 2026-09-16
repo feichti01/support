@@ -64,12 +64,24 @@
 
 <section aria-labelledby="heading-availability">
 <h2 id="heading-availability">Availability</h2>
-<p>CVE Agent requires macOS 13 Ventura or later. Its Mac App Store release is in preparation. This support site does not distribute the app or an installer.</p>
+<p>CVE Agent requires macOS 13 Ventura or later and is available on the <a href="https://apps.apple.com/at/app/cve-agent/id6811044823?mt=12">Mac App Store</a>. This support site does not distribute the app or an installer.</p>
+</section>
+
+<section aria-labelledby="heading-releases">
+<h2 id="heading-releases">Release notes</h2>
+<h3>1.16.0 (build 28) – September 2026</h3>
+<ul>
+<li><strong>New source CERT-Bund (BSI):</strong> public CSAF advisories enrich matching CVEs with the German federal rating, affected products, remediations and references – shown as CERT-Bund values next to NVD, EPSS and KEV; rolling sync of the last 30 days, no historic import. Can be switched off at any time under Settings › Sources; when off, no CERT-Bund data appears in the report.</li>
+<li><strong>Interface for macOS 26/27 (Liquid Glass):</strong> the menu bar item is now a system menu with keyboard shortcuts, help opens in its own window, toolbar and settings use system controls; new layered app icon. macOS 13–15 keep the previous appearance.</li>
+<li><strong>Report:</strong> when more findings exist than the report limit, a notice explains the deliberate selection by risk (not an error); CERT-Bund reference lists are capped at three links, giving much smaller reports and smooth window resizing. CERT-Bund links open the advisory's portal page.</li>
+<li><strong>Accessibility:</strong> text contrast in the first-sync view, status bar and settings raised to WCAG AA.</li>
+</ul>
+<p>Earlier versions: 1.15.2 (risk selection for large reports, first-sync view, copy function), 1.15.1 (first Store release).</p>
 </section>
 
 <section aria-labelledby="heading-help">
 <h2 id="heading-help">In-app help</h2>
-<p>The app includes local help for search, time range, report scope, refresh, priorities, filters, CVE details and background checks.</p>
+<p>The app includes local help for search, time range, report scope, refresh, priorities, risk selection, filters, CVE details, CERT-Bund data and background checks.</p>
 </section>
 
 </main>
