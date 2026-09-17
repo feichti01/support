@@ -69,12 +69,14 @@
 
 <section aria-labelledby="heading-releases">
 <h2 id="heading-releases">Release notes</h2>
-<h3>1.16.0 (build 28) – September 2026</h3>
+<h3>1.16.2 (build 37) – September 2026</h3>
 <ul>
-<li><strong>New source CERT-Bund (BSI):</strong> public CSAF advisories enrich matching CVEs with the German federal rating, affected products, remediations and references – shown as CERT-Bund values next to NVD, EPSS and KEV; rolling sync of the last 30 days, no historic import. Can be switched off at any time under Settings › Sources; when off, no CERT-Bund data appears in the report.</li>
-<li><strong>Interface for macOS 26/27 (Liquid Glass):</strong> the menu bar item is now a system menu with keyboard shortcuts, help opens in its own window, toolbar and settings use system controls; new layered app icon. macOS 13–15 keep the previous appearance.</li>
-<li><strong>Report:</strong> when more findings exist than the report limit, a notice explains the deliberate selection by risk (not an error); CERT-Bund reference lists are capped at three links, giving much smaller reports and smooth window resizing. CERT-Bund links open the advisory's portal page.</li>
-<li><strong>Accessibility:</strong> text contrast in the first-sync view, status bar and settings raised to WCAG AA.</li>
+<li><strong>Favorites:</strong> star CVEs (up to 16). Favorites stay in the catalog permanently, appear in every report regardless of the time range and can be exported as Markdown and CSV; the background check notifies you about changes to favorites (CVSS, KEV, EPSS, CERT-Bund).</li>
+<li><strong>Vendor filter with multiple selection:</strong> a searchable list replaces the single choice and the selection is kept. Mark up to 16 vendors as “My vendors”; the background check reports new critical CVEs at these vendors separately.</li>
+<li><strong>Menu action “Show new critical CVEs”:</strong> shows exactly those CVEs; time range and scope adjust automatically – also when clicking the notification.</li>
+<li><strong>New source CERT-Bund (BSI):</strong> public CSAF advisories enrich matching CVEs with the German federal rating, affected products, remediations and references – shown as CERT-Bund values next to NVD, EPSS and KEV; rolling sync of the last 30 days, no historic import. Can be switched off at any time under Settings › Sources; CERT-Bund links open the advisory’s portal page.</li>
+<li><strong>Interface for macOS 26/27 (Liquid Glass):</strong> the menu bar item is a system menu with keyboard shortcuts, help opens in its own window, toolbar and settings use system controls. macOS 13–15 keep the previous appearance.</li>
+<li><strong>Report:</strong> wider and smoother; when more findings exist than the report limit, a notice explains the deliberate selection by risk; the English view shows status values, reasons and actions in English; text contrast raised to WCAG AA; CERT-Bund is retried on brief network hiccups.</li>
 </ul>
 <p>Earlier versions: 1.15.2 (risk selection for large reports, first-sync view, copy function), 1.15.1 (first Store release).</p>
 </section>
