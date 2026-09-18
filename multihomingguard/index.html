@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>MultihomingGuard-Support</title>
+<meta name="description" content="Projektgebundene Supportseite von MultihomingGuard, der Menüleisten-App für macOS, die gleichzeitige Nutzung von WLAN und kabelgebundenem LAN verhindert.">
+<link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/en/">
+<link rel="stylesheet" href="assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#inhalt">Zum Inhalt springen</a>
+<div class="gb-page">
+
+<header class="gb-masthead">
+<h1>MultihomingGuard-Support</h1>
+<p class="gb-tagline">Support für MultihomingGuard, die Menüleisten-App für macOS, die gleichzeitige Nutzung von WLAN und kabelgebundenem LAN verhindert: Ist ein Kabel verbunden, wird WLAN abgeschaltet; fällt das Kabel weg, kommt WLAN zurück.</p>
+<nav class="gb-language-nav" aria-label="Sprache">
+<ul>
+<li><span lang="de" aria-current="true">Deutsch</span></li>
+<li><a lang="en" hreflang="en" href="en/">English</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="inhalt">
+
+<section aria-labelledby="ueberschrift-dokumente">
+<h2 id="ueberschrift-dokumente">Dokumente</h2>
+<p>Die folgenden Seiten gehören zu dieser Supportadresse.</p>
+<ul class="gb-link-list">
+<li>
+<a href="troubleshooting.html">Fehlerbehebung und häufige Fragen</a>
+<span class="gb-link-note">Was zu prüfen ist, bevor Sie eine Meldung erstellen, und Antworten auf die häufigsten Fragen.</span>
+</li>
+<li>
+<a href="privacy.html">Datenschutzerklärung</a>
+<span class="gb-link-note">Welche Daten die App verarbeitet und wer dafür verantwortlich ist.</span>
+</li>
+<li>
+<a href="privacy-choices.html">Datenschutz-Einstellungen</a>
+<span class="gb-link-note">Was Sie auf Ihrem Mac selbst steuern können: Hintergrunddienst, Autostart, Protokolldateien, vollständige Deinstallation.</span>
+</li>
+<li>
+<a href="legal.html">Impressum und Lizenz</a>
+<span class="gb-link-note">Offenlegung, Nutzungsbedingungen, Marken und anwendbares Recht.</span>
+</li>
+</ul>
+</section>
+
+<section aria-labelledby="ueberschrift-meldungen">
+<h2 id="ueberschrift-meldungen">Fehler melden und Meldungen einsehen</h2>
+<p>Supportmeldungen und Fehlerberichte laufen über die öffentliche Issue-Liste im Repository <code>feichti01/support</code>. Meldungen zu MultihomingGuard tragen das Label <code>multihomingguard</code>. Die Liste ist ein kurzer englischer Auszug der öffentlich kommunizierbaren Punkte und keine vollständige Statusquelle.</p>
+<ul class="gb-link-list">
+<li>
+<a href="https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug%20label%3Amultihomingguard">Öffentliche Fehlerliste ansehen</a>
+<span class="gb-link-note">Offene, öffentlich gespiegelte Bugfixes von MultihomingGuard auf GitHub.</span>
+</li>
+<li>
+<a href="https://github.com/feichti01/support/issues/new?labels=multihomingguard&amp;title=MultihomingGuard%3A%20">Neue Supportmeldung erstellen</a>
+<span class="gb-link-note">Neues Issue auf GitHub anlegen; dafür wird ein GitHub-Konto benötigt.</span>
+</li>
+<li>
+<a href="mailto:christian@feichti.at?subject=MultihomingGuard%20Support">Nicht öffentliche Anfrage per E-Mail</a>
+<span class="gb-link-note">Für Fragen, die personenbezogene Daten oder interne Netzwerkdetails enthalten, oder wenn Sie kein GitHub-Konto verwenden möchten.</span>
+</li>
+<li>
+<a href="mailto:christian@feichti.at?subject=multihomingguard%20security">Sicherheitslücke melden</a>
+<span class="gb-link-note">Bitte per E-Mail mit dem Betreff <code>multihomingguard security</code>, nicht öffentlich.</span>
+</li>
+</ul>
+<p>MultihomingGuard wird von einer Person in der Freizeit gepflegt. Antworten erfolgen nach Möglichkeit innerhalb von sieben Tagen.</p>
+</section>
+
+<section aria-labelledby="ueberschrift-inhalt-meldung">
+<h2 id="ueberschrift-inhalt-meldung">Was eine Meldung enthalten sollte</h2>
+<ul>
+<li>macOS-Version und Chip (Apple-Menü &gt; Über diesen Mac).</li>
+<li>MultihomingGuard-Version (im Menü der App unter dem Titel, oder Finder &gt; <code>/Programme/MultihomingGuard.app</code> auswählen &gt; Informationen).</li>
+<li>Welche Netzwerkadapter beteiligt sind: internes WLAN, Ethernet-Port des Macs, USB-, Thunderbolt- oder Dock-Adapter (Hersteller und Modell).</li>
+<li>Was Sie erwartet haben und was stattdessen passiert ist. Wenn möglich die passenden Zeilen aus <code>/var/log/com.local.multihomingguard.log</code> und <code>/var/log/com.local.multihomingguard.err</code> (im Menü der App über „Logs im Finder oeffnen“ erreichbar).</li>
+</ul>
+<p>Veröffentlichen Sie in Issues keine Passwörter, WLAN-Schlüssel, internen Hostnamen oder Netzwerkadressen Ihres Arbeitgebers.</p>
+</section>
+
+<section aria-labelledby="ueberschrift-bezug">
+<h2 id="ueberschrift-bezug">Bezug und Quellcode</h2>
+<p>MultihomingGuard wird nicht über den Mac App Store vertrieben. Die fertige <code>MultihomingGuard.app</code> wird direkt vom Entwickler weitergegeben und kann ohne Entwicklerwerkzeuge gestartet werden; der Hintergrunddienst ist im App-Bundle enthalten. Das Quellcode-Repository ist derzeit nicht öffentlich.</p>
+<p>MultihomingGuard benötigt macOS 13 Ventura oder neuer. Nur die jeweils aktuelle Version erhält Fehlerkorrekturen.</p>
+</section>
+
+<section aria-labelledby="ueberschrift-funktion">
+<h2 id="ueberschrift-funktion">So arbeitet die App</h2>
+<ul>
+<li>Ist ein kabelgebundener LAN-Adapter korrekt verbunden (Link, aktiver Netzwerkdienst und gültige IPv4-Adresse), wird WLAN ausgeschaltet.</li>
+<li>Ist nur WLAN verbunden, bleiben die LAN-Netzwerkdienste aktiv, damit ein neu angestecktes Dock oder Kabel sofort Link und DHCP bekommt.</li>
+<li>Ist weder LAN noch WLAN verbunden, werden LAN-Dienste aktiviert und WLAN eingeschaltet.</li>
+<li>Die Prüfung läuft alle zwei Sekunden in einem Hintergrunddienst (LaunchDaemon) mit Root-Rechten, weil macOS Änderungen an Netzwerkdiensten nur so erlaubt. Die Menüleisten-App zeigt den Status und steuert den Dienst.</li>
+</ul>
+</section>
+
+</main>
+
+<footer class="gb-colophon">
+<p>Diese Seite verwendet keine Cookies, kein Tracking, keine Formulare und keine externen Skripte.</p>
+<p><a href="../">Zur Projektübersicht</a> · <a lang="en" hreflang="en" href="en/">This page in English</a></p>
+<p>Mac, macOS und Thunderbolt sind Marken von Apple Inc. MultihomingGuard ist ein unabhängiges Projekt und steht in keiner Verbindung zu Apple.</p>
+</footer>
+
+</div>
+</body>
+</html>

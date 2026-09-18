@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Datenschutzerklärung für MultihomingGuard</title>
+<meta name="description" content="Datenschutzerklärung und Privacy Policy für MultihomingGuard, die Menüleisten-App für macOS, die gleichzeitige Nutzung von WLAN und kabelgebundenem LAN verhindert.">
+<link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/privacy.html">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/privacy.html">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/privacy.html#english">
+<link rel="stylesheet" href="assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#inhalt">Zum Inhalt springen</a>
+<div class="gb-page">
+
+<header class="gb-masthead">
+<h1>Datenschutzerklärung für MultihomingGuard</h1>
+<p class="gb-tagline">Datenschutzerklärung und Privacy Policy für MultihomingGuard auf macOS.</p>
+<nav class="gb-language-nav" aria-label="Sprache / Language">
+<ul>
+<li><a lang="de" hreflang="de" href="#deutsch">Deutsch</a></li>
+<li><a lang="en" hreflang="en" href="#english">English</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="inhalt">
+
+<article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
+<h2 id="ueberschrift-deutsch">Deutsch</h2>
+<p><strong>Stand:</strong> 18. September 2026 (Version 1.0)</p>
+<p>MultihomingGuard ist eine Menüleisten-App für macOS mit einem Hintergrunddienst, der verhindert, dass WLAN und kabelgebundenes LAN gleichzeitig genutzt werden. Ist ein Kabel verbunden, schaltet der Dienst WLAN ab; fällt das Kabel weg, schaltet er WLAN wieder ein.</p>
+<p><strong>Kurzfassung:</strong> MultihomingGuard erhebt nichts, sendet nichts und baut keine Verbindung zu einem Server auf, auch nicht zum Entwickler. Die App liest ausschließlich den Zustand der Netzwerkadapter Ihres Macs und schaltet Netzwerkdienste ein oder aus. Sie schreibt Protokolldateien auf Ihren Mac, die dort verbleiben. GitHub protokolliert beim Aufruf dieser Seite insbesondere die IP-Adresse zu Sicherheitszwecken.</p>
+
+<section aria-labelledby="de-verantwortlicher">
+<h3 id="de-verantwortlicher">1. Verantwortlicher</h3>
+<p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO), in Österreich ergänzt durch das Datenschutzgesetz (DSG):</p>
+<p>Christian Feichtinger<br>Wels, Österreich</p>
+<p>E-Mail: <a href="mailto:christian@feichti.at">christian@feichti.at</a></p>
+<p>MultihomingGuard ist ein kostenloses, nicht kommerzielles Werkzeug einer Privatperson. Ein Datenschutzbeauftragter ist nicht bestellt, weil für diese Tätigkeit keiner erforderlich ist (Art. 37 DSGVO).</p>
+</section>
+
+<section aria-labelledby="de-geltungsbereich">
+<h3 id="de-geltungsbereich">2. Geltungsbereich</h3>
+<p>Diese Erklärung gilt für MultihomingGuard auf macOS, also für die Menüleisten-App <code>MultihomingGuard.app</code> und den darin enthaltenen Hintergrunddienst <code>multihoming-guard</code>, sowie für die öffentliche Supportseite unter <code>feichti01.github.io/support/multihomingguard</code>. Für GitHubs eigene Dienste gilt zusätzlich dessen Datenschutzerklärung.</p>
+</section>
+
+<section aria-labelledby="de-app">
+<h3 id="de-app">3. Datenverarbeitung in der App</h3>
+<p>MultihomingGuard erhebt, überträgt oder verkauft keine personenbezogenen Daten. Die App besitzt keine Benutzerkonten und verwendet keine Werbung, Trackingtechnologien, Analyse-SDKs, Absturzberichte, Cloud-Synchronisierung oder eigenen Server.</p>
+<ul>
+<li><strong>Keine Internetverbindung.</strong> Weder die App noch der Hintergrunddienst öffnen eine Netzwerkverbindung. Der Quellcode enthält keinen Code für Netzwerkanfragen. Die App verändert nur den Zustand Ihrer lokalen Netzwerkadapter.</li>
+<li><strong>Gelesene Netzwerkinformationen.</strong> Der Hintergrunddienst fragt alle zwei Sekunden über die macOS-Werkzeuge <code>networksetup</code> und <code>ifconfig</code> sowie das SystemConfiguration-Framework ab, welche Netzwerkadapter vorhanden sind (WLAN, Ethernet, USB-, Thunderbolt- und Dock-Adapter, iPhone-USB-Tethering), ob ein Link besteht, welche Netzwerkdienste aktiv sind und ob eine gültige IPv4-Adresse zugewiesen ist. Diese Angaben werden nur im Arbeitsspeicher ausgewertet, um die Entscheidung „WLAN an oder aus“ zu treffen, und in der Menüleisten-App angezeigt. Sie verlassen den Mac nicht.</li>
+<li><strong>Vorgenommene Änderungen.</strong> Je nach Zustand schaltet der Dienst über <code>networksetup</code> die WLAN-Funkschnittstelle ein oder aus und aktiviert oder deaktiviert kabelgebundene Netzwerkdienste. Über die Menüleisten-App können Sie einzelne Netzwerkdienste auch von Hand aktivieren oder deaktivieren.</li>
+<li><strong>Protokolldateien auf Ihrem Mac.</strong> Der Hintergrunddienst schreibt Statusmeldungen nach <code>/var/log/com.local.multihomingguard.log</code> und Fehlermeldungen nach <code>/var/log/com.local.multihomingguard.err</code>. Die Einträge enthalten Zeitstempel, die Gerätenamen der Netzwerkadapter (zum Beispiel <code>en0</code>), die Namen der Netzwerkdienste (zum Beispiel „Ethernet“ oder ein von Ihnen vergebener Dienstname) und den Verbindungszustand. Es werden keine IP-Adressen, WLAN-Namen, Passwörter oder Benutzernamen protokolliert. Die Dateien bleiben auf Ihrem Mac und werden vom Entwickler nicht gelesen, es sei denn, Sie fügen sie einer Supportmeldung freiwillig bei.</li>
+<li><strong>Administratorrechte und Touch ID.</strong> Der Admin-Bereich der App wird über Apples LocalAuthentication-Framework per Touch ID oder Anmeldekennwort entsperrt; biometrische Daten verarbeitet ausschließlich macOS, die App erhält nur das Ergebnis „erfolgreich“ oder „fehlgeschlagen“. Das Installieren, Starten, Stoppen und Deinstallieren des Hintergrunddienstes, das Einrichten des Autostarts, das manuelle Umschalten eines Netzwerkdienstes und das Beenden der App verlangen zusätzlich ein Administrator-Passwort. Die Abfrage erfolgt durch macOS selbst; die App sieht das Passwort nicht und speichert es nicht.</li>
+<li><strong>Auf Ihrem Mac angelegte Dateien.</strong> Beim Installieren des Schutzes legt die App den Dienst unter <code>/usr/local/libexec/multihoming-guard</code> und die Startdatei <code>/Library/LaunchDaemons/com.local.multihomingguard.plist</code> an. Beim Einrichten des Autostarts kopiert sie sich nach <code>/Applications/MultihomingGuard.app</code> und legt <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code> an. Diese Dateien enthalten keine personenbezogenen Daten. Die App speichert keine Einstellungen.</li>
+</ul>
+</section>
+
+<section aria-labelledby="de-bezug">
+<h3 id="de-bezug">4. Bezug der App</h3>
+<p>MultihomingGuard wird nicht über den Mac App Store vertrieben, sondern direkt vom Entwickler weitergegeben. Apple ist daher nicht an Verteilung oder Aktualisierung beteiligt und erhält vom Entwickler keine Daten. Es gibt keine automatische Updateprüfung; die App fragt keinen Server nach neuen Versionen.</p>
+</section>
+
+<section aria-labelledby="de-github">
+<h3 id="de-github">5. Supportseite und GitHub Issues</h3>
+<p>Diese statische Website setzt durch den Betreiber keine eigenen Cookies und enthält keine eigenen Analyse- oder Werbedienste. Sie wird über GitHub Pages bereitgestellt. GitHub protokolliert beim Aufruf einer GitHub-Pages-Seite die IP-Adresse zu Sicherheitszwecken nach der <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement">GitHub-Datenschutzerklärung</a>.</p>
+<p>Öffentliche Supportanfragen werden als GitHub Issues verarbeitet. Inhalte, Benutzername und weitere von Ihnen eingestellte Angaben sind öffentlich sichtbar und bleiben es, solange das Issue besteht; Sie können Ihre Beiträge selbst bearbeiten oder löschen. Veröffentlichen Sie dort keine vertraulichen Daten, insbesondere keine internen Netzwerkdetails Ihres Arbeitgebers. Für nicht öffentliche Anfragen verwenden Sie die oben genannte E-Mail-Adresse.</p>
+</section>
+
+<section aria-labelledby="de-kontakt">
+<h3 id="de-kontakt">6. Kontaktaufnahme</h3>
+<p>Wenn Sie per E-Mail Kontakt aufnehmen, werden E-Mail-Adresse, gegebenenfalls Name und der Nachrichteninhalt zur Bearbeitung und Beantwortung der Anfrage verarbeitet. Wenn Sie Protokolldateien mitsenden, werden auch die darin enthaltenen Adapter- und Dienstnamen zur Fehleranalyse verwendet. Rechtsgrundlage ist je nach Inhalt Art. 6 Abs. 1 lit. b DSGVO oder das berechtigte Interesse an Support und sicherem Betrieb gemäß Art. 6 Abs. 1 lit. f DSGVO. Das Postfach wird in der EU gehostet. Die Korrespondenz wird nach Abschluss der Anfrage gelöscht, spätestens nach zwei Jahren, sofern keine gesetzliche Aufbewahrungspflicht entgegensteht.</p>
+</section>
+
+<section aria-labelledby="de-empfaenger">
+<h3 id="de-empfaenger">7. Empfänger, Drittstaaten und Speicherdauer</h3>
+<p>Für Hosting der Supportseite und öffentliche Issues wird GitHub eingesetzt. GitHub kann Daten außerhalb des Europäischen Wirtschaftsraums verarbeiten und ist unter dem EU-US Data Privacy Framework zertifiziert, das die Europäische Kommission als angemessenes Schutzniveau anerkennt (Art. 45 DSGVO). Der Entwickler selbst übermittelt keine Daten in Drittstaaten.</p>
+<p>Der Entwickler speichert Kontakt- und Diagnosedaten nur so lange, wie dies für Bearbeitung, Fehleranalyse und App-Verbesserung erforderlich ist oder gesetzliche Pflichten bestehen. Protokolldateien und installierte Dateien verbleiben bis zur Deinstallation oder Löschung durch den Nutzer auf dessen Mac.</p>
+</section>
+
+<section aria-labelledby="de-rechte">
+<h3 id="de-rechte">8. Ihre Rechte</h3>
+<p>Nach Art. 15 bis 22 DSGVO bestehen insbesondere Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Weil die App auf Seiten des Entwicklers nichts über Sie speichert, betreffen diese Rechte in der Praxis nur die Supportkorrespondenz. Eine E-Mail an den Verantwortlichen genügt; die Antwort erfolgt innerhalb eines Monats.</p>
+<p>Sie können außerdem Beschwerde bei einer Datenschutzaufsichtsbehörde einlegen. In Österreich ist dies die <a href="https://dsb.gv.at/eingabe-an-die-dsb/beschwerde">Österreichische Datenschutzbehörde</a>, Barichgasse 40–42, 1030 Wien, E-Mail: <a href="mailto:dsb@dsb.gv.at">dsb@dsb.gv.at</a>.</p>
+</section>
+
+<section aria-labelledby="de-kinder">
+<h3 id="de-kinder">9. Kinder</h3>
+<p>MultihomingGuard ist ein allgemeines Hilfsprogramm und richtet sich nicht speziell an Kinder. Die App erhebt von niemandem Daten, unabhängig vom Alter.</p>
+</section>
+
+<section aria-labelledby="de-aenderungen">
+<h3 id="de-aenderungen">10. Automatisierte Entscheidungen und Änderungen</h3>
+<p>Es findet keine automatisierte Entscheidungsfindung einschließlich Profiling statt. Diese Erklärung wird angepasst, wenn sich Funktionen, Datenverarbeitung oder rechtliche Anforderungen ändern. Stand und Versionsnummer am Anfang kennzeichnen den gültigen Text; die Änderungshistorie ist im Commit-Verlauf des Repositorys <code>feichti01/support</code> öffentlich.</p>
+</section>
+</article>
+
+<article id="english" lang="en" aria-labelledby="heading-english">
+<h2 id="heading-english">MultihomingGuard Privacy Policy</h2>
+<p><strong>Effective:</strong> September 18, 2026 (version 1.0)</p>
+<p>MultihomingGuard is a macOS menu-bar app with a background service that prevents Wi-Fi and wired LAN from being used at the same time. When a cable is connected, the service turns Wi-Fi off; when the cable goes away, it turns Wi-Fi back on.</p>
+<p><strong>Summary:</strong> MultihomingGuard collects nothing, sends nothing and never opens a connection to any server, including the developer's. It only reads the state of your Mac's network adapters and switches network services on or off. It writes log files to your Mac, which stay there. GitHub logs visitors' IP addresses for security when this site is accessed.</p>
+
+<section aria-labelledby="en-controller">
+<h3 id="en-controller">1. Controller</h3>
+<p>Controller under the General Data Protection Regulation (GDPR), in Austria implemented together with the Datenschutzgesetz (DSG):</p>
+<p>Christian Feichtinger<br>Wels, Austria</p>
+<p>Email: <a href="mailto:christian@feichti.at">christian@feichti.at</a></p>
+<p>MultihomingGuard is a free, non-commercial utility maintained by a private individual. No data protection officer has been appointed, because none is required for this activity (Article 37 GDPR).</p>
+</section>
+
+<section aria-labelledby="en-scope">
+<h3 id="en-scope">2. Scope</h3>
+<p>This policy applies to MultihomingGuard on macOS, that is the menu-bar app <code>MultihomingGuard.app</code> and the background service <code>multihoming-guard</code> bundled with it, and to the public support site at <code>feichti01.github.io/support/multihomingguard</code>. GitHub's own services are also governed by GitHub's privacy statement.</p>
+</section>
+
+<section aria-labelledby="en-app">
+<h3 id="en-app">3. Processing within the app</h3>
+<p>MultihomingGuard does not collect, transmit or sell personal data. The app has no user accounts and uses no advertising, tracking technology, analytics SDKs, crash reporting, cloud synchronization or developer-operated server.</p>
+<ul>
+<li><strong>No internet connection.</strong> Neither the app nor the background service opens a network connection. The source code contains no code for network requests. The app only changes the state of your local network adapters.</li>
+<li><strong>Network information read.</strong> Every two seconds the background service uses the macOS tools <code>networksetup</code> and <code>ifconfig</code> and the SystemConfiguration framework to determine which network adapters exist (Wi-Fi, Ethernet, USB, Thunderbolt and dock adapters, iPhone USB tethering), whether a link is up, which network services are enabled and whether a valid IPv4 address is assigned. This information is evaluated in memory only, to decide whether Wi-Fi should be on or off, and shown in the menu-bar app. It never leaves your Mac.</li>
+<li><strong>Changes made.</strong> Depending on the state, the service uses <code>networksetup</code> to turn the Wi-Fi radio on or off and to enable or disable wired network services. From the menu-bar app you can also enable or disable individual network services by hand.</li>
+<li><strong>Log files on your Mac.</strong> The background service writes status messages to <code>/var/log/com.local.multihomingguard.log</code> and error messages to <code>/var/log/com.local.multihomingguard.err</code>. Entries contain timestamps, the device names of network adapters (for example <code>en0</code>), the names of network services (for example "Ethernet" or a service name you chose) and the connection state. No IP addresses, Wi-Fi network names, passwords or user names are logged. The files stay on your Mac and are not read by the developer unless you voluntarily attach them to a support request.</li>
+<li><strong>Administrator privileges and Touch ID.</strong> The app's admin area is unlocked through Apple's LocalAuthentication framework with Touch ID or your login password; biometric data is handled by macOS only, and the app receives nothing but a success or failure result. Installing, starting, stopping and uninstalling the background service, setting up launch at login, manually switching a network service and quitting the app additionally require an administrator password. macOS itself asks for it; the app never sees or stores the password.</li>
+<li><strong>Files created on your Mac.</strong> When you install the guard, the app places the service at <code>/usr/local/libexec/multihoming-guard</code> and its launch file at <code>/Library/LaunchDaemons/com.local.multihomingguard.plist</code>. When you enable launch at login, it copies itself to <code>/Applications/MultihomingGuard.app</code> and creates <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code>. These files contain no personal data. The app stores no settings.</li>
+</ul>
+</section>
+
+<section aria-labelledby="en-distribution">
+<h3 id="en-distribution">4. How you obtain the app</h3>
+<p>MultihomingGuard is not distributed through the Mac App Store; the developer hands it out directly. Apple is therefore not involved in distribution or updates and receives no data from the developer. There is no automatic update check; the app never asks a server for new versions.</p>
+</section>
+
+<section aria-labelledby="en-github">
+<h3 id="en-github">5. Support site and GitHub Issues</h3>
+<p>The operator does not place first-party cookies or use first-party analytics or advertising on this static website. The site is hosted by GitHub Pages. GitHub logs the IP address of visitors to GitHub Pages for security purposes under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.</p>
+<p>Public support requests are processed as GitHub Issues. Their contents, user name and any other information you submit are publicly visible for as long as the issue exists; you can edit or delete your own comments. Do not post confidential information, in particular internal network details of your employer. Use the email address above for private requests.</p>
+</section>
+
+<section aria-labelledby="en-contact">
+<h3 id="en-contact">6. Contact</h3>
+<p>If you contact the developer by email, your email address, your name if given and the message content are processed to handle and answer your request. If you attach log files, the adapter and service names they contain are used to diagnose the problem. Depending on the request, the legal basis is Article 6(1)(b) GDPR or the legitimate interest in support and secure operation under Article 6(1)(f) GDPR. The mailbox is hosted in the EU. Correspondence is deleted when the matter is closed, at the latest after two years, unless a legal obligation requires longer retention.</p>
+</section>
+
+<section aria-labelledby="en-recipients">
+<h3 id="en-recipients">7. Recipients, international transfers and retention</h3>
+<p>GitHub is used for hosting the support site and for public issues. GitHub may process data outside the European Economic Area and is certified under the EU-U.S. Data Privacy Framework, which the European Commission recognises as providing adequate protection (Article 45 GDPR). The developer does not transfer data to third countries.</p>
+<p>The developer retains contact and diagnostic data only as long as needed to respond, diagnose errors and improve the app, or as required by law. Log files and installed files remain on your Mac until you uninstall or delete them.</p>
+</section>
+
+<section aria-labelledby="en-rights">
+<h3 id="en-rights">8. Your rights</h3>
+<p>Under Articles 15 to 22 GDPR you have the rights of access, rectification, erasure, restriction of processing, data portability and objection. Because the app stores nothing about you on the developer's side, these rights apply in practice to support correspondence only. An email to the controller is sufficient; you will receive an answer within one month.</p>
+<p>You also have the right to lodge a complaint with a data protection authority. In Austria, contact the <a href="https://dsb.gv.at/eingabe-an-die-dsb/beschwerde">Austrian Data Protection Authority</a>, Barichgasse 40–42, 1030 Vienna, email: <a href="mailto:dsb@dsb.gv.at">dsb@dsb.gv.at</a>.</p>
+</section>
+
+<section aria-labelledby="en-children">
+<h3 id="en-children">9. Children</h3>
+<p>MultihomingGuard is a general-purpose utility and does not address children in particular. It collects no data from anyone, regardless of age.</p>
+</section>
+
+<section aria-labelledby="en-changes">
+<h3 id="en-changes">10. Automated decisions and changes</h3>
+<p>No automated decision-making, including profiling, takes place. This policy will be updated if app functionality, data processing or legal requirements change. The date and version number at the top identify the current text; the revision history is public in the commit log of the <code>feichti01/support</code> repository.</p>
+</section>
+</article>
+
+</main>
+
+<footer class="gb-colophon">
+<p><a href="./">Zur Supportseite / Back to support</a></p>
+<p>Diese Seite verwendet keine eigenen Cookies, kein Tracking, keine Formulare und keine externen Skripte.</p>
+</footer>
+
+</div>
+</body>
+</html>

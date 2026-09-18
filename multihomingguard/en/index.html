@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>MultihomingGuard Support</title>
+<meta name="description" content="Project-specific support page for MultihomingGuard, the macOS menu-bar app that prevents Wi-Fi and wired LAN from being used at the same time.">
+<link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/en/">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/en/">
+<link rel="stylesheet" href="../assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#content">Skip to content</a>
+<div class="gb-page">
+
+<header class="gb-masthead">
+<h1>MultihomingGuard Support</h1>
+<p class="gb-tagline">Support for MultihomingGuard, the macOS menu-bar app that prevents Wi-Fi and wired LAN from being used at the same time: when a cable is connected, Wi-Fi is turned off; when the cable goes away, Wi-Fi comes back.</p>
+<nav class="gb-language-nav" aria-label="Language">
+<ul>
+<li><a lang="de" hreflang="de" href="../">Deutsch</a></li>
+<li><span lang="en" aria-current="true">English</span></li>
+</ul>
+</nav>
+</header>
+
+<main id="content">
+
+<section aria-labelledby="heading-documents">
+<h2 id="heading-documents">Documents</h2>
+<p>The following pages belong to this support address.</p>
+<ul class="gb-link-list">
+<li>
+<a href="../troubleshooting.html#english">Troubleshooting and FAQ</a>
+<span class="gb-link-note">What to check before you file a report, and answers to the most common questions.</span>
+</li>
+<li>
+<a href="../privacy.html#english">Privacy policy</a>
+<span class="gb-link-note">Which data the app processes and who is responsible for it.</span>
+</li>
+<li>
+<a href="../privacy-choices.html#english">Privacy choices</a>
+<span class="gb-link-note">What you control on your own Mac: background service, launch at login, log files, complete removal.</span>
+</li>
+<li>
+<a href="../legal.html#english">Legal notice and licence</a>
+<span class="gb-link-note">Disclosure, terms of use, trademarks and applicable law.</span>
+</li>
+</ul>
+</section>
+
+<section aria-labelledby="heading-reports">
+<h2 id="heading-reports">Report a problem and review reports</h2>
+<p>Support requests and bug reports go through the public issue list in the <code>feichti01/support</code> repository. MultihomingGuard reports carry the label <code>multihomingguard</code>. The list is a short English extract of the publicly shareable items and not a complete status source.</p>
+<ul class="gb-link-list">
+<li>
+<a href="https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug%20label%3Amultihomingguard">View the public bug list</a>
+<span class="gb-link-note">Open, publicly mirrored MultihomingGuard bug fixes on GitHub.</span>
+</li>
+<li>
+<a href="https://github.com/feichti01/support/issues/new?labels=multihomingguard&amp;title=MultihomingGuard%3A%20">Create a new support report</a>
+<span class="gb-link-note">Opens a new GitHub issue; a GitHub account is required.</span>
+</li>
+<li>
+<a href="mailto:christian@feichti.at?subject=MultihomingGuard%20Support">Private request by email</a>
+<span class="gb-link-note">For questions involving personal data or internal network details, or if you prefer not to use a GitHub account.</span>
+</li>
+<li>
+<a href="mailto:christian@feichti.at?subject=multihomingguard%20security">Report a security vulnerability</a>
+<span class="gb-link-note">By email with the subject <code>multihomingguard security</code>, please, not in public.</span>
+</li>
+</ul>
+<p>MultihomingGuard is maintained by one person in their spare time. You will normally hear back within seven days.</p>
+</section>
+
+<section aria-labelledby="heading-report-contents">
+<h2 id="heading-report-contents">What to include in a report</h2>
+<ul>
+<li>macOS version and chip (Apple menu &gt; About This Mac).</li>
+<li>MultihomingGuard version (shown under the title in the app's menu, or Finder &gt; select <code>/Applications/MultihomingGuard.app</code> &gt; Get Info).</li>
+<li>Which network adapters are involved: built-in Wi-Fi, the Mac's Ethernet port, USB, Thunderbolt or dock adapters (vendor and model).</li>
+<li>What you expected and what happened instead. If possible, the relevant lines from <code>/var/log/com.local.multihomingguard.log</code> and <code>/var/log/com.local.multihomingguard.err</code> (reachable from the app's menu via "Logs im Finder oeffnen").</li>
+</ul>
+<p>Never post passwords, Wi-Fi keys, internal host names or your employer's network addresses in public issues.</p>
+</section>
+
+<section aria-labelledby="heading-download">
+<h2 id="heading-download">Distribution and source code</h2>
+<p>MultihomingGuard is not distributed through the Mac App Store. The developer hands out the ready-built <code>MultihomingGuard.app</code> directly; it runs without developer tools, and the background service is bundled inside the app. The source repository is not public at this time.</p>
+<p>MultihomingGuard requires macOS 13 Ventura or later. Only the latest version receives fixes.</p>
+</section>
+
+<section aria-labelledby="heading-how">
+<h2 id="heading-how">How the app works</h2>
+<ul>
+<li>When a wired LAN adapter is properly connected (link, enabled network service and a valid IPv4 address), Wi-Fi is turned off.</li>
+<li>When only Wi-Fi is connected, the LAN network services stay enabled so that a newly attached dock or cable gets link and DHCP immediately.</li>
+<li>When neither LAN nor Wi-Fi is connected, LAN services are enabled and Wi-Fi is turned on.</li>
+<li>The check runs every two seconds in a background service (LaunchDaemon) with root privileges, because macOS only allows network services to be changed that way. The menu-bar app shows the status and controls the service. The app's interface is in German.</li>
+</ul>
+</section>
+
+</main>
+
+<footer class="gb-colophon">
+<p>This page uses no cookies, no tracking, no forms and no external scripts.</p>
+<p><a href="../../">Back to the project directory</a> · <a lang="de" hreflang="de" href="../">Diese Seite auf Deutsch</a></p>
+<p>Mac, macOS and Thunderbolt are trademarks of Apple Inc. MultihomingGuard is an independent project and is not affiliated with Apple.</p>
+</footer>
+
+</div>
+</body>
+</html>

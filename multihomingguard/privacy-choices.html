@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Datenschutz-Einstellungen für MultihomingGuard</title>
+<meta name="description" content="Was Sie bei MultihomingGuard auf Ihrem Mac selbst steuern können: Hintergrunddienst, Autostart, Protokolldateien und vollständige Deinstallation.">
+<link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/privacy-choices.html">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/privacy-choices.html">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/privacy-choices.html#english">
+<link rel="stylesheet" href="assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#inhalt">Zum Inhalt springen</a>
+<div class="gb-page">
+
+<header class="gb-masthead">
+<h1>Datenschutz-Einstellungen für MultihomingGuard</h1>
+<p class="gb-tagline">Privacy Choices: was Sie auf Ihrem Mac selbst steuern können.</p>
+<nav class="gb-language-nav" aria-label="Sprache / Language">
+<ul>
+<li><a lang="de" hreflang="de" href="#deutsch">Deutsch</a></li>
+<li><a lang="en" hreflang="en" href="#english">English</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="inhalt">
+
+<article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
+<h2 id="ueberschrift-deutsch">Deutsch</h2>
+<p><strong>Stand:</strong> 18. September 2026</p>
+<p><strong>Kurzfassung:</strong> MultihomingGuard erhebt keine personenbezogenen Daten, verwendet kein Tracking, keine Analyse und keine Werbung und verbindet sich nie mit dem Internet. Es gibt daher nichts, dem Sie zustimmen oder widersprechen müssten, kein Konto zum Löschen und keine Daten, die Sie beim Entwickler anfordern könnten. Diese Seite listet, was Sie auf Ihrem Mac selbst kontrollieren.</p>
+
+<section aria-labelledby="de-dienst">
+<h3 id="de-dienst">1. Hintergrunddienst anhalten oder deinstallieren</h3>
+<p>Der Schutz läuft als LaunchDaemon mit Root-Rechten. Sie können ihn jederzeit anhalten oder vollständig entfernen:</p>
+<ol>
+<li>Öffnen Sie das Menü von MultihomingGuard in der Menüleiste und entsperren Sie den Bereich <strong>Admin Mode</strong> per Touch ID oder Anmeldekennwort.</li>
+<li>Wählen Sie <strong>Daemon stoppen</strong>, um den Schutz vorübergehend anzuhalten, oder <strong>Deinstallieren</strong>, um Dienst und Startdatei zu entfernen.</li>
+<li>macOS fragt nach Ihrem Administrator-Passwort. Die App sieht das Passwort nicht.</li>
+</ol>
+<p>Beim Deinstallieren werden <code>/usr/local/libexec/multihoming-guard</code> und <code>/Library/LaunchDaemons/com.local.multihomingguard.plist</code> gelöscht. WLAN und LAN-Dienste bleiben im zuletzt gesetzten Zustand; schalten Sie WLAN bei Bedarf in den Systemeinstellungen wieder ein.</p>
+</section>
+
+<section aria-labelledby="de-autostart">
+<h3 id="de-autostart">2. Autostart beim Anmelden</h3>
+<p>Wenn Sie den Autostart eingerichtet haben, entfernen Sie ihn im Admin-Bereich über <strong>Autostart entfernen</strong>. Dabei wird <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code> gelöscht; die Kopie unter <code>/Applications/MultihomingGuard.app</code> bleibt bestehen und kann von Hand in den Papierkorb gelegt werden.</p>
+</section>
+
+<section aria-labelledby="de-protokolle">
+<h3 id="de-protokolle">3. Protokolldateien</h3>
+<p>Der Dienst schreibt nach <code>/var/log/com.local.multihomingguard.log</code> und <code>/var/log/com.local.multihomingguard.err</code>. Die Dateien enthalten Zeitstempel, Adapter- und Dienstnamen sowie den Verbindungszustand, keine IP-Adressen, WLAN-Namen oder Passwörter. So löschen Sie sie:</p>
+<ol>
+<li>Stoppen Sie den Dienst über <strong>Admin Mode &gt; Daemon stoppen</strong>.</li>
+<li>Löschen Sie beide Dateien im Terminal mit Administratorrechten:</li>
+</ol>
+<pre><code>sudo rm /var/log/com.local.multihomingguard.log /var/log/com.local.multihomingguard.err</code></pre>
+<p>Beim nächsten Start legt der Dienst die Dateien neu an. Die Dateien werden nie an den Entwickler übertragen; Sie entscheiden selbst, ob Sie Auszüge einer Supportmeldung beifügen.</p>
+</section>
+
+<section aria-labelledby="de-einstellungen">
+<h3 id="de-einstellungen">4. Gespeicherte Einstellungen</h3>
+<p>MultihomingGuard speichert keine Einstellungen, keine Voreinstellungen und keinen Verlauf. Es gibt keinen Container, keine Preferences-Datei und keinen Keychain-Eintrag, den Sie löschen müssten.</p>
+</section>
+
+<section aria-labelledby="de-vollstaendig">
+<h3 id="de-vollstaendig">5. Vollständig entfernen</h3>
+<ol>
+<li>Im Admin-Bereich <strong>Deinstallieren</strong> und danach <strong>Autostart entfernen</strong> wählen.</li>
+<li>App über <strong>Quit</strong> beenden.</li>
+<li><code>/Applications/MultihomingGuard.app</code> und gegebenenfalls die ursprünglich kopierte App in den Papierkorb legen.</li>
+<li>Optional die Protokolldateien wie unter Punkt 3 löschen.</li>
+</ol>
+<p>Danach ist nichts von MultihomingGuard mehr auf Ihrem Mac vorhanden.</p>
+</section>
+
+<section aria-labelledby="de-github">
+<h3 id="de-github">6. Supportseite und GitHub</h3>
+<p>Diese Seite setzt keine Cookies und lädt keine externen Skripte. GitHub Pages protokolliert IP-Adressen zu Sicherheitszwecken; das können Sie nur durch Nichtaufrufen der Seite vermeiden. Öffentliche Issues können Sie in Ihrem GitHub-Konto selbst bearbeiten oder löschen. Für alles andere genügt eine E-Mail an <a href="mailto:christian@feichti.at">christian@feichti.at</a>.</p>
+</section>
+</article>
+
+<article id="english" lang="en" aria-labelledby="heading-english">
+<h2 id="heading-english">Privacy choices for MultihomingGuard</h2>
+<p><strong>Effective:</strong> September 18, 2026</p>
+<p><strong>Summary:</strong> MultihomingGuard collects no personal data, uses no tracking, analytics or advertising and never connects to the internet. There is therefore nothing to consent to or object to, no account to delete and no data to request from the developer. This page lists what you control on your own Mac.</p>
+
+<section aria-labelledby="en-service">
+<h3 id="en-service">1. Stop or uninstall the background service</h3>
+<p>The guard runs as a LaunchDaemon with root privileges. You can stop or remove it at any time:</p>
+<ol>
+<li>Open the MultihomingGuard menu in the menu bar and unlock the <strong>Admin Mode</strong> area with Touch ID or your login password.</li>
+<li>Choose <strong>Daemon stoppen</strong> (stop daemon) to pause the guard, or <strong>Deinstallieren</strong> (uninstall) to remove the service and its launch file. The app's interface is in German.</li>
+<li>macOS asks for your administrator password. The app never sees it.</li>
+</ol>
+<p>Uninstalling deletes <code>/usr/local/libexec/multihoming-guard</code> and <code>/Library/LaunchDaemons/com.local.multihomingguard.plist</code>. Wi-Fi and LAN services stay in their last state; re-enable Wi-Fi in System Settings if needed.</p>
+</section>
+
+<section aria-labelledby="en-login">
+<h3 id="en-login">2. Launch at login</h3>
+<p>If you set up launch at login, remove it with the <strong>Autostart entfernen</strong> item in the admin area. This deletes <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code>; the copy at <code>/Applications/MultihomingGuard.app</code> stays and can be moved to the Trash by hand.</p>
+</section>
+
+<section aria-labelledby="en-logs">
+<h3 id="en-logs">3. Log files</h3>
+<p>The service writes to <code>/var/log/com.local.multihomingguard.log</code> and <code>/var/log/com.local.multihomingguard.err</code>. The files contain timestamps, adapter and service names and the connection state, but no IP addresses, Wi-Fi names or passwords. To delete them:</p>
+<ol>
+<li>Stop the service via <strong>Admin Mode &gt; Daemon stoppen</strong>.</li>
+<li>Delete both files in Terminal with administrator privileges:</li>
+</ol>
+<pre><code>sudo rm /var/log/com.local.multihomingguard.log /var/log/com.local.multihomingguard.err</code></pre>
+<p>The service recreates the files on its next start. They are never sent to the developer; you decide whether to attach excerpts to a support request.</p>
+</section>
+
+<section aria-labelledby="en-settings">
+<h3 id="en-settings">4. Stored settings</h3>
+<p>MultihomingGuard stores no settings, no preferences and no history. There is no container, no preferences file and no Keychain item for you to delete.</p>
+</section>
+
+<section aria-labelledby="en-complete">
+<h3 id="en-complete">5. Remove completely</h3>
+<ol>
+<li>In the admin area choose <strong>Deinstallieren</strong> and then <strong>Autostart entfernen</strong>.</li>
+<li>Quit the app with <strong>Quit</strong>.</li>
+<li>Move <code>/Applications/MultihomingGuard.app</code> and, if applicable, the originally copied app to the Trash.</li>
+<li>Optionally delete the log files as described in section 3.</li>
+</ol>
+<p>Nothing of MultihomingGuard remains on your Mac afterwards.</p>
+</section>
+
+<section aria-labelledby="en-github">
+<h3 id="en-github">6. Support site and GitHub</h3>
+<p>This page sets no cookies and loads no external scripts. GitHub Pages logs IP addresses for security; the only way to avoid that is not to visit the page. You can edit or delete your own public issues in your GitHub account. For everything else, an email to <a href="mailto:christian@feichti.at">christian@feichti.at</a> is sufficient.</p>
+</section>
+</article>
+
+</main>
+
+<footer class="gb-colophon">
+<p><a href="./">Zur Supportseite / Back to support</a> · <a href="privacy.html">Datenschutzerklärung / Privacy policy</a></p>
+<p>Diese Seite verwendet keine eigenen Cookies, kein Tracking, keine Formulare und keine externen Skripte.</p>
+</footer>
+
+</div>
+</body>
+</html>
