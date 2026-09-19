@@ -30,139 +30,203 @@
 
 <article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
 <h2 id="ueberschrift-deutsch">Deutsch</h2>
-<p><strong>Stand:</strong> 18. September 2026</p>
+<p><strong>Stand:</strong> 19. September 2026</p>
 
 <section aria-labelledby="de-vorab">
 <h3 id="de-vorab">1. Bevor Sie eine Meldung erstellen</h3>
 <ol>
-<li>Öffnen Sie das Menü von MultihomingGuard und prüfen Sie, ob die Statuszeile <strong>Daemon: laeuft</strong> anzeigt. Wenn nicht: <strong>Admin Mode</strong> per Touch ID oder Kennwort entsperren und <strong>Daemon starten</strong> wählen oder den Schutz über <strong>Installieren</strong> neu einrichten.</li>
-<li>Prüfen Sie im Terminal, ob der Hintergrunddienst geladen ist: <code>launchctl print system/com.local.multihomingguard</code>. Ohne Ausgabe ist der Dienst nicht installiert.</li>
-<li>Sehen Sie in der Interface-Liste der App nach, ob Ihr LAN-Adapter erkannt wird und eine gültige IPv4-Adresse hat. Adressen wie <code>169.254.x.x</code> gelten nicht als verbunden.</li>
-<li>Stellen Sie sicher, dass Sie die aktuelle Version verwenden. Nur die aktuelle Version erhält Fehlerkorrekturen.</li>
-<li>Prüfen Sie die Protokolle unter <code>/var/log/com.local.multihomingguard.log</code> und <code>.err</code> (Menü &gt; <strong>Logs im Finder oeffnen</strong>).</li>
+<li>Öffnen Sie das Menü von MultihomingGuard. Die Fußzeile zeigt <strong>Quelle: Daemon</strong>, wenn der Hintergrunddienst antwortet. Steht dort <strong>lokal (kein Daemon)</strong>, läuft der Dienst nicht – die App zeigt dann nur ihre eigene Einschätzung und schaltet nichts. Prüfen Sie im Terminal: <code>sudo launchctl print system/com.feichtiq.multihomingguard.daemon</code>.</li>
+<li>Prüfen Sie in der Schnittstellenliste, ob Ihr Kabeladapter erkannt wird: grüner Punkt = Link und gültige Adresse, gelber Punkt = Link ohne gültige Adresse (z.&nbsp;B. <code>169.254.x.x</code>), grau = kein Link.</li>
+<li>Wählen Sie <strong>Aktualisieren</strong>, um den Zustand neu zu lesen.</li>
+<li>Stellen Sie sicher, dass Sie die aktuelle Version verwenden (steht unter dem App-Namen im Menü). Nur die aktuelle Version erhält Fehlerkorrekturen.</li>
+<li>Kopieren Sie mit <strong>Diagnose</strong> die letzten Entscheidungen des Dienstes in die Zwischenablage und fügen Sie sie der Meldung bei.</li>
 </ol>
 </section>
 
 <section aria-labelledby="de-wlan-bleibt">
 <h3 id="de-wlan-bleibt">2. WLAN bleibt eingeschaltet, obwohl das Kabel steckt</h3>
 <ul>
-<li>Der Adapter muss Link <em>und</em> eine gültige IPv4-Adresse per DHCP haben. Solange nur der Link besteht, bleibt WLAN absichtlich aktiv, damit Sie nicht ohne Verbindung dastehen.</li>
-<li>Der LAN-Netzwerkdienst muss in <strong>Systemeinstellungen &gt; Netzwerk</strong> vorhanden und aktiv sein. Neue Docks oder Adapter legt macOS manchmal erst nach dem ersten Anstecken als Dienst an.</li>
-<li>Umbenannte Dienste (zum Beispiel „ThinkPad Lan“) werden erkannt; Dienste, die Sie in den Systemeinstellungen deaktiviert haben, aktiviert die App bei Bedarf wieder.</li>
-<li>Virtuelle Adapter, VPN-Tunnel und Bluetooth PAN werden bewusst nicht als LAN gewertet.</li>
+<li>Ein Kabel gilt erst als funktionierend, wenn Link, eine gültige IPv4- oder IPv6-Adresse mit Gateway <em>und</em> eine Antwort des DNS-Servers des Kabelnetzes über diesen Adapter vorliegen. Zeigt das Menü <strong>Kabel wird geprüft</strong>, fehlt noch eines davon – meist DHCP oder DNS. Bleibt es dabei, zeigt das Menü <strong>Kabel ohne Internet</strong>, und WLAN bleibt absichtlich an, damit Sie nicht ohne Verbindung dastehen.</li>
+<li>Der Netzwerkdienst des Adapters muss in <strong>Systemeinstellungen &gt; Netzwerk</strong> vorhanden sein. Neue Docks oder Adapter legt macOS manchmal erst nach dem ersten Anstecken als Dienst an; stecken Sie kurz ab und wieder an.</li>
+<li>Haben Sie WLAN selbst ausgeschaltet und wieder eingeschaltet, während das Kabel steckte, wird das respektiert, bis sich die Kabelsituation ändert (siehe Punkt 4).</li>
+<li>Der Schutz ist möglicherweise pausiert (Symbol Pause im Menü) oder von der Organisation deaktiviert (Symbol durchgestrichenes Schild).</li>
+<li>Virtuelle Adapter, VPN-Tunnel, Thunderbolt-Bridge und Bluetooth PAN werden bewusst nicht als Kabel gewertet.</li>
 </ul>
 </section>
 
 <section aria-labelledby="de-wlan-weg">
 <h3 id="de-wlan-weg">3. WLAN kommt nach dem Abstecken nicht zurück</h3>
 <ul>
-<li>Der Dienst prüft alle zwei Sekunden; nach dem Abstecken kann es bis zu einigen Sekunden dauern, bis macOS den Link-Verlust meldet.</li>
-<li>Wenn der Dienst gestoppt oder deinstalliert wurde, während WLAN aus war, bleibt WLAN aus. Schalten Sie es in der Menüleiste oder in den Systemeinstellungen wieder ein.</li>
-<li><strong>Quit</strong> in der App beendet auch den Hintergrunddienst. Beim nächsten Start der App wird er automatisch wieder gestartet. Wollen Sie nur die App schließen, lassen Sie sie stattdessen einfach in der Menüleiste laufen.</li>
-<li>Prüfen Sie die <code>.err</code>-Datei auf Zeilen wie <code>Failed to set Wi-Fi on</code>; sie nennen den Grund, den <code>networksetup</code> zurückgibt.</li>
+<li>Normalerweise ist WLAN innerhalb einer Sekunde wieder an. Stecken Sie das Kabel ab und wieder an und wählen Sie <strong>Aktualisieren</strong>.</li>
+<li>Steht in der Fußzeile <strong>lokal (kein Daemon)</strong>, läuft der Dienst nicht und kann WLAN nicht einschalten. Schalten Sie WLAN im Kontrollzentrum oder in den Systemeinstellungen ein und melden Sie den Fall mit der Diagnose.</li>
+<li><strong>Beenden</strong> im Menü beendet nur die Menüleisten-App; der Hintergrunddienst und damit der Schutz laufen weiter. Die App startet bei der nächsten Anmeldung wieder oder sofort über <code>/Programme/MultihomingGuard.app</code>.</li>
 </ul>
 </section>
 
+<section aria-labelledby="de-manuell">
+<h3 id="de-manuell">4. Ich habe WLAN selbst ausgeschaltet – warum bleibt es aus?</h3>
+<p>Das ist gewollt: Ein von Ihnen ausgeschaltetes WLAN (Kontrollzentrum, Systemeinstellungen) wird respektiert; das Menü zeigt <strong>WLAN von Ihnen ausgeschaltet</strong>. Der Dienst schaltet es erst wieder ein, wenn Sie es selbst einschalten oder sich die Kabelsituation ändert (Kabel gesteckt oder gezogen).</p>
+</section>
+
 <section aria-labelledby="de-passwort">
-<h3 id="de-passwort">4. Warum fragt die App nach dem Administrator-Passwort?</h3>
-<p>macOS erlaubt das Ein- und Ausschalten von Netzwerkdiensten nur mit Root-Rechten. Deshalb läuft der Schutz als LaunchDaemon, und Installieren, Starten, Stoppen, Deinstallieren, Autostart und manuelles Umschalten eines Dienstes verlangen Ihr Passwort. Die Abfrage stellt macOS selbst; die App erhält das Passwort nicht.</p>
+<h3 id="de-passwort">5. Fragt die App nach einem Passwort?</h3>
+<p>Nein. Die Installation erfolgt als Paket durch die Geräteverwaltung oder einen Administrator; im Alltag wird niemand nach einem Passwort gefragt. Nur der versteckte Admin-Bereich (⌥ beim Öffnen des Menüs gedrückt halten, dann <strong>Admin-Modus öffnen…</strong>) verlangt für eine Pause eine Administrator-Anmeldung über den macOS-Dialog; alternativ nennt der Support am Telefon einen Einmalcode. Die App sieht das Passwort nie.</p>
+</section>
+
+<section aria-labelledby="de-pause">
+<h3 id="de-pause">6. Schutz vorübergehend anhalten (Pause)</h3>
+<ul>
+<li>Halten Sie ⌥ gedrückt, während Sie das Menü öffnen, und wählen Sie <strong>Admin-Modus öffnen…</strong>.</li>
+<li><strong>Mit Administrator-Anmeldung:</strong> Dauer wählen, macOS fragt nach Name und Passwort eines Administrators.</li>
+<li><strong>Mit Support-Code:</strong> Das Fenster zeigt eine sechsstellige Prüfzahl. Nennen Sie sie dem Support; er antwortet mit einem sechsstelligen Einmalcode. Drei Fehlversuche sperren die Eingabe 30 Sekunden.</li>
+<li>Die Pause endet automatisch nach der gewählten Dauer (höchstens vier Stunden, sofern die Organisation nichts anderes vorgibt) oder über <strong>Fortsetzen</strong>. Jede Pause wird im Systemprotokoll vermerkt.</li>
+<li>Fehlt der Admin-Bereich oder ist die Pause abgelehnt, hat die Organisation die lokale Pause bzw. den Support-Code per Profil abgeschaltet.</li>
+</ul>
+</section>
+
+<section aria-labelledby="de-name">
+<h3 id="de-name">7. Der WLAN-Name wird nicht angezeigt</h3>
+<p>macOS gibt den Netzwerknamen nur an Apps mit Standortfreigabe heraus. Beim ersten Öffnen des Menüs fragt macOS danach; alternativ wählen Sie <strong>Netzwerkname anzeigen…</strong> im Menü. Wurde die Freigabe abgelehnt, hilft <strong>Systemeinstellungen &gt; Datenschutz &amp; Sicherheit &gt; Ortungsdienste &gt; MultihomingGuard</strong>. Band und Kanal werden auch ohne Freigabe angezeigt; die Funktion des Schutzes ist davon unabhängig.</p>
+</section>
+
+<section aria-labelledby="de-iphone">
+<h3 id="de-iphone">8. iPhone per USB</h3>
+<ul>
+<li>Ein per USB angestecktes iPhone mit aktivem Persönlichem Hotspot zählt als Kabelweg: Es wird wie ein LAN geprüft, danach wird WLAN abgeschaltet.</li>
+<li>Steckt zusätzlich ein echtes LAN-Kabel, wird der iPhone-Dienst geparkt (in den Netzwerkeinstellungen deaktiviert), damit kein Mobilfunk-Datenvolumen verbraucht wird. Fällt das LAN weg, wird er automatisch wieder freigegeben.</li>
+<li>Soll das iPhone parallel aktiv bleiben: ⚙ im Menü, <strong>iPhone-Tethering bei LAN erlauben</strong>. Ist der Schalter ausgegraut, gibt Ihre Organisation die Einstellung vor.</li>
+</ul>
 </section>
 
 <section aria-labelledby="de-dock">
-<h3 id="de-dock">5. Dock oder USB-Adapter wird nicht erkannt</h3>
+<h3 id="de-dock">9. Dock oder USB-Adapter wird nicht erkannt</h3>
 <ul>
 <li>Prüfen Sie, ob der Adapter unter <strong>Systemeinstellungen &gt; Netzwerk</strong> erscheint. Wenn nicht, fehlt gegebenenfalls ein Treiber des Herstellers.</li>
-<li>Erkannt werden Ethernet, USB-Ethernet, Thunderbolt-Ethernet und iPhone-USB-Tethering. Nennen Sie in einer Meldung Hersteller und Modell des Adapters und den Namen des Netzwerkdienstes.</li>
+<li>Erkannt werden Ethernet, USB-Ethernet, Thunderbolt-Ethernet, Dock-Adapter und iPhone-USB-Tethering, auch mehrere gleichzeitig (z.&nbsp;B. an fremden Dockingstations). Nennen Sie in einer Meldung Hersteller und Modell und den Namen des Netzwerkdienstes.</li>
 </ul>
 </section>
 
 <section aria-labelledby="de-vpn">
-<h3 id="de-vpn">6. Verhalten mit VPN</h3>
-<p>VPN-Tunnel werden nicht als LAN gewertet und nicht verändert. Wechselt die App von WLAN auf LAN, muss sich ein VPN-Client in der Regel neu verbinden; das ist Verhalten des VPN-Clients, nicht der App.</p>
+<h3 id="de-vpn">10. Verhalten mit VPN</h3>
+<p>VPN-Tunnel werden nicht als Kabel gewertet und nicht verändert. Wechselt der Dienst von WLAN auf Kabel, muss sich ein VPN-Client in der Regel neu verbinden; das ist Verhalten des VPN-Clients, nicht der App.</p>
 </section>
 
 <section aria-labelledby="de-autostart">
-<h3 id="de-autostart">7. Die App startet nicht automatisch</h3>
-<p>Der Autostart wird über <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code> und die Kopie unter <code>/Applications/MultihomingGuard.app</code> eingerichtet. Wählen Sie im Admin-Bereich <strong>Autostart neu einrichten</strong>, wenn Sie die App verschoben oder ersetzt haben. Ist der Dienst installiert, startet die App ihn beim eigenen Start automatisch mit.</p>
-</section>
-
-<section aria-labelledby="de-zwei">
-<h3 id="de-zwei">8. Zwei Symbole in der Menüleiste</h3>
-<p>Die App verhindert Doppelstarts; ein zweiter Start beendet sich sofort. Sehen Sie dennoch zwei Symbole, beenden Sie beide Instanzen und starten Sie die Kopie unter <code>/Applications</code>.</p>
+<h3 id="de-autostart">11. Die Menüleisten-App startet nicht automatisch</h3>
+<p>Der Autostart wird bei der Installation über <code>/Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist</code> eingerichtet und erscheint unter <strong>Systemeinstellungen &gt; Allgemein &gt; Anmeldeobjekte &amp; Erweiterungen</strong> als „MultihomingGuard“. Ist er dort ausgeschaltet, schalten Sie ihn ein oder starten Sie die App aus <code>/Programme</code>. Der Schutz selbst läuft unabhängig von der App.</p>
 </section>
 
 <section aria-labelledby="de-deinstallieren">
-<h3 id="de-deinstallieren">9. Vollständig deinstallieren</h3>
-<p>Siehe <a href="privacy-choices.html#de-vollstaendig">Datenschutz-Einstellungen, Abschnitt 5</a>. Alternativ im Terminal: <code>sudo launchctl bootout system /Library/LaunchDaemons/com.local.multihomingguard.plist</code>, danach die Startdatei, <code>/usr/local/libexec/multihoming-guard</code>, den LaunchAgent und die App löschen.</p>
+<h3 id="de-deinstallieren">12. Vollständig deinstallieren</h3>
+<p>In verwalteten Umgebungen entfernt die Geräteverwaltung die App. Von Hand im Terminal (Administratorrechte nötig):</p>
+<pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
+sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
+sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
+sudo rm -f /usr/local/libexec/MultihomingGuardDaemon /Library/Preferences/com.feichtiq.multihomingguard.plist
+sudo rm -rf /Applications/MultihomingGuard.app "/Library/Application Support/MultihomingGuard"
+sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
+<p>Schalten Sie WLAN danach bei Bedarf in den Systemeinstellungen wieder ein. Siehe auch <a href="privacy-choices.html#de-vollstaendig">Datenschutz-Einstellungen, Abschnitt 5</a>.</p>
 </section>
 </article>
 
 <article id="english" lang="en" aria-labelledby="heading-english">
 <h2 id="heading-english">Troubleshooting and FAQ</h2>
-<p><strong>Effective:</strong> September 18, 2026</p>
+<p><strong>Effective:</strong> September 19, 2026</p>
 
 <section aria-labelledby="en-before">
 <h3 id="en-before">1. Before you file a report</h3>
 <ol>
-<li>Open the MultihomingGuard menu and check that the status line shows <strong>Daemon: laeuft</strong> (running). If not, unlock <strong>Admin Mode</strong> with Touch ID or your password and choose <strong>Daemon starten</strong> (start), or set the guard up again with <strong>Installieren</strong>. The app's interface is in German.</li>
-<li>Check in Terminal whether the background service is loaded: <code>launchctl print system/com.local.multihomingguard</code>. No output means it is not installed.</li>
-<li>Look at the interface list in the app to see whether your LAN adapter is detected and has a valid IPv4 address. Addresses like <code>169.254.x.x</code> do not count as connected.</li>
-<li>Make sure you are running the latest version. Only the latest version receives fixes.</li>
-<li>Check the logs at <code>/var/log/com.local.multihomingguard.log</code> and <code>.err</code> (menu &gt; <strong>Logs im Finder oeffnen</strong>).</li>
+<li>Open the MultihomingGuard menu. The footer shows <strong>Source: Daemon</strong> when the background service answers. If it says <strong>local (no daemon)</strong>, the service is not running – the app then only shows its own estimate and switches nothing. Check in Terminal: <code>sudo launchctl print system/com.feichtiq.multihomingguard.daemon</code>.</li>
+<li>Check the interface list for your wired adapter: green dot = link and valid address, yellow = link without a valid address (e.g. <code>169.254.x.x</code>), grey = no link.</li>
+<li>Choose <strong>Refresh</strong> to re-read the state.</li>
+<li>Make sure you run the latest version (shown under the app name in the menu). Only the latest version receives fixes.</li>
+<li>Use <strong>Diagnostics</strong> to copy the service's last decisions to the clipboard and paste them into the report.</li>
 </ol>
 </section>
 
 <section aria-labelledby="en-wifi-stays">
 <h3 id="en-wifi-stays">2. Wi-Fi stays on although the cable is plugged in</h3>
 <ul>
-<li>The adapter needs link <em>and</em> a valid IPv4 address from DHCP. As long as only the link is up, Wi-Fi stays on deliberately so you are never left without a connection.</li>
-<li>The LAN network service must exist and be enabled under <strong>System Settings &gt; Network</strong>. macOS sometimes creates the service for a new dock or adapter only after it is first plugged in.</li>
-<li>Renamed services (for example "ThinkPad Lan") are detected; services you disabled in System Settings are re-enabled by the app when needed.</li>
-<li>Virtual adapters, VPN tunnels and Bluetooth PAN are deliberately not treated as LAN.</li>
+<li>A cable counts as working only with link, a valid IPv4 or IPv6 address with a gateway <em>and</em> an answer from the wired network's DNS server over that adapter. <strong>Verifying cable</strong> in the menu means one of these is still missing – usually DHCP or DNS. If it stays that way the menu shows <strong>Cable without internet</strong> and Wi-Fi deliberately stays on so you are never left without a connection.</li>
+<li>The adapter's network service must exist under <strong>System Settings &gt; Network</strong>. macOS sometimes creates the service for a new dock or adapter only after the first plug-in; unplug and plug again.</li>
+<li>If you turned Wi-Fi off and on yourself while the cable was in, that is respected until the cable situation changes (see section 4).</li>
+<li>The guard may be paused (pause symbol in the menu) or disabled by your organization (crossed-out shield).</li>
+<li>Virtual adapters, VPN tunnels, Thunderbolt Bridge and Bluetooth PAN are deliberately not treated as cables.</li>
 </ul>
 </section>
 
 <section aria-labelledby="en-wifi-back">
 <h3 id="en-wifi-back">3. Wi-Fi does not come back after unplugging</h3>
 <ul>
-<li>The service checks every two seconds; after unplugging it can take a few seconds until macOS reports the lost link.</li>
-<li>If the service was stopped or uninstalled while Wi-Fi was off, Wi-Fi stays off. Turn it back on from the menu bar or System Settings.</li>
-<li><strong>Quit</strong> in the app also stops the background service. It is started again automatically the next time the app launches. If you only want the app out of the way, simply leave it running in the menu bar.</li>
-<li>Check the <code>.err</code> file for lines like <code>Failed to set Wi-Fi on</code>; they quote the reason returned by <code>networksetup</code>.</li>
+<li>Normally Wi-Fi is back within a second. Unplug and plug the cable again and choose <strong>Refresh</strong>.</li>
+<li>If the footer says <strong>local (no daemon)</strong>, the service is not running and cannot turn Wi-Fi on. Turn Wi-Fi on in Control Center or System Settings and report the case with the diagnostics.</li>
+<li><strong>Quit</strong> in the menu only quits the menu-bar app; the background service and the guard keep running. The app returns at the next login or immediately from <code>/Applications/MultihomingGuard.app</code>.</li>
 </ul>
 </section>
 
+<section aria-labelledby="en-manual">
+<h3 id="en-manual">4. I turned Wi-Fi off myself – why does it stay off?</h3>
+<p>By design: Wi-Fi you turned off yourself (Control Center, System Settings) is respected; the menu shows <strong>Wi-Fi turned off by you</strong>. The service turns it on again only when you do or when the cable situation changes (cable plugged in or removed).</p>
+</section>
+
 <section aria-labelledby="en-password">
-<h3 id="en-password">4. Why does the app ask for the administrator password?</h3>
-<p>macOS allows network services to be enabled or disabled only with root privileges. That is why the guard runs as a LaunchDaemon, and why installing, starting, stopping, uninstalling, launch at login and manually switching a service require your password. macOS itself asks; the app never receives the password.</p>
+<h3 id="en-password">5. Does the app ask for a password?</h3>
+<p>No. Installation happens as a package through device management or an administrator; in daily use nobody is asked for a password. Only the hidden admin area (hold ⌥ while opening the menu, then <strong>Open admin mode…</strong>) requires an administrator login through the macOS dialog to pause the guard; alternatively support reads out a one-time code on the phone. The app never sees the password.</p>
+</section>
+
+<section aria-labelledby="en-pause">
+<h3 id="en-pause">6. Pause the guard temporarily</h3>
+<ul>
+<li>Hold ⌥ while opening the menu and choose <strong>Open admin mode…</strong>.</li>
+<li><strong>With an administrator login:</strong> choose a duration; macOS asks for an administrator's name and password.</li>
+<li><strong>With a support code:</strong> the window shows a six-digit challenge. Read it to support; they answer with a six-digit one-time code. Three wrong attempts lock the input for 30 seconds.</li>
+<li>The pause ends automatically after the chosen duration (at most four hours unless your organization sets otherwise) or via <strong>Resume</strong>. Every pause is recorded in the system log.</li>
+<li>If the admin area is missing or the pause is refused, your organization has disabled the local pause or the support code through a profile.</li>
+</ul>
+</section>
+
+<section aria-labelledby="en-name">
+<h3 id="en-name">7. The Wi-Fi name is not shown</h3>
+<p>macOS discloses the network name only to apps with Location permission. macOS asks when the menu is first opened; alternatively choose <strong>Show network name…</strong> in the menu. If the permission was declined, use <strong>System Settings &gt; Privacy &amp; Security &gt; Location Services &gt; MultihomingGuard</strong>. Band and channel are shown without the permission; the guard itself does not depend on it.</p>
+</section>
+
+<section aria-labelledby="en-iphone">
+<h3 id="en-iphone">8. iPhone over USB</h3>
+<ul>
+<li>An iPhone connected over USB with Personal Hotspot enabled counts as a wired path: it is verified like a LAN, then Wi-Fi is switched off.</li>
+<li>If a real LAN cable is connected as well, the iPhone service is parked (disabled in Network settings) so no mobile data is used. When the LAN goes away it is released automatically.</li>
+<li>To keep the iPhone active in parallel: ⚙ in the menu, <strong>Allow iPhone tethering while on LAN</strong>. If the switch is greyed out, your organization sets this.</li>
+</ul>
 </section>
 
 <section aria-labelledby="en-dock">
-<h3 id="en-dock">5. Dock or USB adapter is not detected</h3>
+<h3 id="en-dock">9. Dock or USB adapter is not detected</h3>
 <ul>
 <li>Check whether the adapter appears under <strong>System Settings &gt; Network</strong>. If not, a vendor driver may be missing.</li>
-<li>Ethernet, USB Ethernet, Thunderbolt Ethernet and iPhone USB tethering are detected. In a report, name the adapter's vendor and model and the name of the network service.</li>
+<li>Ethernet, USB Ethernet, Thunderbolt Ethernet, dock adapters and iPhone USB tethering are detected, several at once as well (e.g. at third-party docking stations). In a report, name vendor and model and the network service name.</li>
 </ul>
 </section>
 
 <section aria-labelledby="en-vpn">
-<h3 id="en-vpn">6. Behaviour with VPN</h3>
-<p>VPN tunnels are not treated as LAN and are not changed. When the app switches from Wi-Fi to LAN, a VPN client usually has to reconnect; that is the VPN client's behaviour, not the app's.</p>
+<h3 id="en-vpn">10. Behaviour with VPN</h3>
+<p>VPN tunnels are not treated as cables and are not changed. When the service switches from Wi-Fi to cable, a VPN client usually has to reconnect; that is the VPN client's behaviour, not the app's.</p>
 </section>
 
 <section aria-labelledby="en-login">
-<h3 id="en-login">7. The app does not launch automatically</h3>
-<p>Launch at login is set up through <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code> and the copy at <code>/Applications/MultihomingGuard.app</code>. Choose <strong>Autostart neu einrichten</strong> in the admin area if you moved or replaced the app. If the service is installed, the app starts it automatically together with itself.</p>
-</section>
-
-<section aria-labelledby="en-two">
-<h3 id="en-two">8. Two icons in the menu bar</h3>
-<p>The app prevents duplicate launches; a second launch quits immediately. If you still see two icons, quit both instances and start the copy in <code>/Applications</code>.</p>
+<h3 id="en-login">11. The menu-bar app does not launch automatically</h3>
+<p>Launch at login is set up by the installer through <code>/Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist</code> and appears under <strong>System Settings &gt; General &gt; Login Items &amp; Extensions</strong> as "MultihomingGuard". If it is off there, turn it on or start the app from <code>/Applications</code>. The guard itself runs independently of the app.</p>
 </section>
 
 <section aria-labelledby="en-uninstall">
-<h3 id="en-uninstall">9. Uninstall completely</h3>
-<p>See <a href="privacy-choices.html#en-complete">Privacy choices, section 5</a>. Alternatively in Terminal: <code>sudo launchctl bootout system /Library/LaunchDaemons/com.local.multihomingguard.plist</code>, then delete the launch file, <code>/usr/local/libexec/multihoming-guard</code>, the LaunchAgent and the app.</p>
+<h3 id="en-uninstall">12. Uninstall completely</h3>
+<p>In managed environments device management removes the app. By hand in Terminal (administrator rights required):</p>
+<pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
+sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
+sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
+sudo rm -f /usr/local/libexec/MultihomingGuardDaemon /Library/Preferences/com.feichtiq.multihomingguard.plist
+sudo rm -rf /Applications/MultihomingGuard.app "/Library/Application Support/MultihomingGuard"
+sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
+<p>Turn Wi-Fi back on in System Settings afterwards if needed. See also <a href="privacy-choices.html#en-complete">Privacy choices, section 5</a>.</p>
 </section>
 </article>
 

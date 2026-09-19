@@ -30,50 +30,39 @@
 
 <article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
 <h2 id="ueberschrift-deutsch">Deutsch</h2>
-<p><strong>Stand:</strong> 18. September 2026</p>
-<p><strong>Kurzfassung:</strong> MultihomingGuard erhebt keine personenbezogenen Daten, verwendet kein Tracking, keine Analyse und keine Werbung und verbindet sich nie mit dem Internet. Es gibt daher nichts, dem Sie zustimmen oder widersprechen müssten, kein Konto zum Löschen und keine Daten, die Sie beim Entwickler anfordern könnten. Diese Seite listet, was Sie auf Ihrem Mac selbst kontrollieren.</p>
+<p><strong>Stand:</strong> 19. September 2026</p>
+<p><strong>Kurzfassung:</strong> MultihomingGuard erhebt keine personenbezogenen Daten, verwendet kein Tracking, keine Analyse und keine Werbung und kontaktiert keinen Server des Entwicklers. Es gibt daher nichts, dem Sie zustimmen oder widersprechen müssten, kein Konto zum Löschen und keine Daten, die Sie beim Entwickler anfordern könnten. Diese Seite listet, was Sie auf Ihrem Mac selbst kontrollieren.</p>
 
-<section aria-labelledby="de-dienst">
-<h3 id="de-dienst">1. Hintergrunddienst anhalten oder deinstallieren</h3>
-<p>Der Schutz läuft als LaunchDaemon mit Root-Rechten. Sie können ihn jederzeit anhalten oder vollständig entfernen:</p>
-<ol>
-<li>Öffnen Sie das Menü von MultihomingGuard in der Menüleiste und entsperren Sie den Bereich <strong>Admin Mode</strong> per Touch ID oder Anmeldekennwort.</li>
-<li>Wählen Sie <strong>Daemon stoppen</strong>, um den Schutz vorübergehend anzuhalten, oder <strong>Deinstallieren</strong>, um Dienst und Startdatei zu entfernen.</li>
-<li>macOS fragt nach Ihrem Administrator-Passwort. Die App sieht das Passwort nicht.</li>
-</ol>
-<p>Beim Deinstallieren werden <code>/usr/local/libexec/multihoming-guard</code> und <code>/Library/LaunchDaemons/com.local.multihomingguard.plist</code> gelöscht. WLAN und LAN-Dienste bleiben im zuletzt gesetzten Zustand; schalten Sie WLAN bei Bedarf in den Systemeinstellungen wieder ein.</p>
-</section>
-
-<section aria-labelledby="de-autostart">
-<h3 id="de-autostart">2. Autostart beim Anmelden</h3>
-<p>Wenn Sie den Autostart eingerichtet haben, entfernen Sie ihn im Admin-Bereich über <strong>Autostart entfernen</strong>. Dabei wird <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code> gelöscht; die Kopie unter <code>/Applications/MultihomingGuard.app</code> bleibt bestehen und kann von Hand in den Papierkorb gelegt werden.</p>
-</section>
-
-<section aria-labelledby="de-protokolle">
-<h3 id="de-protokolle">3. Protokolldateien</h3>
-<p>Der Dienst schreibt nach <code>/var/log/com.local.multihomingguard.log</code> und <code>/var/log/com.local.multihomingguard.err</code>. Die Dateien enthalten Zeitstempel, Adapter- und Dienstnamen sowie den Verbindungszustand, keine IP-Adressen, WLAN-Namen oder Passwörter. So löschen Sie sie:</p>
-<ol>
-<li>Stoppen Sie den Dienst über <strong>Admin Mode &gt; Daemon stoppen</strong>.</li>
-<li>Löschen Sie beide Dateien im Terminal mit Administratorrechten:</li>
-</ol>
-<pre><code>sudo rm /var/log/com.local.multihomingguard.log /var/log/com.local.multihomingguard.err</code></pre>
-<p>Beim nächsten Start legt der Dienst die Dateien neu an. Die Dateien werden nie an den Entwickler übertragen; Sie entscheiden selbst, ob Sie Auszüge einer Supportmeldung beifügen.</p>
+<section aria-labelledby="de-standort">
+<h3 id="de-standort">1. Standortfreigabe für den WLAN-Namen</h3>
+<p>macOS gibt den Namen des verbundenen WLANs nur an Apps mit Standortfreigabe heraus. MultihomingGuard fragt beim ersten Öffnen des Menüs nach „Beim Verwenden der App“. Sie können ablehnen: Dann fehlt im Menü nur der Netzwerkname; Band, Kanal und der Schutz selbst funktionieren unverändert. Die Freigabe ändern Sie jederzeit unter <strong>Systemeinstellungen &gt; Datenschutz &amp; Sicherheit &gt; Ortungsdienste &gt; MultihomingGuard</strong>. Die App liest keinen Standort und speichert den Netzwerknamen nicht.</p>
 </section>
 
 <section aria-labelledby="de-einstellungen">
-<h3 id="de-einstellungen">4. Gespeicherte Einstellungen</h3>
-<p>MultihomingGuard speichert keine Einstellungen, keine Voreinstellungen und keinen Verlauf. Es gibt keinen Container, keine Preferences-Datei und keinen Keychain-Eintrag, den Sie löschen müssten.</p>
+<h3 id="de-einstellungen">2. Einstellungen</h3>
+<p>Über ⚙ im Menü gibt es eine lokale Einstellung: <strong>iPhone-Tethering bei LAN erlauben</strong>. Der Hintergrunddienst speichert sie in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. Gibt Ihre Organisation den Wert per Konfigurationsprofil vor, ist der Schalter ausgegraut. Weitere Einstellungen oder ein Verlauf werden nicht gespeichert; es gibt keinen Keychain-Eintrag für Benutzer.</p>
+</section>
+
+<section aria-labelledby="de-protokolle">
+<h3 id="de-protokolle">3. Protokolle und Diagnose</h3>
+<p>Der Dienst schreibt keine eigenen Protokolldateien. Statusmeldungen gehen in das macOS-Systemprotokoll (Subsystem <code>com.feichtiq.multihomingguard</code>), das macOS selbst nach eigenen Regeln verwirft. Zusätzlich hält der Dienst die letzten 300 Entscheidungen im Arbeitsspeicher; <strong>Diagnose</strong> im Menü legt sie in die Zwischenablage. Sie enthalten Zeitstempel, Adapter- und Dienstnamen, den Verbindungszustand, lokale IP- und DNS-Server-Adressen sowie Pausen-Ereignisse – keine WLAN-Namen, Passwörter oder Benutzernamen. Nichts davon wird übertragen; Sie entscheiden, ob Sie den Text einer Supportmeldung beifügen. Ein Neustart des Dienstes leert den Speicher.</p>
+</section>
+
+<section aria-labelledby="de-pause">
+<h3 id="de-pause">4. Pause und Support-Code</h3>
+<p>Eine Pause des Schutzes (versteckter Admin-Bereich, ⌥ beim Öffnen des Menüs) wird mit Zeitpunkt, Dauer, Weg (Administrator oder Support-Code) und Prozess-ID der anfragenden App im Systemprotokoll vermerkt. Der Support-Code wird lokal aus der Seriennummer des Macs, einer Zufallszahl und einem nur dem Dienst und dem Support bekannten Schlüssel berechnet; die Seriennummer verlässt den Mac nur, wenn Sie sie dem Support am Telefon nennen. Der Schlüssel liegt unter <code>/Library/Application Support/MultihomingGuard/support.key</code>, lesbar nur für das System.</p>
 </section>
 
 <section aria-labelledby="de-vollstaendig">
 <h3 id="de-vollstaendig">5. Vollständig entfernen</h3>
-<ol>
-<li>Im Admin-Bereich <strong>Deinstallieren</strong> und danach <strong>Autostart entfernen</strong> wählen.</li>
-<li>App über <strong>Quit</strong> beenden.</li>
-<li><code>/Applications/MultihomingGuard.app</code> und gegebenenfalls die ursprünglich kopierte App in den Papierkorb legen.</li>
-<li>Optional die Protokolldateien wie unter Punkt 3 löschen.</li>
-</ol>
-<p>Danach ist nichts von MultihomingGuard mehr auf Ihrem Mac vorhanden.</p>
+<p>In verwalteten Umgebungen entfernt die Geräteverwaltung die App. Von Hand im Terminal (Administratorrechte nötig):</p>
+<pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
+sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
+sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
+sudo rm -f /usr/local/libexec/MultihomingGuardDaemon /Library/Preferences/com.feichtiq.multihomingguard.plist
+sudo rm -rf /Applications/MultihomingGuard.app "/Library/Application Support/MultihomingGuard"
+sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
+<p>Optional die Standortfreigabe unter Ortungsdienste entfernen. Danach ist nichts von MultihomingGuard mehr auf Ihrem Mac vorhanden; schalten Sie WLAN bei Bedarf in den Systemeinstellungen wieder ein.</p>
 </section>
 
 <section aria-labelledby="de-github">
@@ -84,50 +73,39 @@
 
 <article id="english" lang="en" aria-labelledby="heading-english">
 <h2 id="heading-english">Privacy choices for MultihomingGuard</h2>
-<p><strong>Effective:</strong> September 18, 2026</p>
-<p><strong>Summary:</strong> MultihomingGuard collects no personal data, uses no tracking, analytics or advertising and never connects to the internet. There is therefore nothing to consent to or object to, no account to delete and no data to request from the developer. This page lists what you control on your own Mac.</p>
+<p><strong>Effective:</strong> September 19, 2026</p>
+<p><strong>Summary:</strong> MultihomingGuard collects no personal data, uses no tracking, analytics or advertising and never contacts a developer server. There is therefore nothing to consent to or object to, no account to delete and no data to request from the developer. This page lists what you control on your own Mac.</p>
 
-<section aria-labelledby="en-service">
-<h3 id="en-service">1. Stop or uninstall the background service</h3>
-<p>The guard runs as a LaunchDaemon with root privileges. You can stop or remove it at any time:</p>
-<ol>
-<li>Open the MultihomingGuard menu in the menu bar and unlock the <strong>Admin Mode</strong> area with Touch ID or your login password.</li>
-<li>Choose <strong>Daemon stoppen</strong> (stop daemon) to pause the guard, or <strong>Deinstallieren</strong> (uninstall) to remove the service and its launch file. The app's interface is in German.</li>
-<li>macOS asks for your administrator password. The app never sees it.</li>
-</ol>
-<p>Uninstalling deletes <code>/usr/local/libexec/multihoming-guard</code> and <code>/Library/LaunchDaemons/com.local.multihomingguard.plist</code>. Wi-Fi and LAN services stay in their last state; re-enable Wi-Fi in System Settings if needed.</p>
-</section>
-
-<section aria-labelledby="en-login">
-<h3 id="en-login">2. Launch at login</h3>
-<p>If you set up launch at login, remove it with the <strong>Autostart entfernen</strong> item in the admin area. This deletes <code>/Library/LaunchAgents/com.local.MultihomingGuardApp.plist</code>; the copy at <code>/Applications/MultihomingGuard.app</code> stays and can be moved to the Trash by hand.</p>
-</section>
-
-<section aria-labelledby="en-logs">
-<h3 id="en-logs">3. Log files</h3>
-<p>The service writes to <code>/var/log/com.local.multihomingguard.log</code> and <code>/var/log/com.local.multihomingguard.err</code>. The files contain timestamps, adapter and service names and the connection state, but no IP addresses, Wi-Fi names or passwords. To delete them:</p>
-<ol>
-<li>Stop the service via <strong>Admin Mode &gt; Daemon stoppen</strong>.</li>
-<li>Delete both files in Terminal with administrator privileges:</li>
-</ol>
-<pre><code>sudo rm /var/log/com.local.multihomingguard.log /var/log/com.local.multihomingguard.err</code></pre>
-<p>The service recreates the files on its next start. They are never sent to the developer; you decide whether to attach excerpts to a support request.</p>
+<section aria-labelledby="en-location">
+<h3 id="en-location">1. Location permission for the Wi-Fi name</h3>
+<p>macOS discloses the name of the connected Wi-Fi network only to apps with Location permission. MultihomingGuard asks for "While using the app" when the menu is first opened. You may decline: only the network name is then missing from the menu; band, channel and the guard itself work unchanged. Change the permission at any time under <strong>System Settings &gt; Privacy &amp; Security &gt; Location Services &gt; MultihomingGuard</strong>. The app reads no location and does not store the network name.</p>
 </section>
 
 <section aria-labelledby="en-settings">
-<h3 id="en-settings">4. Stored settings</h3>
-<p>MultihomingGuard stores no settings, no preferences and no history. There is no container, no preferences file and no Keychain item for you to delete.</p>
+<h3 id="en-settings">2. Settings</h3>
+<p>⚙ in the menu offers one local setting: <strong>Allow iPhone tethering while on LAN</strong>. The background service stores it in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. If your organization sets the value through a configuration profile, the switch is greyed out. No further settings or history are stored; there is no Keychain item for users.</p>
+</section>
+
+<section aria-labelledby="en-logs">
+<h3 id="en-logs">3. Logs and diagnostics</h3>
+<p>The service writes no log files of its own. Status messages go to the macOS unified log (subsystem <code>com.feichtiq.multihomingguard</code>), which macOS discards by its own rules. In addition the service keeps its last 300 decisions in memory; <strong>Diagnostics</strong> in the menu puts them on the clipboard. They contain timestamps, adapter and service names, the connection state, local IP and DNS server addresses and pause events – no Wi-Fi names, passwords or user names. Nothing is transmitted; you decide whether to attach the text to a support request. Restarting the service clears the buffer.</p>
+</section>
+
+<section aria-labelledby="en-pause">
+<h3 id="en-pause">4. Pause and support code</h3>
+<p>A pause of the guard (hidden admin area, ⌥ while opening the menu) is recorded in the unified log with time, duration, path (administrator or support code) and the process ID of the requesting app. The support code is computed locally from the Mac's serial number, a random challenge and a key known only to the service and to support; the serial number leaves the Mac only if you read it to support on the phone. The key is stored at <code>/Library/Application Support/MultihomingGuard/support.key</code>, readable by the system only.</p>
 </section>
 
 <section aria-labelledby="en-complete">
 <h3 id="en-complete">5. Remove completely</h3>
-<ol>
-<li>In the admin area choose <strong>Deinstallieren</strong> and then <strong>Autostart entfernen</strong>.</li>
-<li>Quit the app with <strong>Quit</strong>.</li>
-<li>Move <code>/Applications/MultihomingGuard.app</code> and, if applicable, the originally copied app to the Trash.</li>
-<li>Optionally delete the log files as described in section 3.</li>
-</ol>
-<p>Nothing of MultihomingGuard remains on your Mac afterwards.</p>
+<p>In managed environments device management removes the app. By hand in Terminal (administrator rights required):</p>
+<pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
+sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
+sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
+sudo rm -f /usr/local/libexec/MultihomingGuardDaemon /Library/Preferences/com.feichtiq.multihomingguard.plist
+sudo rm -rf /Applications/MultihomingGuard.app "/Library/Application Support/MultihomingGuard"
+sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
+<p>Optionally remove the Location permission under Location Services. Nothing of MultihomingGuard remains on your Mac afterwards; turn Wi-Fi back on in System Settings if needed.</p>
 </section>
 
 <section aria-labelledby="en-github">

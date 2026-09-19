@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>MultihomingGuard Support</title>
-<meta name="description" content="Project-specific support page for MultihomingGuard, the macOS menu-bar app that prevents Wi-Fi and wired LAN from being used at the same time.">
+<meta name="description" content="Project support page for MultihomingGuard for macOS: LAN first, Wi-Fi only as fallback. Background service, menu-bar app, diagnostics, privacy.">
 <link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/en/">
 <link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/">
 <link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/en/">
@@ -17,7 +17,7 @@
 
 <header class="gb-masthead">
 <h1>MultihomingGuard Support</h1>
-<p class="gb-tagline">Support for MultihomingGuard, the macOS menu-bar app that prevents Wi-Fi and wired LAN from being used at the same time: when a cable is connected, Wi-Fi is turned off; when the cable goes away, Wi-Fi comes back.</p>
+<p class="gb-tagline">Support for MultihomingGuard for macOS: LAN first, Wi-Fi only as fallback. As soon as a wired connection – Ethernet, a dock or an iPhone over USB – is verified to work, Wi-Fi is switched off; when the cable goes away, Wi-Fi returns within a second.</p>
 <nav class="gb-language-nav" aria-label="Language">
 <ul>
 <li><a lang="de" hreflang="de" href="../">Deutsch</a></li>
@@ -42,7 +42,7 @@
 </li>
 <li>
 <a href="../privacy-choices.html#english">Privacy choices</a>
-<span class="gb-link-note">What you control on your own Mac: background service, launch at login, log files, complete removal.</span>
+<span class="gb-link-note">What you control on your own Mac: Location permission for the Wi-Fi name, settings, diagnostics, complete removal.</span>
 </li>
 <li>
 <a href="../legal.html#english">Legal notice and licence</a>
@@ -76,29 +76,34 @@
 </section>
 
 <section aria-labelledby="heading-report-contents">
-<h2 id="heading-report-contents">What to include in a report</h2>
+<h2 id="heading-report-contents">What a report should contain</h2>
 <ul>
 <li>macOS version and chip (Apple menu &gt; About This Mac).</li>
-<li>MultihomingGuard version (shown under the title in the app's menu, or Finder &gt; select <code>/Applications/MultihomingGuard.app</code> &gt; Get Info).</li>
-<li>Which network adapters are involved: built-in Wi-Fi, the Mac's Ethernet port, USB, Thunderbolt or dock adapters (vendor and model).</li>
-<li>What you expected and what happened instead. If possible, the relevant lines from <code>/var/log/com.local.multihomingguard.log</code> and <code>/var/log/com.local.multihomingguard.err</code> (reachable from the app's menu via "Logs im Finder oeffnen").</li>
+<li>MultihomingGuard version: shown in the app's menu right under the name ("Version 2.0.0 (79)").</li>
+<li>Which network adapters are involved: built-in Wi-Fi, the Mac's Ethernet port, USB, Thunderbolt or dock adapters, iPhone over USB (vendor and model).</li>
+<li>What you expected and what happened instead.</li>
+<li>The output of <strong>Diagnostics</strong> in the app's menu: the button puts the background service's last decisions on the clipboard; paste the text into the report. Nothing is sent automatically.</li>
 </ul>
-<p>Never post passwords, Wi-Fi keys, internal host names or your employer's network addresses in public issues.</p>
+<p>Do not post passwords, Wi-Fi keys, internal host names or network addresses of your employer in issues. The diagnostics contain local adapter and DNS addresses; review the text before pasting.</p>
 </section>
 
 <section aria-labelledby="heading-download">
 <h2 id="heading-download">Distribution and source code</h2>
-<p>MultihomingGuard is not distributed through the Mac App Store. The developer hands out the ready-built <code>MultihomingGuard.app</code> directly; it runs without developer tools, and the background service is bundled inside the app. The software is MIT-licensed; the source repository is not public at this time.</p>
+<p>MultihomingGuard is not distributed through the Mac App Store. It ships as a signed installer package (<code>.pkg</code>) notarized by Apple, in organizations usually through device management (Intune). The package installs the menu-bar app, the background service and launch at login; users without administrator rights are never asked for a password. The software is released under the MIT licence; the source repository is currently not public.</p>
 <p>MultihomingGuard requires macOS 13 Ventura or later. Only the latest version receives fixes.</p>
 </section>
 
 <section aria-labelledby="heading-how">
 <h2 id="heading-how">How the app works</h2>
 <ul>
-<li>When a wired LAN adapter is properly connected (link, enabled network service and a valid IPv4 address), Wi-Fi is turned off.</li>
-<li>When only Wi-Fi is connected, the LAN network services stay enabled so that a newly attached dock or cable gets link and DHCP immediately.</li>
-<li>When neither LAN nor Wi-Fi is connected, LAN services are enabled and Wi-Fi is turned on.</li>
-<li>The check runs every two seconds in a background service (LaunchDaemon) with root privileges, because macOS only allows network services to be changed that way. The menu-bar app shows the status and controls the service. The app's interface is in German.</li>
+<li><strong>Two parts.</strong> A background service (LaunchDaemon with root privileges, because macOS only lets root switch network services) makes every decision. The menu-bar app only shows what the service decided; you can quit it at any time and the guard keeps running.</li>
+<li><strong>Cables are verified, not just detected.</strong> A wired connection counts as working only when link, a valid IPv4 or IPv6 address with a gateway are present <em>and</em> the wired network's DNS server answers over exactly that adapter. Until then Wi-Fi stays on ("verifying cable").</li>
+<li><strong>Service order.</strong> The service arranges the network service order so wired comes before Wi-Fi and flushes the DNS cache on every switch.</li>
+<li><strong>Event driven.</strong> The service reacts to macOS change notifications within under a second; there is no polling every few seconds.</li>
+<li><strong>Manually disabled Wi-Fi is respected</strong> until you turn it back on or the cable situation changes.</li>
+<li><strong>iPhone over USB</strong> counts as a wired path. While a real LAN is active as well, the iPhone is parked so no mobile data is used – can be switched off under ⚙ in the menu unless your organization sets it.</li>
+<li><strong>Wi-Fi name.</strong> While Wi-Fi is active, the menu shows network name, band and channel. macOS requires the Location permission "while using the app" for the name; without it only the name is missing.</li>
+<li><strong>Pause for administrators and support.</strong> The guard can be paused for a limited time – with an administrator login or with a one-time code read out by support on the phone. Both live in a hidden area (hold ⌥ while opening the menu) and are logged.</li>
 </ul>
 </section>
 

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>MultihomingGuard-Support</title>
-<meta name="description" content="Projektgebundene Supportseite von MultihomingGuard, der Menüleisten-App für macOS, die gleichzeitige Nutzung von WLAN und kabelgebundenem LAN verhindert.">
+<meta name="description" content="Projektgebundene Supportseite von MultihomingGuard für macOS: LAN zuerst, WLAN nur als Ersatz. Hintergrunddienst, Menüleisten-App, Diagnose, Datenschutz.">
 <link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/">
 <link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/">
 <link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/en/">
@@ -17,7 +17,7 @@
 
 <header class="gb-masthead">
 <h1>MultihomingGuard-Support</h1>
-<p class="gb-tagline">Support für MultihomingGuard, die Menüleisten-App für macOS, die gleichzeitige Nutzung von WLAN und kabelgebundenem LAN verhindert: Ist ein Kabel verbunden, wird WLAN abgeschaltet; fällt das Kabel weg, kommt WLAN zurück.</p>
+<p class="gb-tagline">Support für MultihomingGuard für macOS: LAN zuerst, WLAN nur als Ersatz. Sobald eine Kabelverbindung – Ethernet, Dock oder iPhone per USB – nachweislich funktioniert, wird WLAN abgeschaltet; fällt das Kabel weg, kommt WLAN innerhalb einer Sekunde zurück.</p>
 <nav class="gb-language-nav" aria-label="Sprache">
 <ul>
 <li><span lang="de" aria-current="true">Deutsch</span></li>
@@ -42,7 +42,7 @@
 </li>
 <li>
 <a href="privacy-choices.html">Datenschutz-Einstellungen</a>
-<span class="gb-link-note">Was Sie auf Ihrem Mac selbst steuern können: Hintergrunddienst, Autostart, Protokolldateien, vollständige Deinstallation.</span>
+<span class="gb-link-note">Was Sie auf Ihrem Mac selbst steuern können: Standortfreigabe für den WLAN-Namen, Einstellungen, Diagnose, vollständige Deinstallation.</span>
 </li>
 <li>
 <a href="legal.html">Impressum und Lizenz</a>
@@ -79,26 +79,31 @@
 <h2 id="ueberschrift-inhalt-meldung">Was eine Meldung enthalten sollte</h2>
 <ul>
 <li>macOS-Version und Chip (Apple-Menü &gt; Über diesen Mac).</li>
-<li>MultihomingGuard-Version (im Menü der App unter dem Titel, oder Finder &gt; <code>/Programme/MultihomingGuard.app</code> auswählen &gt; Informationen).</li>
-<li>Welche Netzwerkadapter beteiligt sind: internes WLAN, Ethernet-Port des Macs, USB-, Thunderbolt- oder Dock-Adapter (Hersteller und Modell).</li>
-<li>Was Sie erwartet haben und was stattdessen passiert ist. Wenn möglich die passenden Zeilen aus <code>/var/log/com.local.multihomingguard.log</code> und <code>/var/log/com.local.multihomingguard.err</code> (im Menü der App über „Logs im Finder oeffnen“ erreichbar).</li>
+<li>MultihomingGuard-Version: steht im Menü der App direkt unter dem Namen („Version 2.0.0 (79)“).</li>
+<li>Welche Netzwerkadapter beteiligt sind: internes WLAN, Ethernet-Port des Macs, USB-, Thunderbolt- oder Dock-Adapter, iPhone per USB (Hersteller und Modell).</li>
+<li>Was Sie erwartet haben und was stattdessen passiert ist.</li>
+<li>Die Ausgabe von <strong>Diagnose</strong> im Menü der App: Der Knopf legt die letzten Entscheidungen des Hintergrunddienstes in die Zwischenablage; fügen Sie den Text in die Meldung ein. Es wird dabei nichts automatisch versendet.</li>
 </ul>
-<p>Veröffentlichen Sie in Issues keine Passwörter, WLAN-Schlüssel, internen Hostnamen oder Netzwerkadressen Ihres Arbeitgebers.</p>
+<p>Veröffentlichen Sie in Issues keine Passwörter, WLAN-Schlüssel, internen Hostnamen oder Netzwerkadressen Ihres Arbeitgebers. Die Diagnose enthält lokale Adapter- und DNS-Adressen; prüfen Sie den Text vor dem Einfügen.</p>
 </section>
 
 <section aria-labelledby="ueberschrift-bezug">
 <h2 id="ueberschrift-bezug">Bezug und Quellcode</h2>
-<p>MultihomingGuard wird nicht über den Mac App Store vertrieben. Die fertige <code>MultihomingGuard.app</code> wird direkt vom Entwickler weitergegeben und kann ohne Entwicklerwerkzeuge gestartet werden; der Hintergrunddienst ist im App-Bundle enthalten. Die Software steht unter der MIT-Lizenz; das Quellcode-Repository ist derzeit nicht öffentlich.</p>
+<p>MultihomingGuard wird nicht über den Mac App Store vertrieben. Die Auslieferung erfolgt als signiertes und von Apple notarisiertes Installationspaket (<code>.pkg</code>), in Unternehmen in der Regel über die Geräteverwaltung (Intune). Das Paket installiert die Menüleisten-App, den Hintergrunddienst und den Autostart; Benutzer ohne Administratorrechte werden nie nach einem Passwort gefragt. Die Software steht unter der MIT-Lizenz; das Quellcode-Repository ist derzeit nicht öffentlich.</p>
 <p>MultihomingGuard benötigt macOS 13 Ventura oder neuer. Nur die jeweils aktuelle Version erhält Fehlerkorrekturen.</p>
 </section>
 
 <section aria-labelledby="ueberschrift-funktion">
 <h2 id="ueberschrift-funktion">So arbeitet die App</h2>
 <ul>
-<li>Ist ein kabelgebundener LAN-Adapter korrekt verbunden (Link, aktiver Netzwerkdienst und gültige IPv4-Adresse), wird WLAN ausgeschaltet.</li>
-<li>Ist nur WLAN verbunden, bleiben die LAN-Netzwerkdienste aktiv, damit ein neu angestecktes Dock oder Kabel sofort Link und DHCP bekommt.</li>
-<li>Ist weder LAN noch WLAN verbunden, werden LAN-Dienste aktiviert und WLAN eingeschaltet.</li>
-<li>Die Prüfung läuft alle zwei Sekunden in einem Hintergrunddienst (LaunchDaemon) mit Root-Rechten, weil macOS Änderungen an Netzwerkdiensten nur so erlaubt. Die Menüleisten-App zeigt den Status und steuert den Dienst.</li>
+<li><strong>Zwei Teile.</strong> Ein Hintergrunddienst (LaunchDaemon mit Root-Rechten, weil macOS Netzwerkdienste nur so umschalten lässt) trifft alle Entscheidungen. Die Menüleisten-App zeigt nur an, was der Dienst entschieden hat; sie kann jederzeit beendet werden, der Schutz läuft weiter.</li>
+<li><strong>Kabel wird geprüft, nicht nur gesteckt.</strong> Eine Kabelverbindung gilt erst dann als funktionierend, wenn Link, eine gültige IPv4- oder IPv6-Adresse mit Gateway vorhanden sind <em>und</em> der DNS-Server des Kabelnetzes über genau diesen Adapter antwortet. Solange das nicht der Fall ist, bleibt WLAN eingeschaltet („Kabel wird geprüft“).</li>
+<li><strong>Reihenfolge.</strong> Der Dienst stellt die Netzwerkdienst-Reihenfolge so ein, dass Kabel vor WLAN kommt; beim Wechsel wird der DNS-Cache geleert.</li>
+<li><strong>Ereignisgesteuert.</strong> Der Dienst reagiert auf Änderungen von macOS innerhalb von unter einer Sekunde; es gibt kein Abfragen im Sekundentakt.</li>
+<li><strong>Manuell ausgeschaltetes WLAN wird respektiert</strong>, bis Sie es wieder einschalten oder sich die Kabelsituation ändert.</li>
+<li><strong>iPhone per USB</strong> zählt als Kabelweg. Ist zusätzlich ein echtes LAN aktiv, wird das iPhone geparkt, damit kein Mobilfunk-Datenvolumen verbraucht wird – über ⚙ im Menü abschaltbar, sofern die Organisation es nicht vorgibt.</li>
+<li><strong>WLAN-Name.</strong> Während WLAN aktiv ist, zeigt das Menü Netzwerkname, Band und Kanal. Dafür verlangt macOS die Standortfreigabe „Beim Verwenden der App“; ohne sie fehlt nur der Name.</li>
+<li><strong>Pause für Administratoren und Support.</strong> Der Schutz kann für begrenzte Zeit angehalten werden – mit Administrator-Anmeldung oder mit einem Einmalcode, den der Support am Telefon nennt. Beides ist in einem versteckten Bereich (⌥ beim Öffnen des Menüs gedrückt halten) und wird protokolliert.</li>
 </ul>
 </section>
 
