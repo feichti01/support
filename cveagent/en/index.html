@@ -68,10 +68,10 @@
 </section>
 
 <section aria-labelledby="heading-known-issue">
-<h2 id="heading-known-issue">Known issue: background check does not start (1.15.2–1.16.2)</h2>
-<p><strong>As of:</strong> September 21, 2026. In the App Store versions 1.15.2 through 1.16.2 (build 38) the background service does not run the hourly check. The cause is a macOS launch constraint that terminates the service at start-up even though the app reports it as “enabled”. macOS 26.7 and macOS 27 are affected; the app’s signature and settings are correct – this is not an installation problem.</p>
+<h2 id="heading-known-issue">Known issue (under investigation): background check does not start on some Macs</h2>
+<p><strong>As of:</strong> September 21, 2026. On a Mac that previously had TestFlight pre-release versions of CVE Agent installed, the background service does not run the hourly check although the app reports it as “enabled”: macOS terminates the service at start-up because of a stored launch constraint. Whether Macs that installed CVE Agent only from the App Store are affected is being verified – current evidence points to a stale system database for background items, not to the app.</p>
 <p><strong>Impact:</strong> Reports and notifications about new critical CVEs appear only after a manual refresh (“Check now”), not automatically every hour.</p>
-<p><strong>Workaround until the update:</strong> Trigger the refresh manually in the app. <strong>Fix:</strong> Version 1.16.3 runs the hourly check directly in the app while it is open, shows in the menu which component performed the last check, and warns when the background service does not start. The issue has been reported to Apple.</p>
+<p><strong>Workaround:</strong> Trigger the refresh manually in the app. If you previously had a TestFlight version, resetting the background items is expected to help: run <code>sudo sfltool resetbtm</code> in Terminal and restart the Mac (all apps will ask once more for permission for their login items). <strong>In addition:</strong> Version 1.16.3 runs the hourly check directly in the app while it is open, shows in the menu which component performed the last check, and warns when the background service does not start.</p>
 <p>Diagnosis in Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – affected systems show <code>OS_REASON_CODESIGNING</code> and <code>spawn failed</code>. Progress and questions: <a href="https://github.com/feichti01/cveagent-support/issues">public reports</a>.</p>
 </section>
 

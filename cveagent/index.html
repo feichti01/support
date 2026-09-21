@@ -69,10 +69,10 @@
 </section>
 
 <section aria-labelledby="ueberschrift-bekannt">
-<h2 id="ueberschrift-bekannt">Bekanntes Problem: Hintergrundprüfung startet nicht (1.15.2–1.16.2)</h2>
-<p><strong>Stand:</strong> 21. September 2026. In den Store-Versionen 1.15.2 bis 1.16.2 (Build 38) führt der Hintergrunddienst die stündliche Prüfung nicht aus. Ursache ist eine Startbeschränkung von macOS, die den Dienst beim Start beendet, obwohl die App ihn als „aktiviert“ anzeigt. Betroffen sind macOS 26.7 und macOS 27; Signatur und Einstellungen der App sind korrekt, es handelt sich nicht um einen Fehler in der Installation.</p>
+<h2 id="ueberschrift-bekannt">Bekanntes Problem (in Prüfung): Hintergrundprüfung startet auf einzelnen Macs nicht</h2>
+<p><strong>Stand:</strong> 21. September 2026. Auf einem Mac, auf dem zuvor TestFlight-Vorabversionen von CVE Agent installiert waren, führt der Hintergrunddienst die stündliche Prüfung nicht aus, obwohl die App ihn als „aktiviert“ anzeigt: macOS beendet den Dienst beim Start wegen einer gespeicherten Startbeschränkung. Ob das auch Macs betrifft, die CVE Agent ausschließlich aus dem App Store installiert haben, wird derzeit geprüft – nach aktuellem Stand ist die Ursache eine veraltete Systemdatenbank für Hintergrundobjekte, nicht die App.</p>
 <p><strong>Auswirkung:</strong> Berichte und Mitteilungen zu neuen kritischen CVEs erscheinen nur nach einer manuellen Aktualisierung („Jetzt prüfen“) – nicht automatisch jede Stunde.</p>
-<p><strong>Abhilfe bis zum Update:</strong> Aktualisierung in der App manuell auslösen. <strong>Lösung:</strong> Version 1.16.3 führt die stündliche Prüfung direkt in der App aus, solange sie geöffnet ist, zeigt im Menü, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Hintergrunddienst nicht startet. Der Fehler ist bei Apple gemeldet.</p>
+<p><strong>Abhilfe:</strong> Aktualisierung in der App manuell auslösen. Wenn Sie zuvor eine TestFlight-Version hatten, hilft voraussichtlich das Zurücksetzen der Hintergrundobjekte: im Terminal <code>sudo sfltool resetbtm</code> ausführen und den Mac neu starten (alle Apps fragen danach einmal neu nach der Erlaubnis für ihre Anmeldeobjekte). <strong>Zusätzlich:</strong> Version 1.16.3 führt die stündliche Prüfung direkt in der App aus, solange sie geöffnet ist, zeigt im Menü, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Hintergrunddienst nicht startet.</p>
 <p>Diagnose im Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – bei betroffenen Systemen steht dort <code>OS_REASON_CODESIGNING</code> und <code>spawn failed</code>. Verlauf und Rückfragen: <a href="https://github.com/feichti01/cveagent-support/issues">öffentliche Meldungen</a>.</p>
 </section>
 
