@@ -67,9 +67,17 @@
 <p>CVE Agent requires macOS 13 Ventura or later and is available on the <a href="https://apps.apple.com/at/app/cve-agent/id6811044823?mt=12">Mac App Store</a>. This support site does not distribute the app or an installer.</p>
 </section>
 
+<section aria-labelledby="heading-known-issue">
+<h2 id="heading-known-issue">Known issue: background check does not start (1.15.2–1.16.2)</h2>
+<p><strong>As of:</strong> September 21, 2026. In the App Store versions 1.15.2 through 1.16.2 (build 38) the background service does not run the hourly check. The cause is a macOS launch constraint that terminates the service at start-up even though the app reports it as “enabled”. macOS 26.7 and macOS 27 are affected; the app’s signature and settings are correct – this is not an installation problem.</p>
+<p><strong>Impact:</strong> Reports and notifications about new critical CVEs appear only after a manual refresh (“Check now”), not automatically every hour.</p>
+<p><strong>Workaround until the update:</strong> Trigger the refresh manually in the app. <strong>Fix:</strong> Version 1.16.3 runs the hourly check directly in the app while it is open, shows in the menu which component performed the last check, and warns when the background service does not start. The issue has been reported to Apple.</p>
+<p>Diagnosis in Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – affected systems show <code>OS_REASON_CODESIGNING</code> and <code>spawn failed</code>. Progress and questions: <a href="https://github.com/feichti01/cveagent-support/issues">public reports</a>.</p>
+</section>
+
 <section aria-labelledby="heading-releases">
 <h2 id="heading-releases">Release notes</h2>
-<h3>1.16.2 (build 37) – September 2026</h3>
+<h3>1.16.2 (build 38) – September 2026</h3>
 <ul>
 <li><strong>Favorites:</strong> star CVEs (up to 16). Favorites stay in the catalog permanently, appear in every report regardless of the time range and can be exported as Markdown and CSV; the background check notifies you about changes to favorites (CVSS, KEV, EPSS, CERT-Bund).</li>
 <li><strong>Vendor filter with multiple selection:</strong> a searchable list replaces the single choice and the selection is kept. Mark up to 16 vendors as “My vendors”; the background check reports new critical CVEs at these vendors separately.</li>
