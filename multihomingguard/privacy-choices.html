@@ -43,6 +43,11 @@
 <p>Über ⚙ im Menü gibt es eine lokale Einstellung: <strong>iPhone-Tethering bei LAN erlauben</strong>. Der Hintergrunddienst speichert sie in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. Gibt Ihre Organisation den Wert per Konfigurationsprofil vor, ist der Schalter ausgegraut. Weitere Einstellungen oder ein Verlauf werden nicht gespeichert; es gibt keinen Keychain-Eintrag für Benutzer.</p>
 </section>
 
+<section aria-labelledby="de-updates">
+<h3 id="de-updates">2a. Updateprüfung</h3>
+<p>Unter ⚙ steht <strong>Automatisch nach Updates suchen</strong>. Eingeschaltet fragt die App einmal täglich www.feichtiq.com nach einer neuen Version – ohne Gerätekennung. Ausgeschaltet bleibt nur „Jetzt prüfen“ auf Ihren Klick. Installiert wird in beiden Fällen erst, wenn Sie „Update installieren“ wählen; die Zeitpunkte der Prüfungen stehen in der Diagnose.</p>
+</section>
+
 <section aria-labelledby="de-protokolle">
 <h3 id="de-protokolle">3. Protokolle und Diagnose</h3>
 <p>Der Dienst schreibt keine eigenen Protokolldateien. Statusmeldungen gehen in das macOS-Systemprotokoll (Subsystem <code>com.feichtiq.multihomingguard</code>), das macOS selbst nach eigenen Regeln verwirft. Zusätzlich hält der Dienst die letzten 300 Entscheidungen im Arbeitsspeicher; <strong>Diagnose</strong> im Menü legt sie in die Zwischenablage. Sie enthalten Zeitstempel, Adapter- und Dienstnamen, den Verbindungszustand, lokale IP- und DNS-Server-Adressen sowie Pausen-Ereignisse – keine WLAN-Namen, Passwörter oder Benutzernamen. Nichts davon wird übertragen; Sie entscheiden, ob Sie den Text einer Supportmeldung beifügen. Ein Neustart des Dienstes leert den Speicher.</p>
@@ -84,6 +89,11 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <section aria-labelledby="en-settings">
 <h3 id="en-settings">2. Settings</h3>
 <p>⚙ in the menu offers one local setting: <strong>Allow iPhone tethering while on LAN</strong>. The background service stores it in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. If your organization sets the value through a configuration profile, the switch is greyed out. No further settings or history are stored; there is no Keychain item for users.</p>
+</section>
+
+<section aria-labelledby="en-updates">
+<h3 id="en-updates">2a. Update check</h3>
+<p>⚙ offers <strong>Check for updates automatically</strong>. When on, the app asks www.feichtiq.com once a day for a new version – without any device identifier. When off, only "Check now" remains, on your click. Either way nothing is installed until you choose "Install update"; check times are listed in the diagnostics.</p>
 </section>
 
 <section aria-labelledby="en-logs">

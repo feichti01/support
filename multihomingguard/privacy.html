@@ -30,7 +30,7 @@
 
 <article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
 <h2 id="ueberschrift-deutsch">Deutsch</h2>
-<p><strong>Stand:</strong> 19. September 2026 (Version 2.0)</p>
+<p><strong>Stand:</strong> 22. September 2026 (Version 2.1)</p>
 <p>MultihomingGuard ist eine Menüleisten-App für macOS mit einem Hintergrunddienst, der verhindert, dass WLAN und kabelgebundenes LAN gleichzeitig genutzt werden. Ist ein Kabel verbunden, schaltet der Dienst WLAN ab; fällt das Kabel weg, schaltet er WLAN wieder ein.</p>
 <p><strong>Kurzfassung:</strong> MultihomingGuard erhebt nichts, sendet nichts und baut keine Verbindung zu einem Server auf, auch nicht zum Entwickler. Die App liest ausschließlich den Zustand der Netzwerkadapter Ihres Macs und schaltet Netzwerkdienste ein oder aus. Sie schreibt Protokolldateien auf Ihren Mac, die dort verbleiben. GitHub protokolliert beim Aufruf dieser Seite insbesondere die IP-Adresse zu Sicherheitszwecken.</p>
 
@@ -53,6 +53,7 @@
 <ul>
 <li><strong>Kein Server des Entwicklers.</strong> Weder die Menüleisten-App noch der Hintergrunddienst verbinden sich mit einem Server des Entwicklers oder eines Dritten. Es gibt keine Updateprüfung und keine Telemetrie.</li>
 <li><strong>Prüfanfrage im Kabelnetz.</strong> Um festzustellen, ob eine Kabelverbindung wirklich funktioniert, sendet der Hintergrunddienst eine kleine DNS-Anfrage (Name <code>multihomingguard.probe.invalid</code>) an den DNS-Server, den das Kabelnetz per DHCP zugewiesen hat – ausschließlich über den Kabeladapter, ohne Inhalte über Sie. Diese Anfrage geht an die Infrastruktur Ihres Netzwerks (zum Beispiel Ihres Arbeitgebers), nicht an den Entwickler. Bei Bedarf zählt der Dienst zusätzlich nur, ob über den Adapter Daten fließen; Inhalte werden nicht gelesen.</li>
+<li><strong>Updateprüfung.</strong> Die Menüleisten-App fragt einmal täglich unter <code>https://www.feichtiq.com/dl/multihomingguard.json</code> nach, ob eine neue Version vorliegt (zwei kleine Abrufe ohne Gerätekennung, Konto oder Cookies; der Hoster Cloudflare sieht dabei Ihre IP-Adresse wie bei jedem Webseitenaufruf). Das Manifest ist vom Entwickler kryptografisch signiert. Heruntergeladen und installiert wird nur nach Ihrem Klick auf „Update installieren“; das Paket wird vor der Installation auf Prüfsumme, Entwicklersignatur und Apple-Notarisierung geprüft. Die Prüfung lässt sich unter ⚙ abschalten oder von der Organisation per Profil deaktivieren.</li>
 <li><strong>Gelesene Netzwerkinformationen.</strong> Der Dienst liest über das SystemConfiguration-Framework, welche Netzwerkadapter vorhanden sind (WLAN, Ethernet, USB-, Thunderbolt- und Dock-Adapter, iPhone-USB-Tethering), ob ein Link besteht, welche Netzwerkdienste aktiv sind, welche IPv4-/IPv6-Adressen, Router und DNS-Server zugewiesen sind und ob WLAN eingeschaltet ist. Er reagiert auf Änderungsmeldungen von macOS statt regelmäßig abzufragen. Diese Angaben werden nur im Arbeitsspeicher ausgewertet und in der Menüleisten-App angezeigt.</li>
 <li><strong>WLAN-Name (Standortfreigabe).</strong> Die Menüleisten-App zeigt bei aktivem WLAN Netzwerkname, Frequenzband und Kanal. macOS gibt den Namen nur mit der Standortfreigabe „Beim Verwenden der App“ heraus; die App fragt beim ersten Öffnen des Menüs danach, liest aber keinen Standort und speichert den Namen nicht. Ohne Freigabe fehlt nur der Name.</li>
 <li><strong>Vorgenommene Änderungen.</strong> Je nach Zustand schaltet der Dienst die WLAN-Funkschnittstelle ein oder aus, ordnet die Reihenfolge der Netzwerkdienste (Kabel vor WLAN), aktiviert oder deaktiviert den iPhone-USB-Dienst und leert nach einem Wechsel den DNS-Cache von macOS.</li>
@@ -64,7 +65,7 @@
 
 <section aria-labelledby="de-bezug">
 <h3 id="de-bezug">4. Bezug der App</h3>
-<p>MultihomingGuard wird nicht über den Mac App Store vertrieben, sondern als signiertes Installationspaket direkt vom Entwickler oder über die Geräteverwaltung Ihrer Organisation weitergegeben. Das Paket ist von Apple notarisiert; dabei erhält Apple vom Entwickler nur das Paket selbst, keine Daten über Sie. Es gibt keine automatische Updateprüfung; die App fragt keinen Server nach neuen Versionen.</p>
+<p>MultihomingGuard wird nicht über den Mac App Store vertrieben, sondern als signiertes Installationspaket direkt vom Entwickler oder über die Geräteverwaltung Ihrer Organisation weitergegeben. Das Paket ist von Apple notarisiert; dabei erhält Apple vom Entwickler nur das Paket selbst, keine Daten über Sie. Die App prüft täglich signiert auf neue Versionen (siehe Abschnitt 3); installiert wird nur nach Ihrem Klick.</p>
 </section>
 
 <section aria-labelledby="de-github">
@@ -103,7 +104,7 @@
 
 <article id="english" lang="en" aria-labelledby="heading-english">
 <h2 id="heading-english">MultihomingGuard Privacy Policy</h2>
-<p><strong>Effective:</strong> September 19, 2026 (version 2.0)</p>
+<p><strong>Effective:</strong> September 22, 2026 (version 2.1)</p>
 <p>MultihomingGuard is a macOS menu-bar app with a background service that prevents Wi-Fi and wired LAN from being used at the same time. When a cable is connected, the service turns Wi-Fi off; when the cable goes away, it turns Wi-Fi back on.</p>
 <p><strong>Summary:</strong> MultihomingGuard collects nothing, sends nothing and never opens a connection to any server, including the developer's. It only reads the state of your Mac's network adapters and switches network services on or off. It writes log files to your Mac, which stay there. GitHub logs visitors' IP addresses for security when this site is accessed.</p>
 
@@ -126,6 +127,7 @@
 <ul>
 <li><strong>No developer server.</strong> Neither the menu-bar app nor the background service connects to a server of the developer or a third party. There is no update check and no telemetry.</li>
 <li><strong>Verification request inside the wired network.</strong> To determine whether a wired connection really works, the background service sends a small DNS query (name <code>multihomingguard.probe.invalid</code>) to the DNS server the wired network assigned via DHCP – over the wired adapter only, carrying nothing about you. This request goes to your network's infrastructure (for example your employer's), not to the developer. When needed the service additionally only counts whether data flows over the adapter; contents are not read.</li>
+<li><strong>Update check.</strong> Once a day the menu-bar app asks <code>https://www.feichtiq.com/dl/multihomingguard.json</code> whether a new version exists (two small requests without device identifier, account or cookies; the host Cloudflare sees your IP address as with any web page). The manifest is cryptographically signed by the developer. Download and installation happen only after you click "Install update"; before installing, the package is checked for checksum, developer signature and Apple notarization. The check can be turned off under ⚙ or disabled by your organization through a profile.</li>
 <li><strong>Network information read.</strong> Through the SystemConfiguration framework the service reads which network adapters exist (Wi-Fi, Ethernet, USB, Thunderbolt and dock adapters, iPhone USB tethering), whether a link is up, which network services are enabled, which IPv4/IPv6 addresses, routers and DNS servers are assigned and whether Wi-Fi is on. It reacts to macOS change notifications instead of polling. This information is evaluated in memory only and shown in the menu-bar app.</li>
 <li><strong>Wi-Fi name (Location permission).</strong> While Wi-Fi is active the menu-bar app shows network name, band and channel. macOS discloses the name only with the Location permission "While using the app"; the app asks for it when the menu is first opened but reads no location and does not store the name. Without the permission only the name is missing.</li>
 <li><strong>Changes made.</strong> Depending on the state, the service turns the Wi-Fi radio on or off, arranges the network service order (wired before Wi-Fi), enables or disables the iPhone USB service and flushes the macOS DNS cache after a switch.</li>
@@ -137,7 +139,7 @@
 
 <section aria-labelledby="en-distribution">
 <h3 id="en-distribution">4. How you obtain the app</h3>
-<p>MultihomingGuard is not distributed through the Mac App Store but as a signed installer package handed out directly by the developer or through your organization's device management. The package is notarized by Apple; Apple receives only the package itself from the developer, no data about you. There is no automatic update check; the app never asks a server for new versions.</p>
+<p>MultihomingGuard is not distributed through the Mac App Store but as a signed installer package handed out directly by the developer or through your organization's device management. The package is notarized by Apple; Apple receives only the package itself from the developer, no data about you. The app checks daily for new versions using a signed manifest (see section 3); installation happens only after your click.</p>
 </section>
 
 <section aria-labelledby="en-github">
