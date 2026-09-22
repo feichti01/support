@@ -89,10 +89,16 @@
 <p>macOS gibt den Netzwerknamen nur an Apps mit Standortfreigabe heraus. Beim ersten Öffnen des Menüs fragt macOS danach; alternativ wählen Sie <strong>Netzwerkname anzeigen…</strong> im Menü. Wurde die Freigabe abgelehnt, hilft <strong>Systemeinstellungen &gt; Datenschutz &amp; Sicherheit &gt; Ortungsdienste &gt; MultihomingGuard</strong>. Band und Kanal werden auch ohne Freigabe angezeigt; die Funktion des Schutzes ist davon unabhängig.</p>
 </section>
 
+<section aria-labelledby="de-continuity">
+<h3 id="de-continuity">7a. Apple Watch, AirDrop und Handoff am Kabel</h3>
+<p>Wenn das Menü <strong>Kabel aktiv – WLAN aus</strong> zeigt, wird nur die WLAN-Verbindung entfernt (IPv4 und IPv6 des WLAN-Dienstes stehen auf „Aus“). Das WLAN-Modul bleibt eingeschaltet, deshalb funktionieren <strong>Entsperren mit der Apple Watch, Bestätigen mit der Apple Watch, AirDrop, Handoff, Sidecar und Universal Control</strong> unverändert weiter.</p>
+<p>In den Systemeinstellungen &gt; Netzwerk steht WLAN in diesem Zustand auf „Nicht verbunden“ bzw. ohne IP-Adresse – das ist gewollt. Sobald das Kabel weg ist, wird die vorherige Konfiguration automatisch wiederhergestellt. Sollte Ihre Organisation die Variante mit abgeschaltetem Funkmodul vorgeben, entfallen diese Funktionen am Kabel; das ist eine Einstellung der Geräteverwaltung.</p>
+</section>
+
 <section aria-labelledby="de-iphone">
 <h3 id="de-iphone">8. iPhone per USB</h3>
 <ul>
-<li>Ein per USB angestecktes iPhone mit aktivem Persönlichem Hotspot zählt als Kabelweg: Es wird wie ein LAN geprüft, danach wird WLAN abgeschaltet.</li>
+<li>Ein per USB angestecktes iPhone mit aktivem Persönlichem Hotspot zählt als Kabelweg: Es wird wie ein LAN geprüft, danach wird die WLAN-Verbindung abgeschaltet.</li>
 <li>Steckt zusätzlich ein echtes LAN-Kabel, wird der iPhone-Dienst geparkt (in den Netzwerkeinstellungen deaktiviert), damit kein Mobilfunk-Datenvolumen verbraucht wird. Fällt das LAN weg, wird er automatisch wieder freigegeben.</li>
 <li>Soll das iPhone parallel aktiv bleiben: ⚙ im Menü, <strong>iPhone-Tethering bei LAN erlauben</strong>. Ist der Schalter ausgegraut, gibt Ihre Organisation die Einstellung vor.</li>
 </ul>
@@ -199,10 +205,16 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <p>macOS discloses the network name only to apps with Location permission. macOS asks when the menu is first opened; alternatively choose <strong>Show network name…</strong> in the menu. If the permission was declined, use <strong>System Settings &gt; Privacy &amp; Security &gt; Location Services &gt; MultihomingGuard</strong>. Band and channel are shown without the permission; the guard itself does not depend on it.</p>
 </section>
 
+<section aria-labelledby="en-continuity">
+<h3 id="en-continuity">7a. Apple Watch, AirDrop and Handoff on a cable</h3>
+<p>When the menu shows <strong>Cable active – Wi-Fi off</strong>, only the Wi-Fi connection is removed (the Wi-Fi service's IPv4 and IPv6 are set to "Off"). The Wi-Fi radio stays on, so <strong>unlocking and approving with Apple Watch, AirDrop, Handoff, Sidecar and Universal Control</strong> keep working as before.</p>
+<p>In System Settings &gt; Network, Wi-Fi then shows as not connected or without an IP address – that is intended. As soon as the cable is gone, the previous configuration is restored automatically. If your organization mandates the variant that powers the radio down, these features are unavailable on a cable; that is a device-management setting.</p>
+</section>
+
 <section aria-labelledby="en-iphone">
 <h3 id="en-iphone">8. iPhone over USB</h3>
 <ul>
-<li>An iPhone connected over USB with Personal Hotspot enabled counts as a wired path: it is verified like a LAN, then Wi-Fi is switched off.</li>
+<li>An iPhone connected over USB with Personal Hotspot enabled counts as a wired path: it is verified like a LAN, then the Wi-Fi connection is switched off.</li>
 <li>If a real LAN cable is connected as well, the iPhone service is parked (disabled in Network settings) so no mobile data is used. When the LAN goes away it is released automatically.</li>
 <li>To keep the iPhone active in parallel: ⚙ in the menu, <strong>Allow iPhone tethering while on LAN</strong>. If the switch is greyed out, your organization sets this.</li>
 </ul>

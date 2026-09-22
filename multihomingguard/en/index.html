@@ -100,6 +100,7 @@
 <li><strong>Cables are verified, not just detected.</strong> A wired connection counts as working only when link, a valid IPv4 or IPv6 address with a gateway are present <em>and</em> the wired network's DNS server answers over exactly that adapter. Until then Wi-Fi stays on ("verifying cable").</li>
 <li><strong>Service order.</strong> The service arranges the network service order so wired comes before Wi-Fi and flushes the DNS cache on every switch.</li>
 <li><strong>Event driven.</strong> The service reacts to macOS change notifications within under a second; there is no polling every few seconds.</li>
+<li><strong>"Wi-Fi off" means Wi-Fi without an address.</strong> The service sets the Wi-Fi service's IPv4 and IPv6 to "Off", so nothing travels over Wi-Fi any more. The Wi-Fi radio stays on, so <strong>unlocking with Apple Watch, AirDrop, Handoff, Sidecar and Universal Control</strong> keep working. The previous configuration is saved and restored when the cable goes away.</li>
 <li><strong>Manually disabled Wi-Fi is respected</strong> until you turn it back on or the cable situation changes.</li>
 <li><strong>iPhone over USB</strong> counts as a wired path. While a real LAN is active as well, the iPhone is parked so no mobile data is used – can be switched off under ⚙ in the menu unless your organization sets it.</li>
 <li><strong>Wi-Fi name.</strong> While Wi-Fi is active, the menu shows network name, band and channel. macOS requires the Location permission "while using the app" for the name; without it only the name is missing.</li>
