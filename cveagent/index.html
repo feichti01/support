@@ -69,15 +69,20 @@
 </section>
 
 <section aria-labelledby="ueberschrift-bekannt">
-<h2 id="ueberschrift-bekannt">Bekanntes Problem (in Prüfung): Hintergrundprüfung startet auf einzelnen Macs nicht</h2>
-<p><strong>Stand:</strong> 21. September 2026. Auf einem Mac, auf dem zuvor TestFlight-Vorabversionen von CVE Agent installiert waren, führt der Hintergrunddienst die stündliche Prüfung nicht aus, obwohl die App ihn als „aktiviert“ anzeigt: macOS beendet den Dienst beim Start wegen einer gespeicherten Startbeschränkung. Ob das auch Macs betrifft, die CVE Agent ausschließlich aus dem App Store installiert haben, wird derzeit geprüft – nach aktuellem Stand ist die Ursache eine veraltete Systemdatenbank für Hintergrundobjekte, nicht die App.</p>
-<p><strong>Auswirkung:</strong> Berichte und Mitteilungen zu neuen kritischen CVEs erscheinen nur nach einer manuellen Aktualisierung („Jetzt prüfen“) – nicht automatisch jede Stunde.</p>
-<p><strong>Abhilfe:</strong> Aktualisierung in der App manuell auslösen. Wenn Sie zuvor eine TestFlight-Version hatten, hilft voraussichtlich das Zurücksetzen der Hintergrundobjekte: im Terminal <code>sudo sfltool resetbtm</code> ausführen und den Mac neu starten (alle Apps fragen danach einmal neu nach der Erlaubnis für ihre Anmeldeobjekte). <strong>Zusätzlich:</strong> Version 1.16.3 führt die stündliche Prüfung direkt in der App aus, solange sie geöffnet ist, zeigt im Menü, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Hintergrunddienst nicht startet.</p>
-<p>Diagnose im Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – bei betroffenen Systemen steht dort <code>OS_REASON_CODESIGNING</code> und <code>spawn failed</code>. Verlauf und Rückfragen: <a href="https://github.com/feichti01/cveagent-support/issues">öffentliche Meldungen</a>.</p>
+<h2 id="ueberschrift-bekannt">Bekanntes Problem: Hintergrundprüfung startet auf Macs mit früherem TestFlight-Build nicht</h2>
+<p><strong>Stand:</strong> 22. September 2026, Ursache bestätigt. Betroffen sind ausschließlich Macs, auf denen zuvor eine TestFlight-Vorabversion von CVE Agent installiert war: macOS speichert die Startbeschränkung des Hintergrunddiensts bei der ersten Registrierung und übernimmt sie unverändert für spätere Installationen aus dem App Store – auch nach vollständiger Deinstallation. Der Dienst wird dann beim Start beendet, obwohl die App ihn als „aktiviert“ anzeigt. Installationen ausschließlich aus dem App Store sind nicht betroffen. Signatur und Einstellungen der App sind korrekt; es handelt sich nicht um einen Fehler in der Installation.</p>
+<p><strong>Abhilfe:</strong> Im Terminal <code>sudo sfltool resetbtm</code> ausführen und den Mac neu starten, während nur die App-Store-Version installiert ist (alle Apps fragen danach einmal neu nach der Erlaubnis für ihre Anmeldeobjekte). Danach registriert sich der Dienst korrekt. <strong>Zusätzlich:</strong> Ab Version 1.17 führt die App die stündliche Prüfung auch selbst aus, solange sie geöffnet ist, zeigt im Menü, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Hintergrunddienst nicht startet.</p>
+<p>Diagnose im Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.monitor | grep -E "last exit|job state"</code> (bis 1.16.2: <code>…cveagent.daemon</code>) – betroffene Systeme zeigen <code>OS_REASON_CODESIGNING</code> und <code>spawn failed</code>. Verlauf: <a href="https://github.com/feichti01/cveagent-support/issues/1">Meldung #1</a>.</p>
 </section>
 
 <section aria-labelledby="ueberschrift-versionen">
 <h2 id="ueberschrift-versionen">Versionshinweise</h2>
+<h3>1.17.0 (Build 41) – in Vorbereitung</h3>
+<ul>
+<li><strong>Dynamische Hersteller-Watchlist:</strong> Zu den 270 kuratierten Herstellern kommen bei jedem Lauf automatisch Hersteller hinzu, die in den letzten 365 Tagen in CISA KEV oder in CERT-Bund-Advisories genannt werden oder mindestens zehn CVEs mit EPSS ≥ 0,1 haben. Sie sind im Bericht mit ⟳ markiert, bleiben 90 Tage nach dem letzten Signal erhalten, der Datenstand nennt ihre Anzahl je Quelle, Exporte tragen die Herkunft. Abschaltbar unter „Einstellungen › Quellen“.</li>
+<li><strong>Stündliche Prüfung auch in der App:</strong> Solange die App geöffnet ist, prüft sie selbst, wenn der Hintergrunddienst nicht läuft; das Menü zeigt, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Dienst nicht startet. Der Dienst wird beim Update eindeutig neu registriert.</li>
+<li><strong>Hilfe:</strong> Blocksatz, mehr Abstand zwischen den Abschnitten, neuer Abschnitt zu dynamischen Herstellern.</li>
+</ul>
 <h3>1.16.2 (Build 38) – September 2026</h3>
 <ul>
 <li><strong>Favoriten:</strong> CVEs lassen sich per Stern markieren (bis zu 16). Favoriten bleiben dauerhaft im Katalog, stehen in jedem Bericht unabhängig vom Zeitraum und lassen sich als Markdown und CSV exportieren; die Hintergrundprüfung meldet Änderungen an Favoriten (CVSS, KEV, EPSS, CERT-Bund).</li>
@@ -92,7 +97,7 @@
 
 <section aria-labelledby="ueberschrift-hilfe">
 <h2 id="ueberschrift-hilfe">Hilfe in der App</h2>
-<p>Die App enthält eine lokale Hilfe zu Suche, Zeitraum, Berichtsumfang, Aktualisierung, Prioritäten, Risikoauswahl, Filtern, Favoriten, Herstellerauswahl, CVE-Details, CERT-Bund-Angaben und Hintergrundprüfung.</p>
+<p>Die App enthält eine lokale Hilfe zu Suche, Zeitraum, Berichtsumfang, Aktualisierung, Prioritäten, Risikoauswahl, Filtern, Favoriten, Herstellerauswahl, dynamischen Herstellern (automatische Aufnahme aus CISA KEV, CERT-Bund und EPSS, Markierung ⟳, Abschaltung in den Einstellungen), CVE-Details, CERT-Bund-Angaben und Hintergrundprüfung.</p>
 </section>
 
 </main>

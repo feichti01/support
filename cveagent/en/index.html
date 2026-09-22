@@ -68,15 +68,20 @@
 </section>
 
 <section aria-labelledby="heading-known-issue">
-<h2 id="heading-known-issue">Known issue (under investigation): background check does not start on some Macs</h2>
-<p><strong>As of:</strong> September 21, 2026. On a Mac that previously had TestFlight pre-release versions of CVE Agent installed, the background service does not run the hourly check although the app reports it as “enabled”: macOS terminates the service at start-up because of a stored launch constraint. Whether Macs that installed CVE Agent only from the App Store are affected is being verified – current evidence points to a stale system database for background items, not to the app.</p>
-<p><strong>Impact:</strong> Reports and notifications about new critical CVEs appear only after a manual refresh (“Check now”), not automatically every hour.</p>
-<p><strong>Workaround:</strong> Trigger the refresh manually in the app. If you previously had a TestFlight version, resetting the background items is expected to help: run <code>sudo sfltool resetbtm</code> in Terminal and restart the Mac (all apps will ask once more for permission for their login items). <strong>In addition:</strong> Version 1.16.3 runs the hourly check directly in the app while it is open, shows in the menu which component performed the last check, and warns when the background service does not start.</p>
-<p>Diagnosis in Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – affected systems show <code>OS_REASON_CODESIGNING</code> and <code>spawn failed</code>. Progress and questions: <a href="https://github.com/feichti01/cveagent-support/issues">public reports</a>.</p>
+<h2 id="heading-known-issue">Known issue: background check does not start on Macs that had an earlier TestFlight build</h2>
+<p><strong>As of:</strong> September 22, 2026, cause confirmed. Only Macs that previously had a TestFlight pre-release of CVE Agent are affected: macOS stores the launch constraint of the background service at its first registration and keeps it unchanged for later App Store installations – even after a complete uninstall. The service is then terminated at start-up although the app reports it as “enabled”. Installations made only from the App Store are not affected. The app’s signature and settings are correct; this is not an installation problem.</p>
+<p><strong>Workaround:</strong> Run <code>sudo sfltool resetbtm</code> in Terminal and restart the Mac while only the App Store version is installed (all apps will ask once more for permission for their login items). The service then registers correctly. <strong>In addition:</strong> From version 1.17 the app runs the hourly check itself while it is open, shows in the menu which component performed the last check, and warns when the background service does not start.</p>
+<p>Diagnosis in Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.monitor | grep -E "last exit|job state"</code> (up to 1.16.2: <code>…cveagent.daemon</code>) – affected systems show <code>OS_REASON_CODESIGNING</code> and <code>spawn failed</code>. History: <a href="https://github.com/feichti01/cveagent-support/issues/1">report #1</a>.</p>
 </section>
 
 <section aria-labelledby="heading-releases">
 <h2 id="heading-releases">Release notes</h2>
+<h3>1.17.0 (build 41) – in preparation</h3>
+<ul>
+<li><strong>Dynamic vendor watchlist:</strong> On every run, vendors that appear in CISA KEV or CERT-Bund advisories within the last 365 days, or that have at least ten CVEs with EPSS ≥ 0.1, are added to the 270 curated vendors automatically. They are marked with ⟳ in the report, remain for 90 days after their last signal, the data-state section shows their count per source, and exports carry the origin. Can be disabled under Settings › Sources.</li>
+<li><strong>Hourly check inside the app:</strong> While the app is open it checks on its own when the background service is not running; the menu shows which component performed the last check and warns when the service does not start. The service is re-registered cleanly on update.</li>
+<li><strong>Help:</strong> justified text, more spacing between sections, new section on dynamic vendors.</li>
+</ul>
 <h3>1.16.2 (build 38) – September 2026</h3>
 <ul>
 <li><strong>Favorites:</strong> star CVEs (up to 16). Favorites stay in the catalog permanently, appear in every report regardless of the time range and can be exported as Markdown and CSV; the background check notifies you about changes to favorites (CVSS, KEV, EPSS, CERT-Bund).</li>
@@ -91,7 +96,7 @@
 
 <section aria-labelledby="heading-help">
 <h2 id="heading-help">In-app help</h2>
-<p>The app includes local help for search, time range, report scope, refresh, priorities, risk selection, filters, favorites, vendor selection, CVE details, CERT-Bund data and background checks.</p>
+<p>The app includes local help for search, time range, report scope, refresh, priorities, risk selection, filters, favorites, vendor selection, dynamic vendors (automatic inclusion from CISA KEV, CERT-Bund and EPSS, ⟳ marker, switch in Settings), CVE details, CERT-Bund data and background checks.</p>
 </section>
 
 </main>
