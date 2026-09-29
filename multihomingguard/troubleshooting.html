@@ -71,17 +71,15 @@
 
 <section aria-labelledby="de-passwort">
 <h3 id="de-passwort">5. Fragt die App nach einem Passwort?</h3>
-<p>Nein. Die Installation erfolgt als Paket durch die Geräteverwaltung oder einen Administrator; im Alltag wird niemand nach einem Passwort gefragt. Nur der versteckte Admin-Bereich (⌥ beim Öffnen des Menüs gedrückt halten, dann <strong>Admin-Modus öffnen…</strong>) verlangt für eine Pause eine Administrator-Anmeldung über den macOS-Dialog; alternativ nennt der Support am Telefon einen Einmalcode. Die App sieht das Passwort nie.</p>
+<p>Nein. Die Installation erfolgt als Paket per Doppelklick und verlangt einmal Administratorrechte, wie bei jedem Installationspaket; im Alltag wird niemand nach einem Passwort gefragt. Nur der versteckte Admin-Bereich (⌥ beim Öffnen des Menüs gedrückt halten, dann <strong>Admin-Modus öffnen…</strong>) verlangt für eine Pause eine Administrator-Anmeldung über den macOS-Dialog. Die App sieht das Passwort nie.</p>
 </section>
 
 <section aria-labelledby="de-pause">
 <h3 id="de-pause">6. Schutz vorübergehend anhalten (Pause)</h3>
 <ul>
 <li>Halten Sie ⌥ gedrückt, während Sie das Menü öffnen, und wählen Sie <strong>Admin-Modus öffnen…</strong>.</li>
-<li><strong>Mit Administrator-Anmeldung:</strong> Dauer wählen, macOS fragt nach Name und Passwort eines Administrators.</li>
-<li><strong>Mit Support-Code:</strong> Das Fenster zeigt eine sechsstellige Prüfzahl. Nennen Sie sie dem Support; er antwortet mit einem sechsstelligen Einmalcode. Drei Fehlversuche sperren die Eingabe 30 Sekunden.</li>
-<li>Die Pause endet automatisch nach der gewählten Dauer (höchstens vier Stunden, sofern die Organisation nichts anderes vorgibt) oder über <strong>Fortsetzen</strong>. Jede Pause wird im Systemprotokoll vermerkt.</li>
-<li>Fehlt der Admin-Bereich oder ist die Pause abgelehnt, hat die Organisation die lokale Pause bzw. den Support-Code per Profil abgeschaltet.</li>
+<li>Dauer wählen und <strong>Als Admin aussetzen</strong>: macOS fragt nach Name und Passwort eines Administrators. Das eigene Kennwort eines Standardbenutzers genügt nicht.</li>
+<li>Die Pause endet automatisch nach der gewählten Dauer (höchstens vier Stunden) oder über <strong>Fortsetzen</strong>. Jede Pause wird im Systemprotokoll vermerkt.</li>
 </ul>
 </section>
 
@@ -195,17 +193,15 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 
 <section aria-labelledby="en-password">
 <h3 id="en-password">5. Does the app ask for a password?</h3>
-<p>No. Installation happens as a package through device management or an administrator; in daily use nobody is asked for a password. Only the hidden admin area (hold ⌥ while opening the menu, then <strong>Open admin mode…</strong>) requires an administrator login through the macOS dialog to pause the guard; alternatively support reads out a one-time code on the phone. The app never sees the password.</p>
+<p>No. Installation happens as a package by double-click and asks for administrator rights once, like any installer package; in daily use nobody is asked for a password. Only the hidden admin area (hold ⌥ while opening the menu, then <strong>Open admin mode…</strong>) requires an administrator login through the macOS dialog to pause the guard. The app never sees the password.</p>
 </section>
 
 <section aria-labelledby="en-pause">
 <h3 id="en-pause">6. Pause the guard temporarily</h3>
 <ul>
 <li>Hold ⌥ while opening the menu and choose <strong>Open admin mode…</strong>.</li>
-<li><strong>With an administrator login:</strong> choose a duration; macOS asks for an administrator's name and password.</li>
-<li><strong>With a support code:</strong> the window shows a six-digit challenge. Read it to support; they answer with a six-digit one-time code. Three wrong attempts lock the input for 30 seconds.</li>
-<li>The pause ends automatically after the chosen duration (at most four hours unless your organization sets otherwise) or via <strong>Resume</strong>. Every pause is recorded in the system log.</li>
-<li>If the admin area is missing or the pause is refused, your organization has disabled the local pause or the support code through a profile.</li>
+<li>Choose a duration and <strong>Pause as admin</strong>: macOS asks for an administrator's name and password. A standard user's own password is not enough.</li>
+<li>The pause ends automatically after the chosen duration (at most four hours) or via <strong>Resume</strong>. Every pause is recorded in the system log.</li>
 </ul>
 </section>
 

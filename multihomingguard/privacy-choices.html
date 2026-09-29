@@ -54,8 +54,8 @@
 </section>
 
 <section aria-labelledby="de-pause">
-<h3 id="de-pause">4. Pause und Support-Code</h3>
-<p>Eine Pause des Schutzes (versteckter Admin-Bereich, ⌥ beim Öffnen des Menüs) wird mit Zeitpunkt, Dauer, Weg (Administrator oder Support-Code) und Prozess-ID der anfragenden App im Systemprotokoll vermerkt. Der Support-Code wird lokal aus der Seriennummer des Macs, einer Zufallszahl und einem nur dem Dienst und dem Support bekannten Schlüssel berechnet; die Seriennummer verlässt den Mac nur, wenn Sie sie dem Support am Telefon nennen. Der Schlüssel liegt unter <code>/Library/Application Support/MultihomingGuard/support.key</code>, lesbar nur für das System.</p>
+<h3 id="de-pause">4. Pause des Schutzes</h3>
+<p>Eine Pause des Schutzes (versteckter Admin-Bereich, ⌥ beim Öffnen des Menüs) wird mit Zeitpunkt, Dauer und Prozess-ID der anfragenden App im Systemprotokoll vermerkt. Autorisiert wird sie über den macOS-Dialog für Administratorrechte; die App sieht das Kennwort nicht.</p>
 </section>
 
 <section aria-labelledby="de-vollstaendig">
@@ -102,8 +102,8 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 </section>
 
 <section aria-labelledby="en-pause">
-<h3 id="en-pause">4. Pause and support code</h3>
-<p>A pause of the guard (hidden admin area, ⌥ while opening the menu) is recorded in the unified log with time, duration, path (administrator or support code) and the process ID of the requesting app. The support code is computed locally from the Mac's serial number, a random challenge and a key known only to the service and to support; the serial number leaves the Mac only if you read it to support on the phone. The key is stored at <code>/Library/Application Support/MultihomingGuard/support.key</code>, readable by the system only.</p>
+<h3 id="en-pause">4. Pausing the guard</h3>
+<p>A pause of the guard (hidden admin area, ⌥ while opening the menu) is recorded in the unified log with time, duration and the process ID of the requesting app. It is authorized through the macOS dialog for administrator rights; the app never sees the password.</p>
 </section>
 
 <section aria-labelledby="en-complete">

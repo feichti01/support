@@ -89,7 +89,7 @@
 
 <section aria-labelledby="ueberschrift-bezug">
 <h2 id="ueberschrift-bezug">Bezug und Quellcode</h2>
-<p>MultihomingGuard wird nicht über den Mac App Store vertrieben. Die Auslieferung erfolgt als signiertes und von Apple notarisiertes Installationspaket (<code>.pkg</code>), in Unternehmen in der Regel über die Geräteverwaltung (Intune). Das Paket installiert die Menüleisten-App, den Hintergrunddienst und den Autostart; Benutzer ohne Administratorrechte werden nie nach einem Passwort gefragt. Die Software steht unter der MIT-Lizenz; das Quellcode-Repository ist derzeit nicht öffentlich.</p>
+<p>MultihomingGuard wird nicht über den Mac App Store vertrieben. Die Auslieferung erfolgt als signiertes und von Apple notarisiertes Installationspaket (<code>.pkg</code>), das Sie selbst per Doppelklick installieren. Das Paket installiert die Menüleisten-App, den Hintergrunddienst und den Autostart; dafür fragt macOS einmal nach Administratorrechten, wie bei jedem Installationspaket. Im laufenden Betrieb fragt die App nie nach einem Passwort. Die Software steht unter der MIT-Lizenz; das Quellcode-Repository ist derzeit nicht öffentlich.</p>
 <p>MultihomingGuard benötigt macOS 13 Ventura oder neuer. Nur die jeweils aktuelle Version erhält Fehlerkorrekturen.</p>
 </section>
 
@@ -107,7 +107,7 @@
 <li><strong>Offline wird als Offline benannt.</strong> Ist kein Kabel verbunden und hat das WLAN keine Adresse, meldet das Menü „Keine Verbindung“ mit eigenem, orangefarbenem Symbol – nicht „WLAN aktiv“. Von einem WLAN, das Sie selbst ausgeschaltet haben, unterscheidet es sich auch in der Form des Symbols, damit die Menüleiste beide Fälle einfarbig trennen kann.</li>
 <li><strong>VPN wird angezeigt, nicht angetastet.</strong> Läuft ein VPN-Tunnel, zeigt das Menü „VPN aktiv“ mit dem Tunnelgerät – herstellerunabhängig, erkannt an einem Tunnelanschluss mit erreichbarer Adresse. Am Schutz ändert das nichts, und der Tunnel selbst wird nie verändert.</li>
 <li><strong>Firmen-DNS bei aktivem VPN schützen</strong> (⚙, standardmäßig aktiv). Ein Gerät am Kabel – typischerweise ein iPhone – kann einen eigenen Namensdienst anmelden, den macOS vor den des Firmen-VPN stellt; interne Adressen sind dann nicht auflösbar. Die App belegt das zuerst: Sie fragt den Namen gezielt über die betroffene Leitung ab und greift nur ein, wenn er tatsächlich unbeantwortet bleibt. Dann wird IPv6 dieses einen Anschlusses abgeschaltet und wiederhergestellt, sobald das VPN getrennt ist.</li>
-<li><strong>Pause für Administratoren und Support.</strong> Der Schutz kann für begrenzte Zeit angehalten werden – mit Administrator-Anmeldung oder mit einem Einmalcode, den der Support am Telefon nennt. Beides ist in einem versteckten Bereich (⌥ beim Öffnen des Menüs gedrückt halten) und wird protokolliert.</li>
+<li><strong>Pause mit Administrator-Anmeldung.</strong> Der Schutz kann für begrenzte Zeit angehalten werden: versteckter Bereich (⌥ beim Öffnen des Menüs gedrückt halten), dann fragt macOS selbst nach Benutzername und Kennwort eines Administrators. Jede Pause läuft automatisch ab und wird protokolliert. Ein Administrator kann den Dienst ohnehin beenden – die Pause ist der geordnete Weg, keine Hürde.</li>
 </ul>
 </section>
 

@@ -89,7 +89,7 @@
 
 <section aria-labelledby="heading-download">
 <h2 id="heading-download">Distribution and source code</h2>
-<p>MultihomingGuard is not distributed through the Mac App Store. It ships as a signed installer package (<code>.pkg</code>) notarized by Apple, in organizations usually through device management (Intune). The package installs the menu-bar app, the background service and launch at login; users without administrator rights are never asked for a password. The software is released under the MIT licence; the source repository is currently not public.</p>
+<p>MultihomingGuard is not distributed through the Mac App Store. It ships as a signed installer package (<code>.pkg</code>) notarized by Apple that you install yourself by double-click. The package installs the menu-bar app, the background service and launch at login; macOS asks for administrator rights once for that, as it does for any installer package. In day-to-day use the app never asks for a password. The software is released under the MIT licence; the source repository is currently not public.</p>
 <p>MultihomingGuard requires macOS 13 Ventura or later. Only the latest version receives fixes.</p>
 </section>
 
@@ -107,7 +107,7 @@
 <li><strong>Offline is called offline.</strong> With no cable connected and no address on Wi-Fi, the menu reports "No connection" with its own orange symbol – not "Wi-Fi active". Its shape also differs from Wi-Fi you switched off yourself, so the menu bar can tell the two apart in a single colour.</li>
 <li><strong>A VPN is shown, not touched.</strong> While a VPN tunnel is up, the menu shows "VPN active" with the tunnel device – vendor-independent, recognised by a tunnel interface carrying a routable address. It changes nothing about the protection, and the tunnel itself is never modified.</li>
 <li><strong>Protect company DNS while a VPN is active</strong> (gear menu, on by default). A device on the cable – typically an iPhone – can announce its own name service, which macOS puts ahead of the company VPN's; internal addresses then cannot be resolved. The app proves it first: it asks for the name over the affected link and only steps in when the name really goes unanswered. It then switches off IPv6 of that one connection and restores it as soon as the VPN is disconnected.</li>
-<li><strong>Pause for administrators and support.</strong> The guard can be paused for a limited time – with an administrator login or with a one-time code read out by support on the phone. Both live in a hidden area (hold ⌥ while opening the menu) and are logged.</li>
+<li><strong>Pause with an administrator login.</strong> The guard can be paused for a limited time: a hidden area (hold ⌥ while opening the menu), where macOS itself asks for an administrator's name and password. Every pause expires on its own and is logged. An administrator can stop the service in any case – the pause is the orderly way, not a hurdle.</li>
 </ul>
 </section>
 
