@@ -49,7 +49,7 @@
 <li>Ein Kabel gilt erst als funktionierend, wenn Link, eine gültige IPv4- oder IPv6-Adresse mit Gateway <em>und</em> eine Antwort des DNS-Servers des Kabelnetzes über diesen Adapter vorliegen. Zeigt das Menü <strong>Kabel wird geprüft</strong>, fehlt noch eines davon – meist DHCP oder DNS. Bleibt es dabei, zeigt das Menü <strong>Kabel ohne Internet</strong>, und WLAN bleibt absichtlich an, damit Sie nicht ohne Verbindung dastehen.</li>
 <li>Der Netzwerkdienst des Adapters muss in <strong>Systemeinstellungen &gt; Netzwerk</strong> vorhanden sein. Neue Docks oder Adapter legt macOS manchmal erst nach dem ersten Anstecken als Dienst an; stecken Sie kurz ab und wieder an.</li>
 <li>Haben Sie WLAN selbst ausgeschaltet und wieder eingeschaltet, während das Kabel steckte, wird das respektiert, bis sich die Kabelsituation ändert (siehe Punkt 4).</li>
-<li>Der Schutz ist möglicherweise pausiert (Symbol Pause im Menü) oder von der Organisation deaktiviert (Symbol durchgestrichenes Schild).</li>
+<li>Der Schutz ist möglicherweise pausiert (Symbol Pause im Menü) oder in der Konfiguration abgeschaltet (Symbol durchgestrichenes Schild).</li>
 <li>Virtuelle Adapter, VPN-Tunnel, Thunderbolt-Bridge und Bluetooth PAN werden bewusst nicht als Kabel gewertet.</li>
 </ul>
 </section>
@@ -91,7 +91,7 @@
 <section aria-labelledby="de-continuity">
 <h3 id="de-continuity">7a. Apple Watch, AirDrop und Handoff am Kabel</h3>
 <p>Wenn das Menü <strong>Kabel aktiv – WLAN aus</strong> zeigt, wird nur die WLAN-Verbindung entfernt (IPv4 und IPv6 des WLAN-Dienstes stehen auf „Aus“). Das WLAN-Modul bleibt eingeschaltet, deshalb funktionieren <strong>Entsperren mit der Apple Watch, Bestätigen mit der Apple Watch, AirDrop, Handoff, Sidecar und Universal Control</strong> unverändert weiter.</p>
-<p>In den Systemeinstellungen &gt; Netzwerk steht WLAN in diesem Zustand auf „Nicht verbunden“ bzw. ohne IP-Adresse – das ist gewollt. Sobald das Kabel weg ist, wird die vorherige Konfiguration automatisch wiederhergestellt. Sollte Ihre Organisation die Variante mit abgeschaltetem Funkmodul vorgeben, entfallen diese Funktionen am Kabel; das ist eine Einstellung der Geräteverwaltung.</p>
+<p>In den Systemeinstellungen &gt; Netzwerk steht WLAN in diesem Zustand auf „Nicht verbunden“ bzw. ohne IP-Adresse – das ist gewollt. Sobald das Kabel weg ist, wird die vorherige Konfiguration automatisch wiederhergestellt.</p>
 </section>
 
 <section aria-labelledby="de-iphone">
@@ -99,7 +99,7 @@
 <ul>
 <li>Ein per USB angestecktes iPhone mit aktivem Persönlichem Hotspot zählt als Kabelweg: Es wird wie ein LAN geprüft, danach wird die WLAN-Verbindung abgeschaltet.</li>
 <li>Steckt zusätzlich ein echtes LAN-Kabel, wird der iPhone-Dienst geparkt (in den Netzwerkeinstellungen deaktiviert), damit kein Mobilfunk-Datenvolumen verbraucht wird. Fällt das LAN weg, wird er automatisch wieder freigegeben.</li>
-<li>Soll das iPhone parallel aktiv bleiben: ⚙ im Menü, <strong>iPhone-Tethering bei LAN erlauben</strong>. Ist der Schalter ausgegraut, gibt Ihre Organisation die Einstellung vor.</li>
+<li>Soll das iPhone parallel aktiv bleiben: ⚙ im Menü, <strong>iPhone-Tethering bei LAN erlauben</strong>. Ist der Schalter ausgegraut, läuft der Hintergrunddienst nicht.</li>
 </ul>
 </section>
 
@@ -139,7 +139,7 @@
 
 <section aria-labelledby="de-deinstallieren">
 <h3 id="de-deinstallieren">12. Vollständig deinstallieren</h3>
-<p>In verwalteten Umgebungen entfernt die Geräteverwaltung die App. Von Hand im Terminal (Administratorrechte nötig):</p>
+<p>Entfernen im Terminal (Administratorrechte nötig):</p>
 <pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
 sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
 sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
@@ -171,7 +171,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <li>A cable counts as working only with link, a valid IPv4 or IPv6 address with a gateway <em>and</em> an answer from the wired network's DNS server over that adapter. <strong>Verifying cable</strong> in the menu means one of these is still missing – usually DHCP or DNS. If it stays that way the menu shows <strong>Cable without internet</strong> and Wi-Fi deliberately stays on so you are never left without a connection.</li>
 <li>The adapter's network service must exist under <strong>System Settings &gt; Network</strong>. macOS sometimes creates the service for a new dock or adapter only after the first plug-in; unplug and plug again.</li>
 <li>If you turned Wi-Fi off and on yourself while the cable was in, that is respected until the cable situation changes (see section 4).</li>
-<li>The guard may be paused (pause symbol in the menu) or disabled by your organization (crossed-out shield).</li>
+<li>The guard may be paused (pause symbol in the menu) or switched off in its configuration (crossed-out shield).</li>
 <li>Virtual adapters, VPN tunnels, Thunderbolt Bridge and Bluetooth PAN are deliberately not treated as cables.</li>
 </ul>
 </section>
@@ -213,7 +213,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <section aria-labelledby="en-continuity">
 <h3 id="en-continuity">7a. Apple Watch, AirDrop and Handoff on a cable</h3>
 <p>When the menu shows <strong>Cable active – Wi-Fi off</strong>, only the Wi-Fi connection is removed (the Wi-Fi service's IPv4 and IPv6 are set to "Off"). The Wi-Fi radio stays on, so <strong>unlocking and approving with Apple Watch, AirDrop, Handoff, Sidecar and Universal Control</strong> keep working as before.</p>
-<p>In System Settings &gt; Network, Wi-Fi then shows as not connected or without an IP address – that is intended. As soon as the cable is gone, the previous configuration is restored automatically. If your organization mandates the variant that powers the radio down, these features are unavailable on a cable; that is a device-management setting.</p>
+<p>In System Settings &gt; Network, Wi-Fi then shows as not connected or without an IP address – that is intended. As soon as the cable is gone, the previous configuration is restored automatically.</p>
 </section>
 
 <section aria-labelledby="en-iphone">
@@ -221,7 +221,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <ul>
 <li>An iPhone connected over USB with Personal Hotspot enabled counts as a wired path: it is verified like a LAN, then the Wi-Fi connection is switched off.</li>
 <li>If a real LAN cable is connected as well, the iPhone service is parked (disabled in Network settings) so no mobile data is used. When the LAN goes away it is released automatically.</li>
-<li>To keep the iPhone active in parallel: ⚙ in the menu, <strong>Allow iPhone tethering while on LAN</strong>. If the switch is greyed out, your organization sets this.</li>
+<li>To keep the iPhone active in parallel: ⚙ in the menu, <strong>Allow iPhone tethering while on LAN</strong>. If the switch is greyed out, the background service is not running.</li>
 </ul>
 </section>
 
@@ -261,7 +261,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 
 <section aria-labelledby="en-uninstall">
 <h3 id="en-uninstall">12. Uninstall completely</h3>
-<p>In managed environments device management removes the app. By hand in Terminal (administrator rights required):</p>
+<p>Removal in Terminal (administrator rights required):</p>
 <pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
 sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
 sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist

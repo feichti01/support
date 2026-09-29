@@ -40,7 +40,7 @@
 
 <section aria-labelledby="de-einstellungen">
 <h3 id="de-einstellungen">2. Einstellungen</h3>
-<p>Über ⚙ im Menü gibt es eine lokale Einstellung: <strong>iPhone-Tethering bei LAN erlauben</strong>. Der Hintergrunddienst speichert sie in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. Gibt Ihre Organisation den Wert per Konfigurationsprofil vor, ist der Schalter ausgegraut. Weitere Einstellungen oder ein Verlauf werden nicht gespeichert; es gibt keinen Keychain-Eintrag für Benutzer.</p>
+<p>Über ⚙ im Menü gibt es eine lokale Einstellung: <strong>iPhone-Tethering bei LAN erlauben</strong>. Der Hintergrunddienst speichert sie in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. Weitere Einstellungen oder ein Verlauf werden nicht gespeichert; es gibt keinen Keychain-Eintrag für Benutzer.</p>
 </section>
 
 <section aria-labelledby="de-updates">
@@ -60,7 +60,7 @@
 
 <section aria-labelledby="de-vollstaendig">
 <h3 id="de-vollstaendig">5. Vollständig entfernen</h3>
-<p>In verwalteten Umgebungen entfernt die Geräteverwaltung die App. Von Hand im Terminal (Administratorrechte nötig):</p>
+<p>Entfernen im Terminal (Administratorrechte nötig):</p>
 <pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
 sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
 sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
@@ -88,7 +88,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 
 <section aria-labelledby="en-settings">
 <h3 id="en-settings">2. Settings</h3>
-<p>⚙ in the menu offers one local setting: <strong>Allow iPhone tethering while on LAN</strong>. The background service stores it in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. If your organization sets the value through a configuration profile, the switch is greyed out. No further settings or history are stored; there is no Keychain item for users.</p>
+<p>⚙ in the menu offers one local setting: <strong>Allow iPhone tethering while on LAN</strong>. The background service stores it in <code>/Library/Preferences/com.feichtiq.multihomingguard.plist</code>. No further settings or history are stored; there is no Keychain item for users.</p>
 </section>
 
 <section aria-labelledby="en-updates">
@@ -108,7 +108,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 
 <section aria-labelledby="en-complete">
 <h3 id="en-complete">5. Remove completely</h3>
-<p>In managed environments device management removes the app. By hand in Terminal (administrator rights required):</p>
+<p>Removal in Terminal (administrator rights required):</p>
 <pre><code>sudo launchctl bootout system/com.feichtiq.multihomingguard.daemon
 sudo launchctl bootout gui/$(id -u)/com.feichtiq.multihomingguard.menu
 sudo rm -f /Library/LaunchDaemons/com.feichtiq.multihomingguard.daemon.plist /Library/LaunchAgents/com.feichtiq.multihomingguard.menu.plist
