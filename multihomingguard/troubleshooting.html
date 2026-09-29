@@ -58,6 +58,7 @@
 <h3 id="de-wlan-weg">3. WLAN kommt nach dem Abstecken nicht zurück</h3>
 <ul>
 <li>Normalerweise ist WLAN innerhalb einer Sekunde wieder an. Stecken Sie das Kabel ab und wieder an und wählen Sie <strong>Aktualisieren</strong>.</li>
+<li>Steht dort <strong>„Keine Verbindung“</strong> mit orangefarbenem Symbol, ist WLAN eingeschaltet, hat aber noch keine Adresse – etwa weil kein bekanntes Netz in Reichweite ist. Das ist eine ehrliche Meldung, kein Fehler der App: Sie behauptet in diesem Fall bewusst nicht „WLAN aktiv“. Wählen Sie ein Netz aus, oder warten Sie den Beitritt ab.</li>
 <li>Steht in der Fußzeile <strong>lokal (kein Daemon)</strong>, läuft der Dienst nicht und kann WLAN nicht einschalten. Schalten Sie WLAN im Kontrollzentrum oder in den Systemeinstellungen ein und melden Sie den Fall mit der Diagnose.</li>
 <li><strong>Beenden</strong> im Menü beendet nur die Menüleisten-App; der Hintergrunddienst und damit der Schutz laufen weiter. Die App startet bei der nächsten Anmeldung wieder oder sofort über <code>/Programme/MultihomingGuard.app</code>.</li>
 </ul>
@@ -108,7 +109,8 @@
 <h3 id="de-update">8a. Updates</h3>
 <ul>
 <li>Liegt eine neue Version vor, zeigt das Menü „Version … verfügbar“ mit <strong>Update installieren…</strong>. Ein Klick lädt das Paket, prüft es und installiert es ohne Passwortabfrage; die App startet danach neu und meldet einmal „Update auf … installiert“.</li>
-<li>Manuell prüfen: ⚙ → <strong>Jetzt prüfen</strong>. Die Prüfung braucht Internet; hinter einem Firmen-Proxy kann sie fehlschlagen – dann das Paket von der <a href="https://www.feichtiq.com/#apps">App-Seite</a> laden und per Doppelklick installieren.</li>
+<li>Manuell prüfen: ⚙ → <strong>Jetzt prüfen</strong>. Die Prüfung braucht Internet.</li>
+<li><strong>„Das Netzwerk bricht die verschlüsselte Verbindung zum Download auf (Proxy)“.</strong> Manche Firmennetze prüfen Downloads und signieren sie dabei mit einem eigenen Zertifikat neu. Die App erkennt das und lädt bewusst nicht weiter – nicht, weil das Paket schlecht wäre, sondern weil sie nicht unterscheiden kann, wer da eingreift. Die kleine Update-Prüfung selbst kommt oft durch, nur das Paket nicht; deshalb wird ein Update gemeldet, das sich nicht laden lässt. Abhilfe: in einem anderen Netz laden (etwa über einen iPhone-Hotspot), oder das Paket von der <a href="https://www.feichtiq.com/#apps">App-Seite</a> laden und per Doppelklick installieren. Die Echtheit hängt nicht am Übertragungsweg: Prüfsumme und Signatur des Pakets werden in jedem Fall geprüft.</li>
 <li>„Paket ist nicht von FEICHTIQ signiert“: Das Paket wurde unterwegs verändert oder stammt nicht vom Entwickler; die App installiert es bewusst nicht. Erneut versuchen oder von der App-Seite laden.</li>
 </ul>
 </section>
@@ -124,6 +126,12 @@
 <section aria-labelledby="de-vpn">
 <h3 id="de-vpn">10. Verhalten mit VPN</h3>
 <p>VPN-Tunnel werden nicht als Kabel gewertet und nicht verändert. Wechselt der Dienst von WLAN auf Kabel, muss sich ein VPN-Client in der Regel neu verbinden; das ist Verhalten des VPN-Clients, nicht der App.</p>
+<ul>
+<li><strong>„VPN aktiv“ im Menü.</strong> Läuft ein Tunnel, zeigt das Menü „VPN aktiv“ mit dem Tunnelgerät (z.&nbsp;B. <code>utun12</code>). Erkannt wird das herstellerunabhängig an einem Tunnelanschluss mit erreichbarer Adresse – die leeren Tunnel, die macOS selbst betreibt, zählen nicht.</li>
+<li><strong>Interne Adressen lassen sich nicht auflösen.</strong> Ursache ist fast immer ein Gerät am Kabel – typischerweise ein iPhone –, das einen eigenen Namensdienst anmeldet. macOS stellt diesen vor den des Firmen-VPN, und weil er die interne Zone mit „gibt es nicht“ beantwortet, fragt macOS den VPN-Server gar nicht mehr.</li>
+<li><strong>Was die App dagegen tut.</strong> Bei aktivem Schalter <strong>Firmen-DNS bei aktivem VPN schützen</strong> (⚙, standardmäßig aktiv) fragt sie den Namen gezielt über die verdächtige Leitung ab und greift nur ein, wenn er dort wirklich unbeantwortet bleibt. Dann wird IPv6 dieses <em>einen</em> Anschlusses abgeschaltet; sobald das VPN getrennt ist, kommt es zurück. In der Diagnose steht, was geprüft und was geändert wurde.</li>
+<li>Bleibt es dabei, schalten Sie den Schalter aus und melden Sie den Fall mit der Diagnose – dann greift die App nicht mehr ein, und die Auflösung lässt sich von Hand prüfen.</li>
+</ul>
 </section>
 
 <section aria-labelledby="de-autostart">
@@ -174,6 +182,7 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <h3 id="en-wifi-back">3. Wi-Fi does not come back after unplugging</h3>
 <ul>
 <li>Normally Wi-Fi is back within a second. Unplug and plug the cable again and choose <strong>Refresh</strong>.</li>
+<li>If it says <strong>"No connection"</strong> with an orange symbol, Wi-Fi is on but has no address yet – for instance because no known network is in range. That is an honest report, not a fault of the app: it deliberately does not claim "Wi-Fi active" in this case. Pick a network, or wait for the join to complete.</li>
 <li>If the footer says <strong>local (no daemon)</strong>, the service is not running and cannot turn Wi-Fi on. Turn Wi-Fi on in Control Center or System Settings and report the case with the diagnostics.</li>
 <li><strong>Quit</strong> in the menu only quits the menu-bar app; the background service and the guard keep running. The app returns at the next login or immediately from <code>/Applications/MultihomingGuard.app</code>.</li>
 </ul>
@@ -224,7 +233,8 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <h3 id="en-update">8a. Updates</h3>
 <ul>
 <li>When a new version exists, the menu shows "Version … available" with <strong>Install update…</strong>. One click downloads, verifies and installs the package without a password prompt; the app restarts afterwards and reports "Updated to …" once.</li>
-<li>Check manually: ⚙ → <strong>Check now</strong>. The check needs internet access; behind a corporate proxy it may fail – then download the package from the <a href="https://www.feichtiq.com/#apps">app page</a> and install it by double-click.</li>
+<li>Check manually: ⚙ → <strong>Check now</strong>. The check needs internet access.</li>
+<li><strong>"The network breaks up the encrypted connection to the download (proxy)".</strong> Some corporate networks scan downloads and re-sign them with their own certificate. The app notices this and deliberately stops – not because the package is bad, but because it cannot tell who is intervening. The small update check itself often passes while the package does not, which is why an update is announced that cannot be loaded. Remedy: load it on another network (an iPhone hotspot, for instance), or download the package from the <a href="https://www.feichtiq.com/#apps">app page</a> and install it by double-click. Authenticity does not rest on the transport: the package's checksum and signature are verified either way.</li>
 <li>"Package is not signed by FEICHTIQ": the package was altered in transit or does not come from the developer; the app deliberately refuses it. Try again or download from the app page.</li>
 </ul>
 </section>
@@ -240,6 +250,12 @@ sudo pkgutil --forget com.feichtiq.multihomingguard</code></pre>
 <section aria-labelledby="en-vpn">
 <h3 id="en-vpn">10. Behaviour with VPN</h3>
 <p>VPN tunnels are not treated as cables and are not changed. When the service switches from Wi-Fi to cable, a VPN client usually has to reconnect; that is the VPN client's behaviour, not the app's.</p>
+<ul>
+<li><strong>"VPN active" in the menu.</strong> While a tunnel is up, the menu shows "VPN active" with the tunnel device (e.&nbsp;g. <code>utun12</code>). This is recognised vendor-independently by a tunnel interface carrying a routable address – the empty tunnels macOS runs itself do not count.</li>
+<li><strong>Internal addresses cannot be resolved.</strong> The cause is almost always a device on the cable – typically an iPhone – announcing its own name service. macOS puts it ahead of the company VPN's, and because it answers the internal zone with "does not exist", macOS stops asking the VPN's server at all.</li>
+<li><strong>What the app does about it.</strong> With <strong>Protect company DNS while a VPN is active</strong> switched on (gear menu, on by default), it asks for the name over the suspect link and only steps in when the name really goes unanswered there. It then switches off IPv6 of that <em>one</em> connection; as soon as the VPN is disconnected, it comes back. The diagnostics record what was checked and what was changed.</li>
+<li>If it persists, switch the option off and report the case with the diagnostics – the app then stops intervening and resolution can be checked by hand.</li>
+</ul>
 </section>
 
 <section aria-labelledby="en-login">

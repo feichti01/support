@@ -104,6 +104,9 @@
 <li><strong>Manually disabled Wi-Fi is respected</strong> until you turn it back on or the cable situation changes.</li>
 <li><strong>iPhone over USB</strong> counts as a wired path. While a real LAN is active as well, the iPhone is parked so no mobile data is used – can be switched off under ⚙ in the menu unless your organization sets it.</li>
 <li><strong>Wi-Fi name.</strong> While Wi-Fi is active, the menu shows network name, band and channel. macOS requires the Location permission "while using the app" for the name; without it only the name is missing.</li>
+<li><strong>Offline is called offline.</strong> With no cable connected and no address on Wi-Fi, the menu reports "No connection" with its own orange symbol – not "Wi-Fi active". Its shape also differs from Wi-Fi you switched off yourself, so the menu bar can tell the two apart in a single colour.</li>
+<li><strong>A VPN is shown, not touched.</strong> While a VPN tunnel is up, the menu shows "VPN active" with the tunnel device – vendor-independent, recognised by a tunnel interface carrying a routable address. It changes nothing about the protection, and the tunnel itself is never modified.</li>
+<li><strong>Protect company DNS while a VPN is active</strong> (gear menu, on by default). A device on the cable – typically an iPhone – can announce its own name service, which macOS puts ahead of the company VPN's; internal addresses then cannot be resolved. The app proves it first: it asks for the name over the affected link and only steps in when the name really goes unanswered. It then switches off IPv6 of that one connection and restores it as soon as the VPN is disconnected.</li>
 <li><strong>Pause for administrators and support.</strong> The guard can be paused for a limited time – with an administrator login or with a one-time code read out by support on the phone. Both live in a hidden area (hold ⌥ while opening the menu) and are logged.</li>
 </ul>
 </section>
