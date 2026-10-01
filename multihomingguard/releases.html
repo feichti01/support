@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Versionen und Änderungen in MultihomingGuard</title>
+<meta name="description" content="Was sich in den Versionen von MultihomingGuard für macOS geändert hat: neue Funktionen, behobene Fehler und bekannte Einschränkungen.">
+<link rel="canonical" href="https://feichti01.github.io/support/multihomingguard/releases.html">
+<link rel="alternate" hreflang="de" href="https://feichti01.github.io/support/multihomingguard/releases.html">
+<link rel="alternate" hreflang="en" href="https://feichti01.github.io/support/multihomingguard/releases.html#english">
+<link rel="stylesheet" href="assets/support.css">
+</head>
+<body>
+<a class="gb-skip-link" href="#inhalt">Zum Inhalt springen</a>
+<div class="gb-page">
+
+<header class="gb-masthead">
+<h1>Versionen und Änderungen</h1>
+<p class="gb-tagline">Release notes für MultihomingGuard auf macOS.</p>
+<nav class="gb-language-nav" aria-label="Sprache / Language">
+<ul>
+<li><a lang="de" hreflang="de" href="#deutsch">Deutsch</a></li>
+<li><a lang="en" hreflang="en" href="#english">English</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="inhalt">
+
+<article id="deutsch" lang="de" aria-labelledby="ueberschrift-deutsch">
+<h2 id="ueberschrift-deutsch">Deutsch</h2>
+<p><strong>Stand:</strong> 1. Oktober 2026</p>
+
+<p>Die App aktualisiert sich selbst: Liegt eine neue Version vor, zeigt das Menü <strong>Version … verfügbar</strong>, und ein Klick lädt und installiert sie ohne Passwortabfrage. Die vollständige Angabe lautet <code>Version.Build</code>, etwa <code>2.0.1.145</code> — die Buildnummer zählt jede Änderung am Quellcode, die Version steht für den Funktionsumfang.</p>
+
+<section aria-labelledby="de-201">
+<h3 id="de-201">2.0.1 — 1. Oktober 2026</h3>
+<p>Diese Version besteht fast vollständig aus Korrekturen, die bei einer Abnahme an echter Hardware gefunden wurden: ein Mac am Firmen-LAN, zusätzlich ein iPhone per USB-Kabel.</p>
+<ul>
+<li><strong>Das Kabel wird nach einem Wechsel wieder übernommen.</strong> Wurde ein per USB angestecktes iPhone geparkt, während ein LAN aktiv war, blieb es nach dem Abziehen des LAN-Kabels dauerhaft abgeschaltet — das WLAN übernahm, obwohl ein Kabelweg vorhanden war, und auch erneutes Anstecken half nicht. Ursache war, dass der Hintergrunddienst seine eigenen Änderungen an der Netzwerkkonfiguration nicht mehr sah.</li>
+<li><strong>Das WLAN-Symbol in der Menüleiste kommt zur Ruhe.</strong> Solange ein Kabel den Verkehr trug, arbeitete das Symbol dauerhaft, und macOS schaltete das Funkmodul immer wieder ab, während die App es für Apple Watch, AirDrop und Handoff wieder einschaltete. Das WLAN behält jetzt eine gültige Konfiguration ohne erreichbare Adresse, womit beides aufhört.</li>
+<li><strong>Selbst ausgeschaltetes WLAN bleibt aus</strong> — auch dann, wenn gerade ein Kabel verbunden ist. Zuvor wurde es nach etwa zehn Sekunden wieder eingeschaltet.</li>
+<li><strong>Ehrliche Meldung, wenn ein Update blockiert wird.</strong> Netzwerke, die Downloads prüfen und dabei neu signieren, verhindern das Laden des Pakets. Die App nennt jetzt, wer blockiert, statt nur „Download fehlgeschlagen" zu melden.</li>
+<li><strong>Eigenes Symbol für „Keine Verbindung".</strong> Es unterscheidet sich jetzt auch in der Form von einem WLAN, das Sie selbst ausgeschaltet haben — in der Menüleiste wird einfarbig gezeichnet, die Farbe allein genügte nicht.</li>
+<li><strong>Einfacher geworden:</strong> Die App wird von Benutzern selbst installiert. Zentrale Verwaltung über Konfigurationsprofile und der telefonische Einmalcode für den Support sind entfallen; eine Pause wird jetzt ausschließlich über die Administrator-Anmeldung von macOS freigegeben.</li>
+</ul>
+</section>
+
+<section aria-labelledby="de-200">
+<h3 id="de-200">2.0.0 — September 2026</h3>
+<p>Neuaufbau der App. Die wesentlichen Punkte gegenüber Version 1:</p>
+<ul>
+<li><strong>Das Kabel wird geprüft, nicht nur gezählt.</strong> Eine Kabelverbindung gilt erst als funktionierend, wenn Link, Adresse und Gateway vorhanden sind <em>und</em> der Namensdienst dieses Netzes über genau diesen Anschluss antwortet.</li>
+<li><strong>Apple Watch, AirDrop und Handoff funktionieren weiter</strong>, während das Kabel den Verkehr trägt: Dem WLAN wird die Adresse entzogen, das Funkmodul bleibt eingeschaltet.</li>
+<li><strong>iPhone per USB</strong> zählt als Kabelweg und wird bei aktivem LAN geparkt, damit kein Datenvolumen verbraucht wird — über das Zahnrad abschaltbar.</li>
+<li><strong>VPN wird angezeigt</strong>, herstellerunabhängig, und auf Wunsch wird verhindert, dass ein Gerät am Kabel den Namensdienst des Firmen-VPN verdeckt.</li>
+<li><strong>Updates ohne Passwort</strong>, aus einem signierten Manifest, geprüft auf Signatur und Apple-Notarisierung.</li>
+<li><strong>Keine Datenerfassung.</strong> Alles bleibt auf dem Mac.</li>
+</ul>
+</section>
+
+<section aria-labelledby="de-bekannt">
+<h3 id="de-bekannt">Bekannte Einschränkungen</h3>
+<ul>
+<li>Beim Wechsel auf einen Kabelweg behält das WLAN seine Adresse noch wenige Sekunden. Das ist beabsichtigt: Die Adresse wird erst entzogen, wenn der Kabelweg nachweislich funktioniert.</li>
+<li>In Netzwerken, die Downloads aufbrechen, lässt sich das Update nicht laden. Laden Sie es dann in einem anderen Netz oder von der <a href="https://www.feichtiq.com/#apps">App-Seite</a>.</li>
+</ul>
+</section>
+</article>
+
+<article id="english" lang="en" aria-labelledby="heading-english">
+<h2 id="heading-english">English</h2>
+<p><strong>Last updated:</strong> 1 October 2026</p>
+
+<p>The app updates itself: when a new version exists, the menu shows <strong>Version … available</strong>, and one click downloads and installs it without a password prompt. The full designation is <code>version.build</code>, for example <code>2.0.1.145</code> — the build number counts every change to the source, the version stands for what the app does.</p>
+
+<section aria-labelledby="en-201">
+<h3 id="en-201">2.0.1 — 1 October 2026</h3>
+<p>Almost entirely fixes, found during an acceptance test on real hardware: a Mac on a company LAN with an iPhone attached by USB cable.</p>
+<ul>
+<li><strong>A cable is picked up again after a switch.</strong> An iPhone parked while a LAN was active stayed switched off for good once the LAN cable was pulled — Wi-Fi took over although a cable was there, and plugging it back in did not help either. The cause was that the background service no longer saw its own changes to the network configuration.</li>
+<li><strong>The Wi-Fi icon in the menu bar settles down.</strong> While a cable carried the traffic the icon kept working, and macOS powered the radio down again and again while the app switched it back on for Apple Watch, AirDrop and Handoff. Wi-Fi now keeps a valid configuration without a reachable address, which ends both.</li>
+<li><strong>Wi-Fi you switch off stays off</strong> — including while a cable is connected. It used to come back on after about ten seconds.</li>
+<li><strong>An honest message when an update is blocked.</strong> Networks that scan downloads and re-sign them prevent the package from loading. The app now names who blocks instead of reporting a plain "download failed".</li>
+<li><strong>Its own symbol for "No connection".</strong> It now differs in shape from Wi-Fi you switched off yourself — the menu bar draws in a single colour, so colour alone was not enough.</li>
+<li><strong>Simpler:</strong> users install the app themselves. Central management through configuration profiles and the one-time support code over the phone are gone; a pause is now authorized solely through the macOS administrator dialog.</li>
+</ul>
+</section>
+
+<section aria-labelledby="en-200">
+<h3 id="en-200">2.0.0 — September 2026</h3>
+<p>A rebuilt app. The main points compared with version 1:</p>
+<ul>
+<li><strong>The cable is verified, not merely counted.</strong> A wired connection only counts as working once link, address and gateway are there <em>and</em> that network's name service answers over that very adapter.</li>
+<li><strong>Apple Watch, AirDrop and Handoff keep working</strong> while the cable carries the traffic: Wi-Fi loses its address, the radio stays on.</li>
+<li><strong>iPhone over USB</strong> counts as a wired path and is parked while a real LAN is up, so no mobile data is used — switchable in the gear menu.</li>
+<li><strong>A VPN is shown</strong>, whichever vendor, and optionally a device on the cable is kept from shadowing the company's name service.</li>
+<li><strong>Updates without a password</strong>, from a signed manifest, checked for signature and Apple notarization.</li>
+<li><strong>No data collection.</strong> Everything stays on the Mac.</li>
+</ul>
+</section>
+
+<section aria-labelledby="en-known">
+<h3 id="en-known">Known limitations</h3>
+<ul>
+<li>When switching to a wired path, Wi-Fi keeps its address for a few seconds. That is deliberate: the address is only removed once the wired path is proven to work.</li>
+<li>On networks that break up downloads the update cannot be loaded. Load it on another network or from the <a href="https://www.feichtiq.com/#apps">app page</a> instead.</li>
+</ul>
+</section>
+</article>
+
+</main>
+
+<footer class="gb-colophon">
+<p><a href="./">Zur Supportseite / Back to support</a></p>
+<p>Diese Seite verwendet keine eigenen Cookies, kein Tracking, keine Formulare und keine externen Skripte.</p>
+</footer>
+
+</div>
+</body>
+</html>
