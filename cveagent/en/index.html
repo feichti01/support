@@ -68,15 +68,28 @@
 </section>
 
 <section aria-labelledby="heading-known-issue">
-<h2 id="heading-known-issue">Fixed in 1.17: background check did not start on Macs that had an earlier TestFlight build (1.15.2–1.16.2)</h2>
-<p><strong>As of:</strong> September 22, 2026. In versions 1.15.2 through 1.16.2 the background service did not start on Macs that previously had a TestFlight pre-release installed: macOS had stored the service’s launch constraint at its first registration and kept it unchanged for later App Store installations – even after a complete uninstall. The service was terminated at start-up although the app reported it as “enabled”. Installations made only from the App Store were not affected.</p>
-<p><strong>Fix in version 1.17:</strong> The service is registered under a new identifier and therefore gets a fresh record without the outdated constraint. In addition, the app runs the hourly check itself while it is open, shows in the menu which component performed the last check, and warns when the service does not start. <strong>Until the update</strong>, affected Macs can run <code>sudo sfltool resetbtm</code> in Terminal and restart while only the App Store version is installed (all apps will ask once more for permission for their login items).</p>
-<p>Diagnosis in Terminal (1.16.2): <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – affected systems show <code>OS_REASON_CODESIGNING</code> and <code>spawn failed</code>. History: <a href="https://github.com/feichti01/cveagent-support/issues/1">report #1</a>.</p>
+<h2 id="heading-known-issue">Resolved background check issues</h2>
+<p><strong>As of:</strong> October 2, 2026. Version 1.17.2 resolves all known issues of the hourly background check. Please update via the Mac App Store.</p>
+<ul>
+<li><strong>Service did not start after an earlier TestFlight build (1.15.2–1.16.2, fixed in 1.17.0):</strong> macOS had kept the service’s launch constraint from its first registration. Since 1.17.0 the service is registered under a new identifier, since 1.17.1 separately per distribution channel (App Store, TestFlight, direct install), and it repairs its registration itself when needed. Installations made only from the App Store were never affected.</li>
+<li><strong>No check for up to an hour after sleep (up to 1.17.1, fixed in 1.17.2):</strong> A run that fell due during sleep was skipped, and the menu wrongly reported “background service not starting”. Since 1.17.2 macOS catches up on the run right after wake, and the app checks itself if the service does not run.</li>
+</ul>
+<p>Diagnosis in Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.monitor | grep -E "state =|runs =|last exit"</code> – a healthy service shows <code>last exit code = 0</code>. If it still does not start on a Mac with earlier TestFlight builds, run <code>sudo sfltool resetbtm</code> once and restart. History: <a href="https://github.com/feichti01/cveagent-support/issues/1">report #1</a>.</p>
 </section>
 
 <section aria-labelledby="heading-releases">
 <h2 id="heading-releases">Release notes</h2>
-<h3>1.17.0 (build 41) – in preparation</h3>
+<h3>1.17.2 (build 43) – September 2026</h3>
+<ul>
+<li><strong>Background check after sleep:</strong> resumes right after your Mac wakes instead of pausing for up to an hour; no more false “background service not starting” warning after a night in sleep.</li>
+</ul>
+<h3>1.17.1 (build 42) – September 2026</h3>
+<ul>
+<li><strong>Notifications with app icon:</strong> background service notifications show the CVE Agent icon in Notification Center.</li>
+<li><strong>Report reloads itself:</strong> if macOS terminated the web content in the background, the report reappears without “report could not be displayed”.</li>
+<li><strong>Self-healing background service:</strong> after registration the app verifies that macOS actually loaded the service and re-registers it if needed; App Store, TestFlight and direct installs register the service separately.</li>
+</ul>
+<h3>1.17.0 (build 41) – September 2026</h3>
 <ul>
 <li><strong>Dynamic vendor watchlist:</strong> On every run, vendors that appear in CISA KEV or CERT-Bund advisories within the last 365 days, or that have at least ten CVEs with EPSS ≥ 0.1, are added to the 270 curated vendors automatically. They are marked with ⟳ in the report, remain for 90 days after their last signal, the data-state section shows their count per source, and exports carry the origin. Can be disabled under Settings › Sources.</li>
 <li><strong>Hourly check inside the app:</strong> While the app is open it checks on its own when the background service is not running; the menu shows which component performed the last check and warns when the service does not start. The service is re-registered cleanly on update.</li>

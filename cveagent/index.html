@@ -69,15 +69,28 @@
 </section>
 
 <section aria-labelledby="ueberschrift-bekannt">
-<h2 id="ueberschrift-bekannt">Behoben mit 1.17: Hintergrundprüfung startete auf Macs mit früherem TestFlight-Build nicht (1.15.2–1.16.2)</h2>
-<p><strong>Stand:</strong> 22. September 2026. In den Versionen 1.15.2 bis 1.16.2 startete der Hintergrunddienst auf Macs nicht, auf denen zuvor eine TestFlight-Vorabversion installiert war: macOS hatte die Startbeschränkung des Dienstes bei der ersten Registrierung gespeichert und für spätere App-Store-Installationen unverändert übernommen – auch nach vollständiger Deinstallation. Der Dienst wurde beim Start beendet, obwohl die App ihn als „aktiviert“ anzeigte. Installationen ausschließlich aus dem App Store waren nicht betroffen.</p>
-<p><strong>Lösung in Version 1.17:</strong> Der Dienst wird unter einer neuen Kennung registriert und erhält damit einen frischen Eintrag ohne die veraltete Beschränkung. Zusätzlich führt die App die stündliche Prüfung selbst aus, solange sie geöffnet ist, zeigt im Menü, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Dienst nicht startet. <strong>Bis zum Update</strong> hilft auf betroffenen Macs: im Terminal <code>sudo sfltool resetbtm</code> ausführen und neu starten, während nur die App-Store-Version installiert ist (alle Apps fragen danach einmal neu nach der Erlaubnis für ihre Anmeldeobjekte).</p>
-<p>Diagnose im Terminal (1.16.2): <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.daemon | grep -E "last exit|job state"</code> – betroffene Systeme zeigen <code>OS_REASON_CODESIGNING</code> und <code>spawn failed</code>. Verlauf: <a href="https://github.com/feichti01/cveagent-support/issues/1">Meldung #1</a>.</p>
+<h2 id="ueberschrift-bekannt">Behobene Probleme der Hintergrundprüfung</h2>
+<p><strong>Stand:</strong> 2. Oktober 2026. Mit Version 1.17.2 sind alle bekannten Probleme der stündlichen Hintergrundprüfung behoben. Bitte aktualisieren Sie über den Mac App Store.</p>
+<ul>
+<li><strong>Dienst startete nach früherer TestFlight-Version nicht (1.15.2–1.16.2, behoben in 1.17.0):</strong> macOS hatte die Startbeschränkung des Dienstes aus der ersten Registrierung übernommen. Seit 1.17.0 wird der Dienst unter einer neuen Kennung registriert, seit 1.17.1 getrennt je Vertriebsweg (App Store, TestFlight, Direktinstallation); er repariert seine Registrierung bei Bedarf selbst. Installationen ausschließlich aus dem App Store waren nie betroffen.</li>
+<li><strong>Nach dem Ruhezustand bis zu eine Stunde keine Prüfung (bis 1.17.1, behoben in 1.17.2):</strong> Ein im Ruhezustand fälliger Lauf wurde übersprungen, und das Menü meldete fälschlich „Hintergrunddienst startet nicht“. Seit 1.17.2 holt macOS den Lauf direkt nach dem Aufwachen nach, und die App prüft selbst, falls der Dienst nicht läuft.</li>
+</ul>
+<p>Diagnose im Terminal: <code>launchctl print gui/$(id -u)/at.feichtinger.cveagent.monitor | grep -E "state =|runs =|last exit"</code> – ein gesunder Dienst zeigt <code>last exit code = 0</code>. Startet er auf einem Mac mit früheren TestFlight-Versionen weiterhin nicht, hilft einmalig <code>sudo sfltool resetbtm</code> und ein Neustart. Verlauf: <a href="https://github.com/feichti01/cveagent-support/issues/1">Meldung #1</a>.</p>
 </section>
 
 <section aria-labelledby="ueberschrift-versionen">
 <h2 id="ueberschrift-versionen">Versionshinweise</h2>
-<h3>1.17.0 (Build 41) – in Vorbereitung</h3>
+<h3>1.17.2 (Build 43) – September 2026</h3>
+<ul>
+<li><strong>Hintergrundprüfung nach dem Ruhezustand:</strong> läuft direkt nach dem Aufwachen weiter, statt bis zu einer Stunde auszusetzen; kein falscher Hinweis „Hintergrunddienst startet nicht“ mehr nach einer Nacht im Ruhezustand.</li>
+</ul>
+<h3>1.17.1 (Build 42) – September 2026</h3>
+<ul>
+<li><strong>Mitteilungen mit App-Symbol:</strong> Mitteilungen des Hintergrunddienstes zeigen in der Mitteilungszentrale das CVE-Agent-Symbol.</li>
+<li><strong>Bericht lädt selbst neu:</strong> Hat macOS den Webinhalt im Hintergrund beendet, erscheint der Bericht wieder ohne „Bericht konnte nicht angezeigt werden“.</li>
+<li><strong>Selbstheilender Hintergrunddienst:</strong> Die App prüft nach der Registrierung, ob macOS den Dienst wirklich geladen hat, und registriert ihn bei Bedarf neu; App Store, TestFlight und Direktinstallation registrieren den Dienst getrennt.</li>
+</ul>
+<h3>1.17.0 (Build 41) – September 2026</h3>
 <ul>
 <li><strong>Dynamische Hersteller-Watchlist:</strong> Zu den 270 kuratierten Herstellern kommen bei jedem Lauf automatisch Hersteller hinzu, die in den letzten 365 Tagen in CISA KEV oder in CERT-Bund-Advisories genannt werden oder mindestens zehn CVEs mit EPSS ≥ 0,1 haben. Sie sind im Bericht mit ⟳ markiert, bleiben 90 Tage nach dem letzten Signal erhalten, der Datenstand nennt ihre Anzahl je Quelle, Exporte tragen die Herkunft. Abschaltbar unter „Einstellungen › Quellen“.</li>
 <li><strong>Stündliche Prüfung auch in der App:</strong> Solange die App geöffnet ist, prüft sie selbst, wenn der Hintergrunddienst nicht läuft; das Menü zeigt, wer die letzte Prüfung ausgeführt hat, und warnt, wenn der Dienst nicht startet. Der Dienst wird beim Update eindeutig neu registriert.</li>
