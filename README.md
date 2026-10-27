@@ -1,6 +1,6 @@
 # Project Support
 
-Official public support site for BlendIQ – GasBlender (macOS, iPhone, iPad), DiveIQ – Logbook and DecoIQ – Dekoplaner (iPhone, iPad, Mac; in development), Homing
+Official public support site for BlendIQ – GasBlender (macOS, iPhone, iPad), DiveIQ – Logbook and DecoIQ – Decoplanner (German: Dekoplaner; iPhone, iPad, Mac; in development), Homing
 (macOS), CVE Agent (macOS), and MultihomingGuard (macOS).
 
 - General project support: https://feichti01.github.io/support/
@@ -17,7 +17,7 @@ Official public support site for BlendIQ – GasBlender (macOS, iPhone, iPad), D
 - Open bug fixes: https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug%20label%3Adiveiq
 - Support requests: https://github.com/feichti01/support/issues/new?labels=diveiq
 
-## DecoIQ – Dekoplaner
+## DecoIQ – Decoplanner (Dekoplaner)
 
 - DecoIQ support: https://feichti01.github.io/support/decoiq/ (English: https://feichti01.github.io/support/decoiq/en/)
 - Privacy policy: https://feichti01.github.io/support/decoiq/privacy.html
