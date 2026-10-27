@@ -1,14 +1,32 @@
 # Project Support
 
-Official public support site for GasBlender (macOS, iPhone, iPad), Homing
+Official public support site for BlendIQ – GasBlender (macOS, iPhone, iPad), DiveIQ – Logbook and DecoIQ – Dekoplaner (iPhone, iPad, Mac; in development), Homing
 (macOS), CVE Agent (macOS), and MultihomingGuard (macOS).
 
 - General project support: https://feichti01.github.io/support/
-- GasBlender support: https://feichti01.github.io/gasblender/support/
+- BlendIQ – GasBlender support: https://feichti01.github.io/gasblender/support/
 - Privacy policy: https://feichti01.github.io/gasblender/support/privacy.html
 - Printer compatibility: https://feichti01.github.io/gasblender/support/printer-compatibility.html
 - Open bug fixes: https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug
 - Support requests: https://github.com/feichti01/support/issues/new
+
+## DiveIQ – Logbook
+
+- DiveIQ support: https://feichti01.github.io/support/diveiq/ (English: https://feichti01.github.io/support/diveiq/en/)
+- Privacy policy: https://feichti01.github.io/support/diveiq/privacy.html
+- Open bug fixes: https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug%20label%3Adiveiq
+- Support requests: https://github.com/feichti01/support/issues/new?labels=diveiq
+
+## DecoIQ – Dekoplaner
+
+- DecoIQ support: https://feichti01.github.io/support/decoiq/ (English: https://feichti01.github.io/support/decoiq/en/)
+- Privacy policy: https://feichti01.github.io/support/decoiq/privacy.html
+- Open bug fixes: https://github.com/feichti01/support/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug%20label%3Adecoiq
+- Support requests: https://github.com/feichti01/support/issues/new?labels=decoiq
+
+DiveIQ and DecoIQ issues carry the `diveiq` and `decoiq` labels. Both apps
+are in development; their privacy policies describe the planned processing
+and will be confirmed with the first App Store release.
 
 ## Homing
 
