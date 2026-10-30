@@ -1,0 +1,83 @@
+name: "BlendIQ – Etikettendrucker melden / Report a label printer"
+description: "Ein Etikettendrucker für den MOD-Etikettendruck (Raw, ZPL/EPL/ESC/POS) funktioniert – oder nicht. / A label printer for MOD label printing works – or doesn't."
+title: "[Drucker] <Hersteller> <Modell>"
+labels: ["blendiq-drucker"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Öffentlich sichtbar / Publicly visible.** Bitte keine IP-Adressen, Seriennummern, Namen oder Flaschendaten eintragen. / Please do not include IP addresses, serial numbers, names or cylinder data.
+
+        Einrichtung und Nachweisstufen / Setup and evidence levels: [Drucker-Kompatibilität / Printer compatibility](https://feichti01.github.io/gasblender/support/printer-compatibility.html#de-zpl-checkliste)
+  - type: input
+    id: modell
+    attributes:
+      label: "Hersteller und Modell / Manufacturer and model"
+      placeholder: "z. B. / e.g. Zebra ZD421t"
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: "Firmware"
+      description: "Aus dem Selbsttest-Ausdruck / From the self-test printout"
+  - type: dropdown
+    id: sprache
+    attributes:
+      label: "Druckersprache bzw. Emulation / Printer language or emulation"
+      options:
+        - "ZPL (zpl-raster-v1)"
+        - "EPL (epl-raster-v1)"
+        - "ESC/POS Legacy (escpos-raster-legacy-v1)"
+        - "ESC/POS Graphics (escpos-graphics-v1)"
+    validations:
+      required: true
+  - type: dropdown
+    id: dpi
+    attributes:
+      label: "Auflösung / Resolution"
+      options:
+        - "203 dpi"
+        - "300 dpi"
+    validations:
+      required: true
+  - type: input
+    id: medium
+    attributes:
+      label: "Etikett / Label"
+      description: "Maß, Material (Thermodirekt/Thermotransfer), Lücke oder Marke / Size, material (direct thermal/thermal transfer), gap or mark"
+      placeholder: "101,6 × 50,8 mm, Thermodirekt, Lücke 3 mm"
+  - type: dropdown
+    id: verbindung
+    attributes:
+      label: "Verbindung / Connection"
+      options:
+        - "WLAN / Wi-Fi"
+        - "LAN"
+  - type: input
+    id: app
+    attributes:
+      label: "App, Version und Gerät / App, version and device"
+      placeholder: "BlendIQ 2.0.1 · iPad / iPhone / Mac"
+    validations:
+      required: true
+  - type: dropdown
+    id: ergebnis
+    attributes:
+      label: "Ergebnis des Testetiketts / Test label result"
+      options:
+        - "Passt: ein Etikett, alle Ränder, Maße stimmen / Fits: one label, all edges, correct size"
+        - "Teilweise: versetzt, abgeschnitten oder falsch skaliert / Partly: offset, clipped or scaled"
+        - "Kein Druck oder Abbruch / No print or aborted"
+    validations:
+      required: true
+  - type: textarea
+    id: foto
+    attributes:
+      label: "Foto des Testetiketts / Photo of the test label"
+      description: "Bild hier hineinziehen / Drag the image here"
+  - type: textarea
+    id: notizen
+    attributes:
+      label: "Was war zu tun, was ist aufgefallen? / What did you need to do, what did you notice?"
+      description: "z. B. auf ZPL umgestellt, kalibriert, Schwärzung / e.g. switched to ZPL, calibrated, darkness"
