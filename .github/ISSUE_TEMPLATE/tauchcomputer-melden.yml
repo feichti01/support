@@ -1,0 +1,55 @@
+name: "BlendIQ – Tauchcomputer melden / Report a dive computer"
+description: "Ein Tauchcomputer lässt sich in BlendIQ einlesen – oder nicht. / A dive computer can be read in BlendIQ – or not."
+title: "[Tauchcomputer] <Hersteller> <Modell>"
+labels: ["blendiq-tauchcomputer"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Öffentlich sichtbar / Publicly visible.** Bitte keine Seriennummern, Namen oder Tauchgangsdaten eintragen. / Please do not include serial numbers, names or dive data.
+
+        Kompatibilität und Hilfe / Compatibility and help: [Tauchcomputer-Kompatibilität / Dive computer compatibility](https://feichti01.github.io/gasblender/support/dive-computer-compatibility.html#de-hilfe)
+  - type: input
+    id: modell
+    attributes:
+      label: "Hersteller und Modell / Manufacturer and model"
+      placeholder: "z. B. / e.g. Shearwater Teric"
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: "Firmware"
+      description: "Im Menü des Tauchcomputers / In the dive computer's menu"
+  - type: dropdown
+    id: weg
+    attributes:
+      label: "Weg / Path"
+      options:
+        - "Bluetooth"
+        - "UDDF-Datei / UDDF file"
+        - "Garmin FIT"
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: "App, Version und Gerät / App, version and device"
+      placeholder: "BlendIQ 2.0.1 · iPhone 16, iOS 27.1 / iPad / Mac"
+    validations:
+      required: true
+  - type: dropdown
+    id: ergebnis
+    attributes:
+      label: "Ergebnis / Result"
+      options:
+        - "Funktioniert: verbunden und Tauchgänge geladen / Works: connected and dives loaded"
+        - "Teilweise: verbunden, aber Tauchgänge fehlen oder sind falsch / Partly: connected, but dives missing or wrong"
+        - "Keine Verbindung / No connection"
+    validations:
+      required: true
+  - type: textarea
+    id: meldung
+    attributes:
+      label: "Meldung in der App und was du versucht hast / Message in the app and what you tried"
+      description: "z. B. Bluetooth neu gestartet, Telefon neu gestartet, andere App getrennt / e.g. restarted Bluetooth, restarted the phone, disconnected another app"
